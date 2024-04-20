@@ -1,0 +1,237 @@
+/* Base font size for all elements */
+body {
+    font-size: 16px;
+  }
+
+  /* Responsive font sizes for headings */
+  h1 {
+    font-size: 2rem; /* 32px */
+  }
+
+  h2 {
+    font-size: 1.75rem; /* 28px */
+  }
+
+  h3 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  h4 {
+    font-size: 1.25rem; /* 20px */
+  }
+
+  h5 {
+    font-size: 1rem; /* 16px */
+  }
+
+  h6 {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  /* Responsive font sizes for other elements */
+
+  @media screen and (min-width: 300px )and (max-width:640px) {
+    h1 {
+      font-size: 1.2rem !important; /* 40px */
+    }
+
+    h2 {
+      font-size: 0.8rem !important; /* 32px */
+    }
+
+    h3 {
+      font-size: 0.75rem; /* 28px */
+    }
+
+    h4 {
+      font-size: 0.75rem; /* 24px */
+    }
+
+    h5 {
+      font-size: 0.75rem; /* 20px */
+    }
+
+    h6 {
+      font-size: 0.75rem; /* 16px */
+    }
+
+    div {
+      font-size: 0.75rem; /* 16px */
+    }
+
+    p {
+      font-size: 0.6rem !important; /* 16px */
+      font-weight: bold;
+    }
+
+    span {
+      font-size: 0.85rem; /* 16px */
+    }
+
+    li {
+      font-size: 0.85rem; /* 16px */
+    }
+
+    ul {
+      font-size: 0.85rem; /* 16px */
+    }
+
+    input
+    textarea {
+      font-size: 0.85rem; /* 16px */
+    }
+  }
+
+  @media screen and (min-width: 640px) {
+    h1 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    h2 {
+      font-size: 2rem; /* 32px */
+    }
+
+    h3 {
+      font-size: 1.75rem; /* 28px */
+    }
+
+    h4 {
+      font-size: 1.5rem; /* 24px */
+    }
+
+    h5 {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    h6 {
+      font-size: 1rem; /* 16px */
+    }
+
+    div {
+      font-size: 1rem; /* 16px */
+    }
+
+    p {
+      font-size: 1rem; /* 16px */
+    }
+
+    span {
+      font-size: 1rem; /* 16px */
+    }
+
+    li {
+      font-size: 1rem; /* 16px */
+    }
+
+    ul {
+      font-size: 1rem; /* 16px */
+    }
+
+    input,
+    textarea {
+      font-size: 1rem; /* 16px */
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    h1 {
+      font-size: 3rem; /* 48px */
+    }
+
+    h2 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    h3 {
+      font-size: 2rem; /* 32px */
+    }
+
+    h4 {
+      font-size: 1.75rem; /* 28px */
+    }
+
+    h5 {
+      font-size: 1.5rem; /* 24px */
+    }
+
+    h6 {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    div {
+      font-size: 1.125rem; /* 18px */
+    }
+
+    p {
+      font-size: 1.125rem; /* 18px */
+    }
+
+    span {
+      font-size: 1.125rem; /* 18px */
+    }
+
+    li {
+      font-size: 1.125rem; /* 18px */
+    }
+
+    ul {
+      font-size: 1.125rem; /* 18px */
+    }
+
+    input,
+    textarea {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+
+  /* Larger screen font sizes */
+  @media screen and (min-width: 1024px) {
+    h1 {
+      font-size: 3.5rem; /* 56px */
+    }
+
+    h2 {
+      font-size: 3rem; /* 48px */
+    }
+
+    h3 {
+      font-size: 2.5rem; /* 40px */
+    }
+
+    h4 {
+      font-size: 2rem; /* 32px */
+    }
+
+    h5 {
+      font-size: 1.75rem; /* 28px */
+    }
+
+    h6 {
+      font-size: 1.5rem; /* 24px */
+    }
+
+    div {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    p {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    span {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    li {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    ul {
+      font-size: 1.25rem; /* 20px */
+    }
+
+    input,
+    textarea {
+      font-size: 1.25rem; /* 20px */
+    }
+  }
