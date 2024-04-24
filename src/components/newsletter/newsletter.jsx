@@ -1,7 +1,6 @@
 import './index.css'
 
 import React, { useState } from 'react';
-import cars_logo from '../../asset/images/newsletter.png'
 
 
 const Newsletter = () => {
@@ -39,10 +38,10 @@ const Newsletter = () => {
 
     return (
 
-        <div className="mx-1 md:px-10 py-12 bg-indigo-600 my-12">
-            <div className="mx-1 bg-indigo-100 p-12 rounded-md flex flex-col md:flex-row items-center justify-center h-[24rem]">
+        <div className="mx-1 md:px-10 h-[60vh] overflow-hidden my-12">
+            <div className="mx-1 bg-indigo-300 p-12 rounded-md flex flex-col md:flex-row items-center justify-center h-full">
                 {/* Input field for email */}
-                <form onSubmit={handleSubmit} className="flex flex-row items-center container w-full sm:w-1/2 md:w-2/5 lg:w-1/2">
+                <form onSubmit={handleSubmit} className="flex flex-row items-center container w-full md:w-[40%] lg:w-[48%]">
                     <input
                         type="email"
                         placeholder="Enter your email"
@@ -60,10 +59,10 @@ const Newsletter = () => {
                 </form>
 
                 {/* Logo on the right side */}
-                <div className="newsletter_logo w-full sm:w-1/2 md:w-2/5 lg:w-1/2 text-center px-3">
-                    <p className='text-[48px] font-bold text-indigo-600'>Want latest news and updates?</p>
-                    <p className='text-[36px] font-semibold'>Sign up for our newsletter.</p>
-                    <span className='font-extrabold'>Get notified</span>
+                <div className="newsletter_logo w-full md:w-[60%] lg:w-[48%] text-center px-3">
+                    <span className='block font-extrabold text-xl md:text-2xl lg:text-7xl'>Get notified</span>
+                    <span className='block text-lg md:text-xl lg:text-5xl font-bold text-indigo-600 mt-3 mb-2'>Want latest news and updates?</span>
+                    <span className='block text-sm md:text-lg lg:text-4xl font-bold'>Sign up for our newsletter.</span>
                 </div>
 
             </div>

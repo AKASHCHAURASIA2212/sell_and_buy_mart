@@ -10,7 +10,7 @@ function Card({ item }) {
     return (
         <div>
             <div className=" flex w-full min-w-[10rem] max-h-[25rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
-                <div className=" mx-4 mt-4 overflow-hidden bg-blue-gray-500 text-white shadow-lg shadow-blue-gray-500/40 h-3/5">
+                <div className=" mx-4 mt-4 overflow-hidden bg-blue-gray-500 text-white shadow-lg shadow-blue-gray-500/40 h-[45%]">
                     {/* <img
                         src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
                         alt="ui/ux review check"
@@ -29,29 +29,29 @@ function Card({ item }) {
                     <div className='w-full flex flex-row flex-wrap justify-start items-center'>
 
                         <div className="item_location w-1/2 flex flex-row justify-start items-center mt-2">
-                            <div className="location_icon h-5 w-5">
-                                <IoLocationOutline size={20} color='blue' />
+                            <div className="location_icon">
+                                <IoLocationOutline color='blue' />
                             </div>
-                            <p className='ml-2 text-lg'>{item.location}</p>
+                            <p className='ml-2 text-sm md:text-lg '>{item.location}</p>
                         </div>
 
                         <div className="item_date_enteindigo w-full flex flex-row justify-start items-center mt-2 font-small">
                             <div className="date_enteindigo_icon h-5 w-5">
-                                <MdDateRange size={20} color='indigo' />
+                                <MdDateRange color='indigo' />
 
                             </div>
-                            <span className='ml-2 text-lg'>2024-01-20</span>
+                            <span className='ml-2 text-sm'>2024-01-20</span>
                         </div>
 
                         <div className="item_price w-1/2 flex flex-row justify-start items-center mt-2">
-                            <div className="price_icon h-5 w-5">
-                                <FaRupeeSign size={18} color='green' />
+                            <div className="price_icon">
+                                <FaRupeeSign color='green' />
                             </div>
-                            <span className='ml-2 text-lg'>{item.item_price}</span>
+                            <span className='ml-2 text-sm'>{item.item_price}</span>
                         </div>
 
                         <div className="item_statu w-full flex flex-row justify-start items-center mt-2 pl-1">
-                            <span className='text-indigo-500 text-lg md:text-md'>{(item.status).charAt(0).toUpperCase()
+                            <span className='text-indigo-500 text-sm md:text-md'>{(item.status).charAt(0).toUpperCase()
                                 + (item.status).slice(1)}</span>
                         </div>
 
@@ -165,15 +165,6 @@ function Card({ item }) {
 
                     </div> */}
                 </div>
-                {/* <div className="p-6 pt-3">
-                    <button
-                        className="block w-full select-none rounded-lg bg-indigo-500 py-3.5 px-7 text-center align-middle font-sans text-sm font-bold uppercase text-white shadow-md shadow-indigo-500/20 transition-all hover:shadow-lg hover:shadow-indigo-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        type="button"
-                        data-ripple-light="true"
-                    >
-                        Reserve
-                    </button>
-                </div> */}
             </div>
 
         </div>

@@ -1,32 +1,25 @@
 import './index.css'
 import React from 'react';
+import contact_logo from '../../asset/images/about.svg'
+import { Link } from 'react-router-dom';
+
 
 const About = () => {
     return (
 
-        <div className="md:px-10 mt-4">
-            <div className="container mx-auto mt-8 bg-indigo-500 rounded-xl md:px-10">
-                <h1 className="text-3xl text-white font-bold mb-4">About Us</h1>
-                <p className="mb-4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed imperdiet, diam sit amet
-                    dictum dapibus, est arcu fermentum justo, a varius ligula odio nec lectus. Duis vel nisl
-                    libero. Integer non ultricies libero. Vestibulum at sapien vitae tortor tincidunt
-                    condimentum nec id eros. Proin non turpis sit amet arcu consectetur sollicitudin ut ut
-                    odio.
-                </p>
-                <p className="mb-4">
-                    Vestibulum consectetur purus sit amet magna condimentum, quis vehicula lorem mattis. Nam
-                    sit amet tempor nisi. Curabitur hendrerit libero quis quam tincidunt congue. Vivamus
-                    ultricies, libero vel rutrum tristique, felis ipsum laoreet neque, sit amet ultricies
-                    tellus ligula vel metus.
-                </p>
-                <p className="mb-4">
-                    Donec luctus, urna et volutpat ullamcorper, nulla ligula aliquet sem, at rutrum lacus
-                    tortor ut mi. Vestibulum feugiat eros eget malesuada rutrum. Aliquam erat volutpat. Sed
-                    finibus pulvinar augue, sed pretium tortor vehicula nec. Fusce nec nulla vitae nisl
-                    dignissim congue.
-                </p>
+        <div className="px-4 md:px-10 min-h-[88vh] bg-indigo-200 flex flex-col justify-center items-center">
+            <div className='contact_logo rounded-xl w-full lg:w-[45%] flex flex-col justify-center items-center h-[40vh] sm:h-[100%]'>
+                <img src={contact_logo} className=' w-full -mt-20' />
+                <div className='flex flex-col justify-center items-center h-auto -mt-12 text-center'>
+                    <span className='-mt-12 text-xl md:text-2xl lg:text-3xl font-extrabold'>We’re a passionate group of people working from around the world to build the future of ecommerce.</span>
+
+                    <Link to='/contact' className=' my-6'>
+                        <span className='text-xl md:text-3xl lg:text-4xl font-extrabold bg-indigo-600 px-4 py-2 rounded-lg text-white'>Contact US</span>
+                    </Link>
+                </div>
             </div>
+            {/* <div className="container mx-auto mt-8 bg-indigo-500 rounded-xl md:px-10">
+            </div> */}
         </div>
 
     );

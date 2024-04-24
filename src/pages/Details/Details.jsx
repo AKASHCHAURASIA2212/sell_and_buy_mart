@@ -63,23 +63,23 @@ const Details = () => {
         <div className=" mx-auto mt-8 md:px-4">
             <BreadCrum list={list} />
 
-            <div className="mt-3 flex flex-wrap flex-column sm:flex-row border-solid border-red-400 rounded-md border-2 w-full">
+            <div className="mt-3 flex flex-wrap flex-column sm:flex-row border-solid border-indigo-400 rounded-md border-2 w-full overflow-hidden min-h-[40vh]">
 
-                <div className="details-cont-img w-full sm:w-2/5 max-h-full m-2">
+                <div className="details-cont-img w-full min-h-[40vh] sm:w-[48%] m-2  bg-indigo-600 overflow-hidden rounded-md">
+                    {/* <img src="https://images.unsplash.com/photo-1511385348-a52b4a160dc2?q=80&w=907&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="item img" style={{ height: "100%", width: "100%" }} /> */}
 
-                    <img src="https://images.unsplash.com/photo-1511385348-a52b4a160dc2?q=80&w=907&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="item img" style={{ height: "100%", width: "100%" }} />
                 </div>
-                <div className="details-cont-details w-full sm:w-2/5 h-full m-2">
+                <div className="details-cont-details w-full sm:w-[48%] h-full px-3 mt-2 ">
                     {
                         items != null && <>
-                            <h1 className="font-bold mb-1">{items.item_desc}</h1>
-                            <p className="">{items.posted_by}</p>
-                            <p>{items.date_entered}</p>
-                            <p>{items.location}</p>
-                            <p>{items.item_price}</p>
-                            <p>{items.status}</p>
-                            <p>{items.item_category}</p>
-                            <button className='bg-green p-2 text-3xl' onClick={() => startChat(id)}>Chat</button></>
+                            < span className="block text-lg sm:text-xl md:text-2xl font-semibold">{items.item_desc}</span>
+                            <span className="block text-lg sm:text-xl md:text-2xl">{items.posted_by}</span>
+                            <span className='block text-lg sm:text-xl md:text-2xl'>{items.date_entered}</span>
+                            <span className='block text-lg sm:text-xl md:text-2xl'>{items.location}</span>
+                            <span className='block text-lg sm:text-xl md:text-2xl'>{items.item_price}</span>
+                            <span className='block text-lg sm:text-xl md:text-2xl'>{items.status}</span>
+                            <span className='block text-lg sm:text-xl md:text-2xl'>{items.item_category}</span>
+                            <button className='bg-green-500 min-w-[2rem] rounded-md my-2 px-8 py-2 text-xl font-bold text-white' onClick={() => startChat(id)}>Chat</button></>
                     }
 
                 </div>

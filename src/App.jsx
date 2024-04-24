@@ -22,6 +22,10 @@ import User from './pages/User/User'
 import AddPost from './components/AddPost/AddPost';
 import ChatContainer from './components/ChatContainer/ChatContainer';
 import axios from 'axios';
+import Dashboard from './pages/Dashboard/Dashboard';
+import UserArea from './components/Dash/UserArea/UserArea';
+import ItemArea from './components/Dash/ItemArea/ItemArea';
+import Panel from './components/Dash/AdminPanel/Panel';
 
 
 const MyContext = createContext();
@@ -34,6 +38,7 @@ function App() {
   console.log(login_status === 'true');
   login_status = login_status === 'true';
   let [isLogin, setIsLogin] = useState(login_status);
+  let [adminStatus, setAdminStatus] = useState(true);
   let [isLoading, setIsLoading] = useState(true);
   let [categorylist, setcategorylist] = useState([]);
   let [itemsdata, setItemsData] = useState([]);
@@ -97,7 +102,11 @@ function App() {
           </div>
         }
 
-        <Header />
+
+        {
+          !adminStatus &&
+          <Header />
+        }
         <Routes>
 
           {!isLogin && <>
@@ -108,7 +117,22 @@ function App() {
           }
 
           {
-            isLogin && <>
+            adminStatus &&
+
+            <Route path='admin' element={<Dashboard />} className='mx-4' >
+              <Route path='' element={<Panel />} />
+              <Route path='user' element={<UserArea />} />
+              {/* <Route path='user/edit' element={<UserEditArea />} /> */}
+              <Route path='item' element={<ItemArea />} />
+              {/* <Route path='item/edit' element={<ItemEditArea />} /> */}
+              {/* <Route path='notify' element={<NotificationArea />} /> */}
+              <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
+            </Route>
+
+          }
+
+          {
+            !adminStatus && isLogin && <>
               <Route exact={true} path="/" element={<Home className='mx-4' />} />
 
               <Route exact={true} path="/listing" element={<Listing className='mx-4' />} />
@@ -122,21 +146,28 @@ function App() {
               <Route exact={true} path="/user" element={<User className='mx-4' />} />
               <Route exact={true} path="/add/:user_id" element={<AddPost className='mx-4' />} />
               <Route exact={true} path="/chat/:id" element={<ChatContainer className='mx-4' />} />
-              <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
+              {/* <Route exact={true} path='*' element={<NotFound className='mx-4' />} /> */}
               {/* <Route exact={true} path='/*' element={<NotFound className='mx-4' />}> </Route> */}
               {/* <Route exact={true} path='' element={<NotFound className='mx-4' />}> </Route> */}
+              <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
 
             </>
           }
 
         </Routes>
         {
-          isLogin && <FeatureWrapper className='mx-4' />
+          !adminStatus && isLogin && <FeatureWrapper className='mx-4' />
         }
         {
-          isLogin && <Newsletter className='mx-4' />
+          !adminStatus && isLogin && <Newsletter className='mx-4' />
         }
-        <Footer />
+
+        {
+          !adminStatus &&
+          <Footer />
+        }
+
+
 
 
       </MyContext.Provider>

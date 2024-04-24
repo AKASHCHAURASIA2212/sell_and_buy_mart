@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ChatArea from './ChatArea'
 import ChatSideBar from './ChatSideBar'
-import userLogo from '../../asset/images/icon-user.svg';
+import userLogo from '../../asset/images/user.png';
 import ChatHandler from './ChatHandler';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -35,8 +35,11 @@ function ChatContainer() {
                 }
             })
             console.log("ChatContainer : ", itemdata);
-            setBuyerData(itemdata[0].buyer_data)
-            setSellerData(itemdata[0].seller_data)
+            setBuyerData(itemdata[0].buyer)
+            setSellerData(itemdata[0].seller)
+
+            console.log(buyer_data);
+            console.log(seller_data);
 
             // if (buyer_data.length > 0) {
             //     setShowChat(true);
@@ -55,7 +58,7 @@ function ChatContainer() {
 
 
     return (
-        <div className="min-h-screen flex justify-start w-full px-8 py-4 bg-white-500">
+        <div className="h-[88vh] flex justify-start w-full px-8 py-4 bg-white-500">
             {buyer_data == null &&
                 <ChatHandler />
                 // <h1>CHAT HANDLER</h1>

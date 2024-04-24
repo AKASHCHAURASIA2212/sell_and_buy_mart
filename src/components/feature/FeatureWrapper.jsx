@@ -32,11 +32,9 @@ function FeatureWrapper() {
     ]
 
     return (
-        <div className="container p-0 flex justify-around items-center h-max bg-indigo-800 mx-1 mt-12 py-10 px-10">
+        <div className="p-0 flex flex-col md:flex-row justify-center items-center flex-wrap h-max bg-indigo-800 mx-1 mt-12 py-10 px-10 ">
 
             {feature_data.map((item, index) => {
-                // console.log("***********Feuture***********8");
-                // console.log(item);
                 return (
                     <Feature data={item} key={index} />
                 )

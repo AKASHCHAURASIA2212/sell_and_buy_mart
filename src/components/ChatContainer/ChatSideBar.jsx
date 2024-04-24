@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import userLogo from '../../asset/images/icon-user.svg';
+import userLogo from '../../asset/images/user.png';
 import ChatBox from './ChatBox';
 import './index.css'
-function ChatSideBar({ buyer_arr, seller_arr }) {
+function ChatSideBar({ buyer_data_arr, seller_data_arr }) {
 
-    // console.log("buyer_arr :", buyer_arr);
-    // console.log("seller_arr :", seller_arr);
+    console.log("buyer_data_arr :", buyer_data_arr);
+    console.log("seller_data_arr :", seller_data_arr);
     const user_id = localStorage.getItem("user_id")
     const username = localStorage.getItem("username")
 
@@ -25,14 +25,14 @@ function ChatSideBar({ buyer_arr, seller_arr }) {
                 console.log(data);
 
                 let seller_data = data.filter((user) => {
-                    if (user.user_id == seller_arr[0]) {
+                    if (user.user_id == seller_data_arr[0]) {
                         return user;
                     }
                 })
 
                 setSellerData(seller_data);
 
-                let buyer_data = data.filter(user => buyer_arr.includes(user.user_id))
+                let buyer_data = data.filter(user => buyer_data_arr.includes(user.user_id))
 
                 setBuyerData(buyer_data)
 
@@ -52,13 +52,13 @@ function ChatSideBar({ buyer_arr, seller_arr }) {
 
     const [activetabs, setActiveTabs] = useState(0)
     return (
-        <div className='h-screen bg-white-500 w-full sm:w-2/5'>
+        <div className='h-full bg-white-500 w-full sm:w-[50%] md:w-[40%] lg:w-[30%]'>
             <div className="bg-white shadow1 p-1 rounded-md w-full h-full">
                 <div className="flex flex-col justify-start mb-4 w-full">
 
                     <div className="flex justify-around items-center w-full">
-                        <button className={` ${activetabs !== 0 ? 'bg-gray-500' : 'bg-indigo-500'} text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-100 dark:focus:ring-blue-200 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 my-3 w-2/5`} onClick={() => { setActiveTabs(0) }}>Buyer</button>
-                        <button className={` ${activetabs !== 1 ? ' bg-gray-500' : ' bg-indigo-600'} text-white bg-gradient-to-br from-purple-400 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-100 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 my-3 w-2/5`} onClick={() => { setActiveTabs(1) }}>Seller</button>
+                        <button className={` text-white focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-sm px-5 py-3 text-center me-2 my-3 w-2/5 ${activetabs !== 0 ? 'bg-gradient-to-br from-gray-600 to-gray-500 hover:bg-gradient-to-bl' : 'bg-gradient-to-br from-indigo-600 to-indigo-500 hover:bg-gradient-to-bl'}`} onClick={() => { setActiveTabs(0) }}>Buyer</button>
+                        <button className={` text-white focus:outline-none focus:ring-blue-100font-medium rounded-lg text-sm px-5 py-3 text-center me-2 my-3 w-2/5  ${activetabs !== 1 ? 'bg-gradient-to-br from-gray-600 to-gray-500 hover:bg-gradient-to-bl' : 'bg-gradient-to-br from-indigo-600 to-indigo-500 hover:bg-gradient-to-bl'}`} onClick={() => { setActiveTabs(1) }}>Seller</button>
                     </div>
 
                     {

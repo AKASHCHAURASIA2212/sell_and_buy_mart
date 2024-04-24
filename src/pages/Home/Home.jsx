@@ -5,9 +5,6 @@ import Listing from '../Listing/Listing';
 import { MyContext } from '../../App';
 import { Link } from 'react-router-dom';
 
-// import { cat_icon_array } from '../../utils/utils.jsx'
-
-
 import Furniture from '../../asset/cat_logo/furniture.png'
 import Cars from '../../asset/cat_logo/cars.png'
 import Electronics from '../../asset/cat_logo/electronics.png'
@@ -17,7 +14,7 @@ import Bikes from '../../asset/cat_logo/bikes.png'
 import Books from '../../asset/cat_logo/books.png'
 import Jobs from '../../asset/cat_logo/jobs.png';
 import axios from 'axios';
-import SideBar from '../../components/SideBar/SideBar';
+import Filter from '../../components/Filter/Filter';
 
 
 const Home = () => {
@@ -113,7 +110,7 @@ const Home = () => {
             <div className="w-full flex flex-col  md:px-10">
                 {/* <div className='sm:w-full md:w-1/3 lg:w-1/4'> */}
 
-                <SideBar />
+                <Filter />
                 {/* </div> */}
                 <div className='w-full'>
 

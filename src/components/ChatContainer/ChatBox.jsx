@@ -1,6 +1,8 @@
 import React from 'react'
 import './index.css'
 import { useNavigate } from 'react-router-dom'
+import userLogo from '../../asset/images/user.png';
+
 function ChatBox({ user_data }) {
 
     const showMessage = (user2ID) => {
@@ -17,7 +19,7 @@ function ChatBox({ user_data }) {
                         className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 
                             bg-300-white shadow1 mb-2">
                         <div className="grid mr-4 place-items-center">
-                            <img alt="emma" src="https://docs.material-tailwind.com/img/face-3.jpg"
+                            <img alt="emma" src={userLogo}
                                 className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center" />
                         </div>
                         <div>

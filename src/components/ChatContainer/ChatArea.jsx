@@ -1,12 +1,12 @@
 import React from 'react'
 import ChatMessageOther from './ChatMessageOther'
 import ChatMessageSelf from './ChatMessageSelf'
-import userLogo from '../../asset/images/icon-user.svg';
+import userLogo from '../../asset/images/user.png';
 
 import './index.css'
 function ChatArea() {
     return (
-        <div className={`min-h-screen w-full sm:w-3/5 flex flex-col justify-start items-center  px-2 rounded-md`}>
+        <div className={`h-full w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center  px-2 rounded-md`}>
             <div className="chat-area-header w-full flex justify-between items-center p-2 shadow1 bg-white rounded-md">
                 <div className="details flex flex-col justify-center items-start">
                     <div className='flex flex-row justify-end items-center'>

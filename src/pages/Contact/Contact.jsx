@@ -1,18 +1,18 @@
 import './index.css'
 import React, { useState } from 'react';
-
+import contact_logo from '../../asset/images/contact.webp'
 const Contact = () => {
     const [formData, setFormData] = useState({
-        name: '',
+        subject: '',
         email: '',
         message: ''
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { subject, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [name]: value
+            [subject]: value
         }));
     };
 
@@ -23,23 +23,20 @@ const Contact = () => {
     };
 
     return (
-        <div className='md:px-10'>
-            <div className="container mx-auto mt-8 bg-indigo-500 rounded-xl ">
-                <h1 className="container text-3xl font-bold mb-4">Contact Us</h1>
-                <form onSubmit={handleSubmit} className="container bg-indigo-200  rounded-2xl">
-                    <div className="mb-4">
-                        <label htmlFor="name" className="block text-sm font-medium text-gray-700">
-                            Name
-                        </label>
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2 outline-none font-mono"
-                        />
-                    </div>
+        <div className='px-4 md:px-10 min-h-[88vh] bg-indigo-200 flex flex-col md:flex-row justify-around'>
+
+            <div className='contact_logo rounded-xl w-full lg:w-[45%] flex flex-col justify-center items-center h-[40vh] sm:h-[100%]'>
+                <img src={contact_logo} className='h-[70%]' />
+                <div className='flex flex-col justify-center items-center h-auto -mt-12 text-center'>
+                    <span className='text-xl md:text-3xl lg:text-4xl font-bold mb-2'>How can we help you?</span>
+                    <span className='text-sm md:text-2xl lg:text-2xl font-semibold mb-3'>Got an Issue? Want to send feedback? Let us know.</span>
+                    <span className='text-2xl md:text-4xl lg:text-5xl font-extrabold'>Contact US</span>
+                </div>
+            </div>
+
+            <div className=" bg-indigo-300 p-4 my-12 rounded-xl w-full lg:w-[45%]">
+                {/* <h1 className=" text-3xl font-bold">Contact Us</h1> */}
+                <form onSubmit={handleSubmit} className="  rounded-2xl">
                     <div className="mb-4">
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                             Email
@@ -47,28 +44,39 @@ const Contact = () => {
                         <input
                             type="email"
                             id="email"
-                            name="email"
-                            value={formData.email}
+                            subject="email"
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2 outline-none font-mono"
+                            className="text-gray-600 outline-none w-full h-12 rounded-md p-3 mt-3"
                         />
                     </div>
+                    <div className="mb-4">
+                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                            Subject
+                        </label>
+                        <input
+                            type="text"
+                            id="subject"
+                            subject="subject"
+                            onChange={handleChange}
+                            className="text-gray-600 outline-none w-full h-12 rounded-md p-3 mt-3"
+                        />
+                    </div>
+
                     <div className="mb-4">
                         <label htmlFor="message" className="block text-sm font-medium text-gray-700">
                             Message
                         </label>
                         <textarea
                             id="message"
-                            name="message"
+                            subject="message"
                             rows={4}
-                            value={formData.message}
                             onChange={handleChange}
-                            className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm p-2 outline-none font-mono"
+                            className="text-gray-600 outline-none w-full h-48 rounded-md p-3 mt-3 resize-none"
                         />
                     </div>
                     <button
                         type="submit"
-                        className="inline-block bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md"
+                        className="inline-block bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md mt-8"
                     >
                         Submit
                     </button>

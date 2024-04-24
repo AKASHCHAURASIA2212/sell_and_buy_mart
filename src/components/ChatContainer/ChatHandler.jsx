@@ -1,5 +1,7 @@
 import React from 'react'
-import userLogo from '../../asset/images/icon-user.svg';
+import userLogo from '../../asset/images/user.png';
+import { BsSend } from "react-icons/bs";
+
 
 function ChatHandler() {
     return (
@@ -18,8 +20,12 @@ function ChatHandler() {
                 </div>
             </div>
 
-            <div className="chat-area-input shadow-md p-2 bg-indigo-500 rounded-lg">
-                <input type="text" className='outline-none p-3 text-2xl border-2 border-red h-full w-full rounded-xl' placeholder='Message' />
+            <div className="chat-area-input shadow-md p-2 rounded-lg flex flex-row justify-center items-center">
+                <input type="text" className='outline-none p-2 text-sm sm:text-lg border-2 border-red h-full w-full rounded-xl' placeholder='Message' />
+                <button className="send p-2 rounded-3xl bg-indigo-400 text-white ml-2">
+                    <BsSend size={30} />
+                </button>
+
             </div>
         </div>
     )

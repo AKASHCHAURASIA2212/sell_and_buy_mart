@@ -10,12 +10,12 @@ const Feature = ({ data }) => {
 
 
     return (
-        <div className={`feature bg-indigo-500 text-gray-800 p-4 my-4 mt-8 rounded-md shadow-md mx-1 h-[20rem] w-[55rem]`} >
-            <div className="flex items-center mb-4">
-                <img src={logo} alt="Feature Logo" className="h-9  mr-2" />
-                <h3 className=" font-semibold">{heading}</h3>
+        <div className={` bg-indigo-500 text-gray-800 p-4 my-4 mt-8 rounded-md shadow-md min-h-[25rem] w-[20rem] mx-2`} >
+            <div className="flex items-center mb-4 w-[100%]">
+                <img src={logo} alt="Feature Logo" className="h-12  mr-2 " />
+                <span className=" font-extrabold text-xl">{heading}</span>
             </div>
-            <p className="">{description}</p>
+            <span className="w-100% text-xl font-semibold">{description}</span>
         </div>
 
 
