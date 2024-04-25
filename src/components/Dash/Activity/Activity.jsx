@@ -2,7 +2,7 @@ import React from 'react'
 
 function Activity() {
     return (
-        <div className='w-[100%]'>
+        <div className=''>
             <div className="grid grid-cols-1 gap-5 bg-gray-100 p-2 sm:grid-cols-2 sm:p-10 lg:grid-cols-3">
                 <div className="max-w-md rounded-xl border bg-white p-6 pb-10 text-gray-900">
                     <p className="text-lg font-medium">Insights</p>

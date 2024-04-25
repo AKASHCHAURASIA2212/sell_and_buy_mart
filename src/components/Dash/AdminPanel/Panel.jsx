@@ -3,7 +3,7 @@ import Activity from '../Activity/Activity'
 import Stats from '../Activity/Stats'
 function Panel() {
     return (
-        <div className='w-auto h-[100vh] bg-white-300 overflow-scroll'>
+        <div className='h-full bg-white-300 overflow-scroll'>
             <Stats />
             <Activity />
             <Activity />

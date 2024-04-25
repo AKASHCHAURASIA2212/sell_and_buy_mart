@@ -26,6 +26,8 @@ import Dashboard from './pages/Dashboard/Dashboard';
 import UserArea from './components/Dash/UserArea/UserArea';
 import ItemArea from './components/Dash/ItemArea/ItemArea';
 import Panel from './components/Dash/AdminPanel/Panel';
+import UserDetails from './components/User/UserDetails';
+import ItemDetails from './components/item/ItemDetails';
 
 
 const MyContext = createContext();
@@ -122,8 +124,9 @@ function App() {
             <Route path='admin' element={<Dashboard />} className='mx-4' >
               <Route path='' element={<Panel />} />
               <Route path='user' element={<UserArea />} />
-              {/* <Route path='user/edit' element={<UserEditArea />} /> */}
+              <Route path='user/edit' element={<UserDetails />} />
               <Route path='item' element={<ItemArea />} />
+              <Route path='item/edit' element={<ItemDetails />} />
               {/* <Route path='item/edit' element={<ItemEditArea />} /> */}
               {/* <Route path='notify' element={<NotificationArea />} /> */}
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
