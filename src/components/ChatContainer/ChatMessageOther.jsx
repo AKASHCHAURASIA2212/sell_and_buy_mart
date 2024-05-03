@@ -7,9 +7,9 @@ function ChatMessageOther({ data }) {
             <div className='self-message-cont float-left shadow1 p-4'>
 
 
-                <div className='self-message-msg'>Hello Jhon</div>
+                <div className='self-message-msg'>{data.content}</div>
                 <div className='flex justify-end'>
-                    <p className='self-message-timeStamp text-sm font-thin'>10:11</p>
+                    <p className='self-message-timeStamp text-sm font-thin'>{data.date}</p>
                 </div>
 
             </div>

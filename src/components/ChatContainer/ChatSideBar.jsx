@@ -2,50 +2,106 @@ import React, { useEffect, useState } from 'react'
 import userLogo from '../../asset/images/user.png';
 import ChatBox from './ChatBox';
 import './index.css'
-function ChatSideBar({ buyer_data_arr, seller_data_arr }) {
+import { useNavigate } from 'react-router-dom';
+function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
 
-    console.log("buyer_data_arr :", buyer_data_arr);
-    console.log("seller_data_arr :", seller_data_arr);
+    let navigate = useNavigate();
+
+    // console.log("buyer_data_arr :", buyer_data_arr);
+    // console.log("seller_data_arr :", seller_data_arr);
+    console.log("details :", details, seller_data_arr, buyer_data_arr);
     const user_id = localStorage.getItem("user_id")
     const username = localStorage.getItem("username")
 
+    let bdarr = [];
+    let sdarr = [];
+    buyer_data_arr.forEach((elem) => {
+        let data = { chatID: elem.chat_id };
 
-    const [buyer_data, setBuyerData] = useState(null);
-    const [seller_data, setSellerData] = useState(null);
-
-
-    const getUserData = async () => {
-        let result = await fetch("http://localhost:3000/user_data", {
-            method: "GET",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
+        details.itemData.forEach((item) => {
+            if (item.item_id == elem.item_id) {
+                data.ItemName = item.item_name
+                data.ItemCat = item.item_category
+                data.ItemID = item.item_id
             }
-        }).then(res => res.json())
-            .then((data) => {
-                console.log(data);
+        })
 
-                let seller_data = data.filter((user) => {
-                    if (user.user_id == seller_data_arr[0]) {
-                        return user;
-                    }
-                })
+        details.userData.forEach((user) => {
+            if (user.user_id != elem.participents[1]) {
+                data.UserName = user.username
+                data.UserID = user.user_id
+            }
+        })
 
-                setSellerData(seller_data);
+        // console.log("buyer data ", data);
 
-                let buyer_data = data.filter(user => buyer_data_arr.includes(user.user_id))
+        bdarr.push(data)
 
-                setBuyerData(buyer_data)
+        // setBuyerData(data)
+    })
 
-                console.log("buyer_data :", buyer_data);
-                console.log("seller_data :", seller_data);
+    seller_data_arr.forEach((elem) => {
+        let data = { chatID: elem.chat_id };
 
-            }).catch((e) => {
-                console.log(e);
-            })
-    }
+        details.itemData.forEach((item) => {
+            if (item.item_id == elem.item_id) {
+                data.ItemName = item.item_name
+                data.ItemCat = item.item_category
+                data.ItemID = item.item_id
+            }
+        })
+
+        details.userData.forEach((user) => {
+            if (user.user_id != elem.participents[0]) {
+                data.UserName = user.username
+                data.UserID = user.user_id
+            }
+        })
+
+        // console.log("seller data ", data);
+        sdarr.push(data)
+        // setSellerData(data)
+    })
+
+
+    const [buyer_data, setBuyerData] = useState(bdarr);
+    const [seller_data, setSellerData] = useState(sdarr);
+
+
+
+
+    // const getUserData = async () => {
+    //     let result = await fetch("http://localhost:3000/user_data", {
+    //         method: "GET",
+    //         headers: {
+    //             "Content-type": "application/json; charset=UTF-8"
+    //         }
+    //     }).then(res => res.json())
+    //         .then((data) => {
+    //             console.log(data);
+
+    //             let seller_data = data.filter((user) => {
+    //                 if (user.user_id == seller_data_arr[0]) {
+    //                     return user;
+    //                 }
+    //             })
+
+    //             setSellerData(seller_data);
+
+    //             let buyer_data = data.filter(user => buyer_data_arr.includes(user.user_id))
+
+    //             setBuyerData(buyer_data)
+
+    //             console.log("buyer_data :", buyer_data);
+    //             console.log("seller_data :", seller_data);
+
+    //         }).catch((e) => {
+    //             console.log(e);
+    //         })
+    // }
 
     useEffect(() => {
-        getUserData()
+        // getUserData()
     }, [])
 
 

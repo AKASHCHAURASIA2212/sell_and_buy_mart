@@ -2,6 +2,8 @@ import './index.css'
 import React, { useState } from 'react';
 import contact_logo from '../../asset/images/contact.webp'
 const Contact = () => {
+
+    let user_id = localStorage.getItem("user_id");
     const [formData, setFormData] = useState({
         subject: '',
         email: '',
@@ -9,17 +11,33 @@ const Contact = () => {
     });
 
     const handleChange = (e) => {
-        const { subject, value } = e.target;
+        const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
-            [subject]: value
+            [name]: value
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission logic (e.g., send data to server, display success message)
-        // console.log(formData); // Just for demonstration, replace with actual logic
+
+        console.log(formData);
+
+        await fetch(`http://localhost:3000/api/mail/${user_id}`, {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                // navigate('/')
+
+            }).catch((e) => {
+                console.log(e);
+            })
+
     };
 
     return (
@@ -44,7 +62,8 @@ const Contact = () => {
                         <input
                             type="email"
                             id="email"
-                            subject="email"
+                            name='email'
+                            value={formData.name}
                             onChange={handleChange}
                             className="text-gray-600 outline-none w-full h-12 rounded-md p-3 mt-3"
                         />
@@ -56,7 +75,8 @@ const Contact = () => {
                         <input
                             type="text"
                             id="subject"
-                            subject="subject"
+                            name="subject"
+                            value={formData.subject}
                             onChange={handleChange}
                             className="text-gray-600 outline-none w-full h-12 rounded-md p-3 mt-3"
                         />
@@ -68,8 +88,9 @@ const Contact = () => {
                         </label>
                         <textarea
                             id="message"
-                            subject="message"
+                            name="message"
                             rows={4}
+                            value={formData.message}
                             onChange={handleChange}
                             className="text-gray-600 outline-none w-full h-48 rounded-md p-3 mt-3 resize-none"
                         />

@@ -1,9 +1,54 @@
-import React from 'react'
+import React, { useState } from 'react'
 import userLogo from '../../asset/images/user.png';
 import { BsSend } from "react-icons/bs";
 
 
-function ChatHandler() {
+function ChatHandler({ data }) {
+
+    let [message, setMessage] = useState("Hi");
+
+    const [formData, setFormData] = useState({
+        "sender": data.sender,
+        "receiver": data.receiver,
+        "itemId": data.item_id,
+        "message": 'Hi',
+        "chat_started_by": data.user_id
+    });
+
+    // console.log(formData);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(name, value);
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+
+        // console.log(formData);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        // console.log(formData);
+
+        let result = await fetch("http://localhost:3000/api/chat/new", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(res => res.json())
+            .then((data) => {
+                // console.log(data);
+
+                navigate('/')
+
+            }).catch((e) => {
+                console.log(e);
+            })
+    }
     return (
         <div className='w-full flex flex-col justify-center -mt-20 items-center'>
             <p className='text-3xl'>Start Chat with Seller</p>
@@ -21,9 +66,9 @@ function ChatHandler() {
             </div>
 
             <div className="chat-area-input shadow-md p-2 rounded-lg flex flex-row justify-center items-center">
-                <input type="text" className='outline-none p-2 text-sm sm:text-lg border-2 border-red h-full w-full rounded-xl' placeholder='Message' />
+                <input type="text" className='outline-none p-2 text-sm sm:text-lg border-2 border-red h-full w-full rounded-xl' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} />
                 <button className="send p-2 rounded-3xl bg-indigo-400 text-white ml-2">
-                    <BsSend size={30} />
+                    <BsSend size={30} onClick={handleSubmit} />
                 </button>
 
             </div>

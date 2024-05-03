@@ -1,6 +1,8 @@
 import React from 'react'
 
-function Stats() {
+function Stats({ data }) {
+    console.log(data);
+
     return (
         <div>
             <div class=" m-10 flex flex-column md:row justify-around mx-auto">
@@ -11,7 +13,7 @@ function Stats() {
                     </svg>
                     <p class="mt-4 font-medium">Items</p>
                     <p class="mt-2 text-xl font-medium">
-                        1500
+                        {data?.itemCount}
                     </p>
                     {/* <span class="text-xs text-gray-400">+4.9%</span> */}
                 </div>
@@ -21,7 +23,7 @@ function Stats() {
                     </svg>
                     <p class="mt-4 font-medium">Users</p>
                     <p class="mt-2 text-xl font-medium">
-                        300
+                        {data?.userCount}
                     </p>
                     {/* <span class="text-xs text-gray-400">+4.9%</span> */}
                 </div>
@@ -31,7 +33,7 @@ function Stats() {
                     </svg>
                     <p class="mt-4 font-medium">notification</p>
                     <p class="mt-2 text-xl font-medium">
-                        50+
+                        {data?.mailCount}
                     </p>
                     {/* <span class="text-xs text-gray-400">+4.9%</span> */}
                 </div>

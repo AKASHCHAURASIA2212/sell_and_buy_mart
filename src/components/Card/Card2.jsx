@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 
-function Card2({ item }) {
+
+function Card2({ item, delete_item }) {
+
+    let navigate = useNavigate();
 
     let status_c = "Pending";
     let bg = "bg-orange-500";
@@ -15,6 +19,10 @@ function Card2({ item }) {
 
     let [status, setStatus] = useState(status_c);
     let [statusBg, setStatusBg] = useState(bg);
+
+    let editPost = () => {
+        navigate(`/add/${item.item_id}`)
+    }
 
 
     return (
@@ -37,9 +45,9 @@ function Card2({ item }) {
                 <div className="flex justify-end">
                     {status_c != "Pending" && status_c != "InActive" &&
                         <>
-                            <button className="bg-indigo-500 text-white px-2 py-2 mr-2 mx-auto rounded-md hover:bg-indigo-600 transition duration-300 text-sm w-[4rem]">Edit</button>
+                            <button className="bg-indigo-500 text-white px-2 py-2 mr-2 mx-auto rounded-md hover:bg-indigo-600 transition duration-300 text-sm w-[4rem]" onClick={() => { editPost() }}>Edit</button>
 
-                            <button className="bg-red-500 text-white px-2 py-2 mx-auto rounded-md hover:bg-red-600 transition duration-300 text-sm w-[4rem]" onClick={() => { delete_item(item._id) }}>Delete</button>
+                            <button className="bg-red-500 text-white px-2 py-2 mx-auto rounded-md hover:bg-red-600 transition duration-300 text-sm w-[4rem]" onClick={() => { delete_item(item.item_id) }}>Delete</button>
                         </>
                     }
                 </div>

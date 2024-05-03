@@ -22,13 +22,13 @@ const SingUp = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
+        // console.log(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
 
-        console.log(formData);
+        // console.log(formData);
     };
 
     const handleSubmit = async (e) => {
@@ -37,7 +37,7 @@ const SingUp = () => {
         console.log(formData); // Just for demonstration, replace with actual logic
 
         let data = {
-            "user_id": Math.floor(Math.random() * (1099 - 1010 + 1)) + 1010,
+            // "user_id": Math.floor(Math.random() * (1099 - 1010 + 1)) + 1010,
             "username": formData.username,
             "password": formData.password,
             "email": formData.email,
@@ -50,7 +50,7 @@ const SingUp = () => {
             setMessage("Password Not Matched...")
         } else {
 
-            let result = await fetch("http://localhost:3000/user_data", {
+            await fetch("http://localhost:3000/api/users/signup", {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -68,10 +68,6 @@ const SingUp = () => {
                 }).catch((e) => {
                     console.log(e);
                 })
-
-            // result = result.json();
-            // console.log(result);
-            // setIsLogin(true)
 
         }
     };

@@ -5,8 +5,12 @@ import userLogo from '../../asset/images/user.png';
 
 function ChatBox({ user_data }) {
 
-    const showMessage = (user2ID) => {
-        useNavigate()
+    let navigate = useNavigate()
+
+
+    const openChatArea = (chatId) => {
+        console.log("user_data chatbox", user_data);
+        navigate(`${chatId}`)
     }
     console.log(user_data);
     return (
@@ -15,7 +19,7 @@ function ChatBox({ user_data }) {
             {
                 user_data != null && user_data.length > 0 &&
                 user_data.map((user) => {
-                    return (<div onClick={() => { showMessage(user.user_id) }}
+                    return (<div onClick={() => { openChatArea(user.chatID) }}
                         className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 
                             bg-300-white shadow1 mb-2">
                         <div className="grid mr-4 place-items-center">
@@ -25,10 +29,10 @@ function ChatBox({ user_data }) {
                         <div>
                             <h6
                                 className="block font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
-                                {user.username}
+                                {user.UserName}
                             </h6>
                             <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700">
-                                {user.address}
+                                {user.ItemName}
                             </p>
                         </div>
                     </div>)

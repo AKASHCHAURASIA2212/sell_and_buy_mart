@@ -15,6 +15,8 @@ const SignIn = () => {
         password: ''
     });
 
+    const [message, setMessage] = useState("");
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -26,8 +28,16 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        let result = await fetch("http://localhost:3000/user_data", {
-            method: "GET",
+        let data = {
+            // "user_id": Math.floor(Math.random() * (1099 - 1010 + 1)) + 1010,
+            "username": formData.username,
+            "password": formData.password,
+            "email": formData.email,
+        }
+
+        await fetch("http://localhost:3000/api/users/signin", {
+            method: "POST",
+            body: JSON.stringify(data),
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
@@ -35,19 +45,23 @@ const SignIn = () => {
             .then((data) => {
                 console.log(data);
 
-                let user = data.filter((item) => {
-                    if (item.username == formData.username && item.password == formData.password) {
-                        return item;
-                    }
-                })
+                if (data.data === "") {
+                    setMessage(data.message)
+                } else {
+                    // let user = data.filter((item) => {
+                    //     if (item.username == formData.username && item.password == formData.password) {
+                    //         return item;
+                    //     }
+                    // })
 
-                console.log(user);
-                if (user) {
-                    localStorage.setItem("user_id", user[0].user_id)
-                    localStorage.setItem("username", user[0].username)
-                    localStorage.setItem("login_status", true)
-                    setIsLogin(true)
-                    navigate('/')
+                    // console.log(data);
+                    if (data.data) {
+                        localStorage.setItem("user_id", data.data.user_id)
+                        localStorage.setItem("username", data.data.username)
+                        localStorage.setItem("login_status", true)
+                        setIsLogin(true)
+                        navigate('/')
+                    }
                 }
 
             }).catch((e) => {
@@ -58,13 +72,20 @@ const SignIn = () => {
 
     return (
 
-        <div className="min-h-screen bg-white flex justify-center items-center px-4">
+        <div className="min-h-screen bg-white flex flex-col justify-center items-center px-4">
+            {
+                message !== "" && <h1>{message}</h1>
+            }
             <div className="max-w-md w-full p-6 bg-white-500 rounded-lg shadow-lg -mt-10 border-2 border-indigo-500 ">
                 <h1 className=" font-semibold text-center mb-6">Sign In</h1>
                 <form className="space-y-4">
                     <div>
                         <label htmlFor="username" className="block font-medium">Username</label>
                         <input type="text" id="username" name='username' className="w-full border-white-300 rounded-md shadow-md  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 outline-none p-2 mt-2" onChange={handleChange} required />
+                    </div>
+                    <div>
+                        <label htmlFor="email" className="block font-medium">Email</label>
+                        <input type="text" id="email" name='email' className="w-full border-white-300 rounded-md shadow-md  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <div>
                         <label htmlFor="password" className="block font-medium">Password</label>

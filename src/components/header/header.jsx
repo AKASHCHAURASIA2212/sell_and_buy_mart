@@ -54,44 +54,52 @@ const Header = () => {
 
                                     <div class="py-2 p-2" role="menu" aria-orientation="vertical" aria-labelledby="dropdown-button">
                                         {isLogin &&
-                                            <Link to='/'>
+                                            <Link to='/' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Home</li>
                                             </Link>
                                         }
 
                                         {isLogin &&
-                                            <Link to='/user'>
-                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">User</li>
+                                            <Link to='/user' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">ADS</li>
                                             </Link>
                                         }
                                         {isLogin &&
-                                            <Link to='/account'>
+                                            <Link to='/account' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Account</li>
                                             </Link>
                                         }
                                         {isLogin &&
-                                            <Link to='/about'>
+                                            <Link to='/about' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">About</li>
                                             </Link>
                                         }
                                         {isLogin &&
-                                            <Link to='/contact'>
+                                            <Link to='/contact' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Contact</li>
+                                            </Link>
+                                        }
+                                        {isLogin &&
+                                            <Link to='/admin' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Admin</li>
                                             </Link>
                                         }
 
                                         {!isLogin &&
-                                            <Link to='/signin'>
+                                            <Link to='/signin' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">SignIn</li>
                                             </Link>
                                         }
                                         {!isLogin &&
-                                            <Link to='/signup'>
+                                            <Link to='/signup' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">SignUp</li>
                                             </Link>
                                         }
                                         {isLogin &&
-                                            <Link to='/signin' onClick={() => { logoutHandler() }}>
+                                            <Link to='/signin' onClick={() => {
+                                                logoutHandler()
+                                                setShowMenu(!showMenu)
+                                            }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">SignOut</li>
                                             </Link>
                                         }

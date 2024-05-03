@@ -1,10 +1,38 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import userLogo from '../../../asset/images/box.png'
-
+import Pagination from '../../Pagination/Pagination';
 function ItemArea() {
-    return (
 
+    let [itemData, setUserData] = useState(null);
+    let [page, setPage] = useState(1);
+    let [limit, setLimit] = useState(5);
+    let [totalCount, settotalCount] = useState(null);
+
+
+    async function getUserDetails() {
+
+        await fetch(`http://localhost:3000/api/admin/item/${page}/${limit}`, {
+            method: "GET",
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(res => res.json())
+            .then((data) => {
+                console.log(data.data.itemData.res);
+                settotalCount(data.data.itemData.totalCount)
+                setUserData(data.data.itemData.res)
+
+            }).catch((e) => {
+                console.log(e);
+            })
+
+    };
+
+    useEffect(() => {
+        getUserDetails()
+    }, [page])
+    return (
         <div class="w-full px-6 pt-6 shadow_cstm overflow-hidden sm:rounded-lg  min-h-full">
             <div class="px-4 py-5 sm:px-6 bg-indigo-400 rounded-md">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
@@ -39,166 +67,47 @@ function ItemArea() {
                                                 <th class="pb-3 text-end min-w-[100px]">STATUS</th>
                                                 <th class="pb-3 text-end min-w-[100px]">LOCATION</th>
                                                 <th class="pb-3 pr-12 text-end min-w-[175px]">CREATED</th>
-                                                {/* <th class="pb-3 pr-12 text-end min-w-[100px]"></th> */}
                                                 <th class="pb-3 text-end min-w-[50px]">ACTION</th>
                                             </tr>
                                         </thead>
                                         <tbody className=''>
-                                            <tr class="border-b border-dashed last:border-b-0">
-                                                <td class="p-3 pl-0">
-                                                    <div class="flex items-center">
-                                                        <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                            <img src={userLogo} alt="" className='h-12 w-12' />
-                                                        </div>
-                                                        <div class="flex flex-col justify-start">
-                                                            <a class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Akash Chaurasia </a>
-                                                            <p class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-sm text-secondary-inverse hover:text-primary"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-orange-200 px-2 py-1 rounded-lg">Pending</span>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg">GHAZIABAD</span>
-                                                </td>
-                                                <td class="p-3 pr-12 text-end">
-                                                    <span class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">2024-04-01</span>
-                                                </td>
+                                            {itemData != null && itemData.length > 0 && itemData.map((item) => {
+                                                return (
+                                                    <tr class="border-b border-dashed last:border-b-0">
+                                                        <td class="p-3 pl-0">
+                                                            <div class="flex items-center">
+                                                                <div class="relative inline-block shrink-0 rounded-2xl me-3">
+                                                                    <img src={userLogo} alt="" className='h-12 w-12' />
+                                                                </div>
+                                                                <div class="flex flex-col justify-start">
+                                                                    <a href="javascript:void(0)" class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> {item.item_name} </a>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="p-3 pr-0 text-end">
+                                                            <span class="font-semibold text-light-inverse text-md/normal bg-green-200 px-2 py-1 rounded-lg">{item.status}</span>
+                                                        </td>
+                                                        <td class="p-3 pr-0 text-end">
+                                                            <span class="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg">{item.location}</span>
+                                                        </td>
+                                                        <td class="p-3 pr-12 text-end">
+                                                            <span class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">{new Date(item.date_entered).toLocaleDateString('en-GB')}</span>
+                                                        </td>
 
-                                                <td class="p-3 pr-0 text-end flex justify-between items-center mt-2">
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-green-400 px-2 py-1 mr-2">
-                                                        Approve
-                                                    </Link>
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center  text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-red-400 px-2 py-1">
-                                                        Reject
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-b border-dashed last:border-b-0">
-                                                <td class="p-3 pl-0">
-                                                    <div class="flex items-center">
-                                                        <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                            <img src={userLogo} alt="" className='h-12 w-12' />
-                                                        </div>
-                                                        <div class="flex flex-col justify-start">
-                                                            <a class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Akash Chaurasia </a>
-                                                            <p class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-sm text-secondary-inverse hover:text-primary"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-orange-200 px-2 py-1 rounded-lg">Pending</span>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg">GHAZIABAD</span>
-                                                </td>
-                                                <td class="p-3 pr-12 text-end">
-                                                    <span class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">2024-04-01</span>
-                                                </td>
+                                                        <td class="p-3 pr-0 text-end flex justify-between items-center mt-2">
 
-                                                <td class="p-3 pr-0 text-end flex justify-between items-center mt-2">
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-green-400 px-2 py-1 mr-2">
-                                                        Approve
-                                                    </Link>
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center  text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-red-400 px-2 py-1">
-                                                        Reject
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-b border-dashed last:border-b-0">
-                                                <td class="p-3 pl-0">
-                                                    <div class="flex items-center">
-                                                        <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                            <img src={userLogo} alt="" className='h-12 w-12' />
-                                                        </div>
-                                                        <div class="flex flex-col justify-start">
-                                                            <a class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Akash Chaurasia </a>
-                                                            <p class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-sm text-secondary-inverse hover:text-primary"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-orange-200 px-2 py-1 rounded-lg">Pending</span>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg">GHAZIABAD</span>
-                                                </td>
-                                                <td class="p-3 pr-12 text-end">
-                                                    <span class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">2024-04-01</span>
-                                                </td>
+                                                            <Link to={`edit/${item.item_id}`} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-indigo-400 px-2 py-1">
+                                                                Edit
+                                                            </Link>
+                                                            <Link to={`edit/${item.item_id}`} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center  text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-red-400 px-2 py-1">
+                                                                Delete
+                                                            </Link>
+                                                        </td>
+                                                    </tr>
+                                                )
+                                            })}
 
-                                                <td class="p-3 pr-0 text-end flex justify-between items-center mt-2">
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-green-400 px-2 py-1 mr-2">
-                                                        Approve
-                                                    </Link>
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center  text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-red-400 px-2 py-1">
-                                                        Reject
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-b border-dashed last:border-b-0">
-                                                <td class="p-3 pl-0">
-                                                    <div class="flex items-center">
-                                                        <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                            <img src={userLogo} alt="" className='h-12 w-12' />
-                                                        </div>
-                                                        <div class="flex flex-col justify-start">
-                                                            <a class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Akash Chaurasia </a>
-                                                            <p class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-sm text-secondary-inverse hover:text-primary"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-orange-200 px-2 py-1 rounded-lg">Pending</span>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg">GHAZIABAD</span>
-                                                </td>
-                                                <td class="p-3 pr-12 text-end">
-                                                    <span class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">2024-04-01</span>
-                                                </td>
 
-                                                <td class="p-3 pr-0 text-end flex justify-between items-center mt-2">
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-green-400 px-2 py-1 mr-2">
-                                                        Approve
-                                                    </Link>
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center  text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-red-400 px-2 py-1">
-                                                        Reject
-                                                    </Link>
-                                                </td>
-                                            </tr>
-                                            <tr class="border-b border-dashed last:border-b-0">
-                                                <td class="p-3 pl-0">
-                                                    <div class="flex items-center">
-                                                        <div class="relative inline-block shrink-0 rounded-2xl me-3">
-                                                            <img src={userLogo} alt="" className='h-12 w-12' />
-                                                        </div>
-                                                        <div class="flex flex-col justify-start">
-                                                            <a class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-lg/normal text-secondary-inverse hover:text-primary"> Akash Chaurasia </a>
-                                                            <p class="mb-1 font-semibold transition-colors duration-200 ease-in-out text-sm text-secondary-inverse hover:text-primary"> Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-orange-200 px-2 py-1 rounded-lg">Pending</span>
-                                                </td>
-                                                <td class="p-3 pr-0 text-end">
-                                                    <span class="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg">GHAZIABAD</span>
-                                                </td>
-                                                <td class="p-3 pr-12 text-end">
-                                                    <span class="text-center align-baseline inline-flex px-4 py-3 mr-auto items-center font-semibold text-[.95rem] leading-none text-primary bg-primary-light rounded-lg">2024-04-01</span>
-                                                </td>
-
-                                                <td class="p-3 pr-0 text-end flex justify-between items-center mt-2">
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-green-400 px-2 py-1 mr-2">
-                                                        Approve
-                                                    </Link>
-                                                    <Link to={'edit'} class="ml-auto relative text-secondary-dark bg-light-dark hover:text-primary flex items-center  text-base font-medium leading-normal text-center align-middle cursor-pointer rounded-lg transition-colors duration-200 ease-in-out shadow-none border-0 justify-center bg-red-400 px-2 py-1">
-                                                        Reject
-                                                    </Link>
-                                                </td>
-                                            </tr>
 
                                         </tbody>
                                     </table>
@@ -208,41 +117,11 @@ function ItemArea() {
                     </div>
                 </div>
             </div>
-            <nav class="px-4 mb-4 flex justify-end space-x-4 -mt-6" aria-label="Pagination">
+            <div className='-mt-8'>
+                <Pagination page={page} limit={limit} setPage={setPage} setLimit={setLimit} totalCount={totalCount} />
+            </div>
 
-                <span class="rounded-lg border border-indigo-500 px-2 py-2 text-gray-700">
-                    <span class="sr-only">Previous</span>
-                    <svg class="mt-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                        aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                            clip-rule="evenodd">
-                        </path>
-                    </svg>
-                </span>
-
-                <span class="rounded-lg border border-indigo-500 bg-indigo-500 px-4 py-2 text-white">1</span>
-
-                <a class="rounded-lg border border-indigo-500 px-4 py-2 text-gray-700" href="/page/2">2
-                </a>
-
-                <a class="rounded-lg border border-indigo-500 px-4 py-2 text-gray-700" href="/page/3">3
-                </a>
-
-                <a class="rounded-lg border border-indigo-500 px-2 py-2 text-gray-700" href="/page/2">
-                    <span class="sr-only">Next</span>
-                    <svg class="mt-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
-                        aria-hidden="true">
-                        <path fill-rule="evenodd"
-                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                            clip-rule="evenodd">
-                        </path>
-                    </svg>
-                </a>
-
-            </nav>
         </div>
-
 
     )
 }

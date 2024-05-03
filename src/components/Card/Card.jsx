@@ -1,61 +1,63 @@
 import React from 'react';
-import { IoLocationOutline } from "react-icons/io5";
+import box_img from '../../asset/images/box.png'
 
+import { IoLocationOutline } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 
 
 
 function Card({ item }) {
+
+    let img_url = '';
+
     return (
         <div>
-            <div className=" flex w-full min-w-[10rem] max-h-[25rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg">
-                <div className=" mx-4 mt-4 overflow-hidden bg-blue-gray-500 text-white shadow-lg shadow-blue-gray-500/40 h-[45%]">
+            <div className="relative flex min-w-[10rem] max-h-[25rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg justify-self-start">
+                <div className=" mx-4 mt-4 overflow-hidden object-center object-cover bg-blue-gray-500 text-orange-400 h-[40%]">
                     {/* <img
                         src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
                         alt="ui/ux review check"
-                        className='h-2/5'
                     /> */}
-                    <p className='h-full w-full bg-indigo-500 text-indigo-500 rounded-lg'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta aut hic debitis voluptatem, id iure itaque delectus dolores accusantium. Tenetur ratione harum atque dicta provident? Maiores natus repellat id officiis iste. Provident totam fugit nisi possimus iste. Eos adipisci ullam minus optio magnam deserunt natus ad corrupti commodi provident veniam laboriosam eveniet perspiciatis molestias facere doloribus dolorum dolore deleniti saepe aspernatur, error, vel harum neque. Quasi quisquam, assumenda reiciendis ratione sint molestias sequi velit enim eaque quos ducimus ex? Saepe nisi dolores itaque soluta assumenda placeat vero accusantium consequatur pariatur tempora, error, eaque praesentium ad provident hic vitae consequuntur explicabo iure possimus voluptate ducimus aliquid voluptas doloribus rerum! Perferendis illum accusamus eaque incidunt magni fuga id perspiciatis? Totam odio ab officia, eius id, culpa nostrum corrupti suscipit adipisci illo dolore ipsam temporibus eligendi quam expedita iure accusamus consectetur? Praesentium eaque, asperiores quaerat porro numquam iusto labore, repudiandae officia impedit tempore illo minima natus qui sunt! Nam placeat est ad nobis architecto, corrupti reiciendis unde facilis quas magnam eaque, maxime eos distinctio nesciunt nisi voluptatem blanditiis provident, fugit laudantium. Vero aliquid repellat odio molestias omnis ut. Sunt perferendis, ab incidunt voluptas animi laborum quis quos odit veniam, iste iusto quibusdam ratione officiis in qui libero vel cumque doloremque mollitia voluptatum enim suscipit repellendus asperiores quia? Necessitatibus iusto iste aut placeat quam iure sequi nemo est reprehenderit fuga ut repellendus, recusandae consequatur magnam ad harum repellat, minus possimus dolorum dolor quaerat ex. Dicta veritatis temporibus vero, dolore iusto odit libero ipsum ea consectetur nihil consequatur tempora id illum quaerat facere! Debitis fugiat, assumenda nemo impedit est dolorem nostrum consequuntur nam similique, id excepturi praesentium obcaecati eaque molestiae dolores vel facere maiores. Recusandae repellat quam quisquam quo odit magnam delectus iure ullam eveniet veniam asperiores impedit, molestias omnis, voluptatibus voluptatem fugiat voluptate accusantium? </p>
+                    <img src={box_img} className='object-contain h-[50%]' />
 
                 </div>
                 <div className="px-6 my-3 h-2/5">
                     <div className="mb-3 flex items-center justify-between">
-                        <p className="block font-sans text-lg font-medium leading-snug tracking-normal text-blue-gray-900 antialiased">
-                            {item.item_desc}
+                        <p className="block text-orange-400 text-sm sm:text-lg font-medium leading-snug tracking-normal text-blue-gray-900 antialiased">
+                            {item.item_name}
                         </p>
                     </div>
 
                     <div className='w-full flex flex-row flex-wrap justify-start items-center'>
 
-                        <div className="item_location w-1/2 flex flex-row justify-start items-center mt-2">
+                        <div className="item_location w-[95%] flex flex-row justify-start items-center mt-0 sm:mt-2">
                             <div className="location_icon">
                                 <IoLocationOutline color='blue' />
                             </div>
-                            <p className='ml-2 text-sm md:text-lg '>{item.location}</p>
+                            <p className='ml-2 text-orange-400 text-sm sm:text-lg'>{item.location}</p>
                         </div>
 
-                        <div className="item_date_enteindigo w-full flex flex-row justify-start items-center mt-2 font-small">
-                            <div className="date_enteindigo_icon h-5 w-5">
+                        <div className="item_date_entered  w-[95%] flex flex-row justify-start items-center mt-0  sm:mt-2  font-small">
+                            <div className="item_date_entered date_entered_icon">
                                 <MdDateRange color='indigo' />
-
                             </div>
-                            <span className='ml-2 text-sm'>2024-01-20</span>
+                            <p className='ml-2 text-orange-400 text-sm sm:text-lg'>2024-01-20</p>
                         </div>
 
-                        <div className="item_price w-1/2 flex flex-row justify-start items-center mt-2">
+                        <div className="item_price w-[95%] flex flex-row justify-start items-center mt-0 sm:mt-2">
                             <div className="price_icon">
                                 <FaRupeeSign color='green' />
                             </div>
-                            <span className='ml-2 text-sm'>{item.item_price}</span>
+                            <p className='ml-2 text-orange text-sm sm:text-lg'>{item.item_price}</p>
                         </div>
 
-                        <div className="item_statu w-full flex flex-row justify-start items-center mt-2 pl-1">
-                            <span className='text-indigo-500 text-sm md:text-md'>{(item.status).charAt(0).toUpperCase()
-                                + (item.status).slice(1)}</span>
+                        <div className=" item_status flex flex-row justify-start items-center mt-0 absolute top-0 left-0 rounded-ee-lg rounded-ss-lg">
+                            <p className='text-white px-2 py-1 bg-green-500 rounded-ee-lg rounded-ss-lg hover:bg-indigo-600 transition duration-300 text-sm'>{(item.status).charAt(0).toUpperCase()
+                                + (item.status).slice(1)}</p>
                         </div>
 
-                        {/* <div className="item_posted_by w-1/2 flex flex-row mt-2 justify-start items-center">
+                        {/* <div className="item_posted_by w-[95%] flex flex-row mt-0 sm:mt-2 justify-start items-center">
                             <span className='h-8 w-8 rounded-3xl  border-indigo-700  bg-indigo-500'></span>
                         </div> */}
 

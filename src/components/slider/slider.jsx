@@ -11,13 +11,13 @@ import car4 from '../../asset/crousal/car4.webp';
 import car5 from '../../asset/crousal/car5.webp';
 import car6 from '../../asset/crousal/car6.webp';
 
-const Slide = ({ src, alt }) => (
-    <div className='slideCont border-2 mx-auto'>
-        <img src={src} alt={alt} className='h-full w-full' />
+const Slide = ({ bg }) => (
+    <div className={`slideCont mx-auto h-[70vh] w-full ${bg}`}>
+        {/* <img src={src} alt={alt} className='h-full w-full' /> */}
     </div>
 );
 
-const SliderComponent = ({ height = '400px', widht = 'auto' }) => {
+const SliderComponent = () => {
 
     const { bannerData, catList, postData } = useContext(MyContext);
 
@@ -39,19 +39,20 @@ const SliderComponent = ({ height = '400px', widht = 'auto' }) => {
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 3000,
         arrows: false,
         adaptiveHeight: true
     };
 
     return (
-        <div className='mx-2 border-2 border-indigo-500 rounded-md overflow-hidden bg-indigo-800 '>
-            <div className=" rounded-xl slider-container">
+        <div className='rounded-md overflow-hidden  h-full w-full'>
+            <div className=" rounded-xl slider-container h-full w-full">
                 <Slider {...settings} >
-                    {slides.map((slide, index) => (
-                        <Slide key={index} src={slide.src} alt={slide.alt} className='0' />
-                    ))}
+                    <Slide className='h-full w-full' bg={'bg-indigo-400'} />
+                    <Slide className='h-full w-full' bg={'bg-red-400'} />
+                    <Slide className='h-full w-full' bg={'bg-orange-400'} />
+                    <Slide className='h-full w-full' bg={'bg-green-400'} />
                 </Slider>
             </div>
         </div>

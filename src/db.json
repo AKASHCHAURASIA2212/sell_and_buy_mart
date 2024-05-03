@@ -1458,7 +1458,7 @@
       "location": "Mumbai",
       "date_entered": "2024-01-15",
       "status": "unavailable",
-      "img": "smartwatch_img1.jpg",
+      "img": "smartwatch_img1.jpg", 
       "posted_by": "User2",
       "id": "8991"
     },
@@ -2475,6 +2475,23 @@
       "buyer": [],
       "posted_by": "1001",
       "_id": 94
+    },
+    {
+      "id": "4fa6",
+      "item_category": "bike",
+      "item_name": "Apache RTR",
+      "item_price": "160000",
+      "item_desc": "FOR RACING LOVERS",
+      "date_entered": "2024-04-26",
+      "img": [],
+      "location": "GZB",
+      "status": "available",
+      "seller": [
+        "1001"
+      ],
+      "buyer": [],
+      "posted_by": "1001",
+      "_id": 53
     }
   ],
   "user_data": [
@@ -2517,6 +2534,16 @@
       "address": "789 Elm St, Admin City, USA",
       "role": "admin",
       "id": "a536"
+    },
+    {
+      "id": "89c0",
+      "user_id": 1098,
+      "username": "DHRUV",
+      "password": "12345",
+      "email": "TESTUSER@GMIAL.COM",
+      "phone": "+123456789",
+      "address": "123 Elm St, Admin City, USA",
+      "role": "user"
     }
   ],
   "userProducts": [
