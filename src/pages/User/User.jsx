@@ -6,7 +6,7 @@ const User = () => {
     let { isLogin, setIsLogin } = useContext(MyContext)
 
     return (
-        <div className="container px-1 md:px-10">
+        <div className="container px-1">
             <Profile />
         </div>
     );

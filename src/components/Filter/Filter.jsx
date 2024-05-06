@@ -11,13 +11,13 @@ function Filter() {
     let [showMenu2, setShowMenu2] = useState(false);
 
     return (
-        <div className='w-full mx-auto pb-2 px-2 -mb-4 mt-2 border-2 border-indigo-600 rounded-xl flex flex-row sm:justify-end md:justify-end sm:items-center items-start flex-wrap justify-end'>
+        <div className='w-full mx-auto pb-2 px-2 -mb-4 mt-2 border-2 border-green-500 rounded-xl flex flex-row sm:justify-end md:justify-end sm:items-center items-start flex-wrap justify-between'>
 
             <div className="filter_menu flex flex-row justify-center items-center w-[10%] sm:w-auto">
                 {/* <!-- component --> */}
                 {/* <div class="h-10 flex items-center justify-center mt-2 pl-2">
                     <div class="relative text-left h-full">
-                        <button id="dropdown-button" class="flex justify-center items-center w-full p-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:bg-indigo-300 h-full" onClick={() => { setShowMenu(!showMenu) }}>
+                        <button id="dropdown-button" class="flex justify-center items-center w-full p-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:bg-green-300 h-full" onClick={() => { setShowMenu(!showMenu) }}>
                             <RxDashboard size={20} />
                         </button>
                         <div id="dropdown-menu" class={`origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${showMenu === false ? 'hidden' : ''} `}>
@@ -40,7 +40,7 @@ function Filter() {
 
                 <div class="h-10 flex items-center justify-center mt-2 pl-2">
                     <div class="relative text-left h-full">
-                        <button id="dropdown-button" class="flex justify-center items-center w-full p-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:bg-indigo-300 h-full" onClick={() => { setShowMenu2(!showMenu2) }}>
+                        <button id="dropdown-button" class="flex justify-center items-center w-full p-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none  focus:bg-green-300 h-full" onClick={() => { setShowMenu2(!showMenu2) }}>
                             <FcGenericSortingDesc size={20} />
                         </button>
                         <div id="dropdown-menu" class={`z-10 absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 ${showMenu2 === false ? 'hidden' : ''} `}>
@@ -61,7 +61,7 @@ function Filter() {
                     <div class="pt-2 mx-auto text-gray-600 flex flex-row justify-start items-center w-full">
                         <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-full  sm:max-w-[25rem]"
                             type="search" name="search" placeholder="Search" />
-                        <button type="submit" class="h-10 bg-indigo-500 rounded-md px-6 ml-1 text-white">
+                        <button type="submit" class="h-10 bg-green-500 rounded-md px-6 ml-1 text-white">
                             <IoIosSearch />
                         </button>
                     </div>

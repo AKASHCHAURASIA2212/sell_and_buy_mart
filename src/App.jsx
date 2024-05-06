@@ -150,6 +150,9 @@ function App() {
                 <Route path='' element={<Welcome />} />
                 <Route path=':chatId' element={<ChatArea />} />
               </Route>
+              <Route path='/chat' element={<ChatContainer />} />
+              <Route path='chat/:chatId' element={<ChatArea />} />
+
               {/* <Route exact={true} path='*' element={<NotFound className='mx-4' />} /> */}
               {/* <Route exact={true} path='/*' element={<NotFound className='mx-4' />}> </Route> */}
               {/* <Route exact={true} path='' element={<NotFound className='mx-4' />}> </Route> */}

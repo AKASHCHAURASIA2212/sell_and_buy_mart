@@ -12,6 +12,7 @@ import { BiCategoryAlt } from "react-icons/bi";
 import { IoLocationOutline } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
+import UserDetailsCard from '../../components/Card/UserDetailsCard';
 
 
 const Details = () => {
@@ -57,62 +58,68 @@ const Details = () => {
     const list = [
         { 'name': 'Home', 'ref': '/' },
         { 'name': cat, 'ref': '/listing/' + cat },
-        { 'name': id, 'ref': id }
+        { 'name': items?.item_name, 'ref': items?.item_name }
     ]
 
     return (
-        <div className=" mx-auto mt-8 md:px-4">
+        <div className="mt-6 md:px-4 px-2 -pl-4">
             <BreadCrum list={list} />
 
-            <div className="relative mt-3 flex flex-wrap flex-column sm:flex-row border-solid border-indigo-400 rounded-xl border-2 w-full overflow-hidden min-h-[60vh]">
+            <div className="my-3 flex flex-col sm:flex-row justify-between items-center">
+                <div className="w-[95%] md:w-[75%] h-full relative flex flex-wrap flex-column sm:flex-row rounded-xl border-2 overflow-hidden">
+                    <div className="details-cont-img w-full h-[30vh] md:h-[50vh] sm:w-[35%] m-2  bg-blue-400 overflow-hidden rounded-xl">
+                    </div>
+                    <div className="details-cont-details w-full sm:w-[48%] md:h-[50vh] h-full px-3 mt-2 ">
+                        {
+                            items != null &&
+                            <div className='flex flex-col  justify-between items-center h-full'>
 
-                <div className="details-cont-img w-full min-h-[40vh] sm:w-[48%] m-2  bg-indigo-600 overflow-hidden rounded-md">
-                    {/* <img src="https://images.unsplash.com/photo-1511385348-a52b4a160dc2?q=80&w=907&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="item img" style={{ height: "100%", width: "100%" }} /> */}
+                                <div className=''>
+                                    <p className="block text-lg sm:text-xl md:text-5xl font-bold">{items.item_name}</p>
 
-                </div>
-                <div className="details-cont-details w-full sm:w-[48%] h-full px-3 mt-2 ">
-                    {
-                        items != null && <>
+                                    < p className="block text-lg sm:text-xl md:text-2xl font-semibold md:mt-6 md:mb-4">{items.item_desc}</p>
 
-                            <p className="block text-lg sm:text-xl md:text-7xl font-bold">{items.item_name}</p>
-                            < p className="block text-lg sm:text-xl md:text-4xl font-semibold my-2">{items.item_desc}</p>
+                                </div>
+                                <div className="flex flex-row flex-wrap justify-start items-center w-full">
 
-                            <div className="flex flex-row flex-wrap justify-start items-center ">
+                                    <div className="text-lg sm:text-xl md:text-2xl md:my-2 flex flex-row justify-start items-center  w-[95%]">
+                                        <MdDateRange color='blue' />
+                                        <p className='text-lg sm:text-xl md:text-2 font-semibold ml-2'>{new Date(items.date_entered).toLocaleDateString('en-GB')}</p>
+                                    </div>
 
-                                <div className="text-lg sm:text-xl md:text-3xl my-2 flex flex-row justify-start items-center  w-[48%]">
-                                    <MdDateRange color='indigo' />
-                                    <p className='text-lg sm:text-xl md:text-3xl font-semibold'>{new Date(items.date_entered).toLocaleDateString('en-GB')}</p>
+                                    <div className="text-lg sm:text-xl md:text-2xl md:my-2 flex flex-row justify-start items-center w-[95%]">
+                                        <IoLocationOutline color='blue' />
+                                        <p className='text-lg sm:text-xl md:text-2xl font-semibold  ml-2'>{items.location}</p>
+                                    </div>
+
+                                    <div className="text-lg sm:text-xl md:text-xl md:my-2 flex flex-row justify-start items-center w-[95%]">
+                                        <FaRupeeSign color='blue' />
+                                        <p className='text-lg sm:text-xl md:text-2xl font-semibold  ml-2'>{items.item_price}</p>
+                                    </div>
+
+                                    <div className="text-lg sm:text-xl md:text-2xl md:my-2 flex flex-row justify-start items-center w-[95%]">
+                                        <BiCategoryAlt color='red' />
+                                        <p className='text-lg sm:text-xl md:text-2xl font-semibold  ml-2'>{items.item_category}</p>
+                                    </div>
+
                                 </div>
 
-                                <div className="text-lg sm:text-xl md:text-3xl my-2 flex flex-row justify-start items-center w-[48%]">
-                                    <IoLocationOutline color='blue' />
-                                    <p className='text-lg sm:text-xl md:text-3xl font-semibold'>{items.location}</p>
-                                </div>
-
-                                <div className="text-lg sm:text-xl md:text-3xl my-2 flex flex-row justify-start items-center w-[48%]">
-                                    <FaRupeeSign color='green' />
-                                    <p className='text-lg sm:text-xl md:text-3xl font-semibold'>{items.item_price}</p>
-                                </div>
-
-                                <div className="text-lg sm:text-xl md:text-3xl my-2 flex flex-row justify-start items-center w-[48%]">
-                                    <BiCategoryAlt color='red' />
-                                    <p className='text-lg sm:text-xl md:text-3xl font-semibold'>{items.item_category}</p>
-                                </div>
-
+                                <p className='bg-blue-400 px-3 py-2 text-lg sm:text-xl md:text-3xl absolute top-0 right-0 rounded-se-xl rounded-es-xl mt-2 mr-2'>{items.status}</p>
+                                {
+                                    items.posted_by != undefined && user_id !== items.posted_by && <button className='bg-blue-500 min-w-[2rem] rounded-md my-2 px-8 py-2 text-2xl font-bold text-white' onClick={() => startChat(items.posted_by, items.item_id)}>Chat</button>
+                                }
                             </div>
-
-                            <p className='bg-green-500 px-2 py-2 text-lg sm:text-xl md:text-3xl absolute top-0 right-0 rounded-se-xl rounded-es-xl mt-2 mr-2'>{items.status}</p>
-                            {
-                                items.posted_by != undefined && user_id !== items.posted_by && <button className='bg-green-500 min-w-[2rem] rounded-md my-2 px-8 py-2 text-2xl font-bold text-white' onClick={() => startChat(items.posted_by, items.item_id)}>Chat</button>
-                            }
-                        </>
-
-                    }
-
+                        }
+                    </div>
                 </div>
+
+                <div className="w-[24%] min-h-[50vh] hidden md:flex">
+                    <UserDetailsCard />
+                </div>
+
             </div>
 
-            <div className="flex mt-8">
+            <div className="flex mt-2 -ml-2">
                 <div className="w-full">
                     <Listing title='Similier Items' types={cat} />
                 </div>

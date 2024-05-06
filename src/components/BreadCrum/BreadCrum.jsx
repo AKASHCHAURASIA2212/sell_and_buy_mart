@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 function BreadCrum({ list }) {
     return (
         <div className="breadcrum -mt-4">
-            <ul className="bg-indigo-600 shadow-md rounded-md p-2">
+            <ul className="bg-blue-400 shadow-md rounded-md p-2">
                 <ol className="flex flex-wrap gap-2  text-sm p-4 text-white">
                     {
                         list != null && list.length > 0 && list.map((data, index) => {

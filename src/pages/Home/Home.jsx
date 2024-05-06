@@ -82,24 +82,24 @@ const Home = () => {
 
     return (
         <>
-            <div className='mx-auto'>
+            <div className='mx-1'>
 
-                <div className='h-[35vh] md:h-[55vh] lg:h-[70vh] bg-white p-2'>
+                <div className='h-[35vh] md:h-[55vh] lg:h-[70vh] bg-white p-2 -mx-1'>
                     <SliderComponent />
                 </div>
 
 
-                <div className="category flex flex-col flex-wrap justify-center items-start mb-2  py-6 w-full bg-indigo-600 text-white mx-0">
+                <div className="category flex flex-col flex-wrap justify-center items-start mb-2  py-3 sm:py-6 w-full text-black mx-0">
                     {/* <div className="heading justify-self-center sm:text-[2rem] md:text-[2.5rem] sm:px-10 text-center md:text-left mb-4 font-bold hidden sm:block">Category</div> */}
                     <div className='flex flex-row justify-around justify-self-start items-center w-full overflow-x-auto'>
                         {
                             categories.length > 0 && categories.map((item, index) => {
                                 // console.log(item);
                                 return (
-                                    <Link to={`/listing/${item}`}>
-                                        <div className="catItem flex flex-col justify-center items-center max-h-10 max-w-10 min-h-8 min-w-8 mx-6 my-4" key={index}>
+                                    <Link to={`/listing/${item}`} className='bg-green-300 rounded-xl mx-1'>
+                                        <div className="catItem flex flex-col justify-center items-center max-h-10 max-w-10 min-h-8 min-w-8 mx-6 my-4  rounded-md" key={index}>
                                             <img src={cat_icon_array[item]} alt="" className="logo h-full w-full" />
-                                            <span className="catname">{item}</span>
+                                            <span className="catname text-sm">{item}</span>
                                         </div>
                                     </Link>
                                 )
@@ -107,15 +107,12 @@ const Home = () => {
                         }
                     </div>
                 </div>
-
-                <div className="w-full flex flex-col  md:px-10">
-                    {/* <div className='sm:w-full md:w-1/3 lg:w-1/4'> */}
-
+                <div>
                     <Filter />
-                    {/* </div> */}
-                    <div className='w-full'>
-                        <Listing />
-                    </div>
+                </div>
+
+                <div className="w-full flex flex-col -mx-1">
+                    <Listing />
                 </div>
 
             </div>

@@ -3,7 +3,7 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import { useParams } from 'react-router-dom';
-
+import UserDetailsCard from '../Card/UserDetailsCard';
 
 function UserDetails() {
 
@@ -34,7 +34,7 @@ function UserDetails() {
                 console.log("userDetails : ", data.data.data);
                 let userdata = data.data.data;
                 setUserData(userdata)
-                console.log("USERDATA : ", userData);
+                // console.log("USERDATA : ", userData);
 
                 let test_data = {
                     userId: userId,
@@ -44,8 +44,7 @@ function UserDetails() {
                     address: userdata.address,
                     role: userdata.role
                 }
-
-                console.log(test_data);
+                // console.log(test_data);
 
                 setFormData(test_data)
                 console.log("FORMDATA : ", formData);
@@ -60,40 +59,19 @@ function UserDetails() {
         getUserDetails()
     }, [])
 
-    // useEffect(() => {
-    //     // let test_data = {
-    //     //     userId: userId,
-    //     //     username: userData?.username,
-    //     //     email: userData?.email,
-    //     //     phone: userData?.phone,
-    //     //     address: userData?.address,
-    //     //     role: userData?.role
-    //     // }
-    //     // console.log("test data :", test_data);
-    //     // setFormData(test_data)
-
-    //     console.log(formData);
-    //     console.log(userData);
-
-    // }, [userData, formData])
-
-
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // console.log(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
 
-        // console.log(formData);
     };
 
     const handleSubmit = async (e) => {
         setInputDisabled(true)
         e.preventDefault();
-        // Handle form submission, validation, etc.
-        console.log("handleSubmit : ", formData); // Just for demonstration, replace with actual logic
+        console.log("handleSubmit : ", formData);
 
         let data = {
             "userId": userId,
@@ -122,91 +100,98 @@ function UserDetails() {
 
 
     return (
-        <div class="w-full px-6 pt-6 shadow_cstm overflow-hidden sm:rounded-lg  my-2 mx-4 min-h-[70vh]">
-            <div class="px-4 py-5 sm:px-6 bg-indigo-400 rounded-md">
+        <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
+            <div class="px-4 py-5 mb-3 sm:px-6 bg-blue-200 rounded-md">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    User database
+                    User Details
                 </h3>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">
                     Details and informations about user.
                 </p>
             </div>
-            <div class="mt-2 mb-4">
-                <dl>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Full name
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type='text' name='username' id='username' value={formData?.username} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Phone No
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type='text' name='phone' id='phone' value={formData?.phone} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                        </dd>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Email address
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type='email' name='email' id='email' value={formData?.email} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Role
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            {/* <input type='text' name='username' id='username' value={userData?.username} value={userData?.role} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} /> */}
-                            <select id="role" disabled={inputDisabled} className='outline-none w-full h-full px-2 py-3' name='role' onChange={handleChange}>
+            <div className='flex flex-col md:flex-row-reverse justify-between items-start'>
 
-                                <option value="admin" selected={formData?.role == 'admin'} >Admin</option>
-                                <option value="user" selected={formData?.role == 'user'}>User</option>
-                            </select>
-                        </dd>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Address
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type='text' name='address' id='address' value={formData?.address} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                        </dd>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Profile Img
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type='file' name='img' id='img' value={formData?.img_path} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                        </dd>
-                    </div>
+                <div className="w-full md:w-[30%] h-full mt-2 ">
+                    <UserDetailsCard data={userData} />
+                </div>
 
-                    <div class="flex flex-row justify-start items-center ">
-                        {inputDisabled &&
-                            <div className="px-2 py-2 mr-2 w-[8rem] bg-indigo-300 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
-                                <button>EDIT</button>
-                                <FaRegEdit />
-                            </div>}
-                        {!inputDisabled &&
-                            <>
-                                <div className="px-2 py-2 w-[8rem] mr-2 bg-red-300 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
-                                    <button>CANCEL</button>
-                                    <GiCancel />
-                                </div>
-                                <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
-                                    <button>SAVE</button>
-                                    <MdOutlineDoneOutline />
-                                </div>
-                            </>}
+                <div className="w-full md:w-[70%] mx-2">
+                    <div class="mt-2 mb-4">
+                        <dl>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Full name
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <input type='text' name='username' id='username' value={formData?.username} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                </dd>
+                            </div>
+                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Phone No
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <input type='text' name='phone' id='phone' value={formData?.phone} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                </dd>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Email address
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <input type='email' name='email' id='email' value={formData?.email} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                </dd>
+                            </div>
+                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Role
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <select id="role" disabled={inputDisabled} className='outline-none w-full h-full px-2 py-3' name='role' onChange={handleChange}>
+
+                                        <option value="admin" selected={formData?.role == 'admin'} >Admin</option>
+                                        <option value="user" selected={formData?.role == 'user'}>User</option>
+                                    </select>
+                                </dd>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Address
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <input type='text' name='address' id='address' value={formData?.address} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                </dd>
+                            </div>
+                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <dt class="text-sm font-medium text-gray-500">
+                                    Profile Img
+                                </dt>
+                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <input type='file' name='img' id='img' value={formData?.img_path} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                </dd>
+                            </div>
+                            <div class="flex flex-row justify-start items-center pt-5">
+                                {inputDisabled &&
+                                    <div className="px-2 py-2 mr-2 w-[8rem] bg-indigo-300 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                        <button>EDIT</button>
+                                        <FaRegEdit />
+                                    </div>}
+                                {!inputDisabled &&
+                                    <>
+                                        <div className="px-2 py-2 w-[8rem] mr-2 bg-red-300 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                            <button>CANCEL</button>
+                                            <GiCancel />
+                                        </div>
+                                        <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
+                                            <button>SAVE</button>
+                                            <MdOutlineDoneOutline />
+                                        </div>
+                                    </>}
+                            </div>
+                        </dl>
+                        <div className='user_profile_img'></div>
                     </div>
-                </dl>
-                <div className='user_profile_img'></div>
+                </div>
             </div>
         </div>
     )

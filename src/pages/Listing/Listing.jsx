@@ -43,19 +43,19 @@ const Listing = ({ title = "Latest Items" }) => {
 
     return (
 
-        <div className={`mx-1 my-8 w-full`}>
+        <div className={`mx-1 mb-8 mt-4 w-full`}>
             {
                 cat != undefined && id == undefined &&
                 <BreadCrum list={list} />
             }
 
-            <div className="container pt-4 bg-indigo-100 rounded-xl mt-4">
+            <div className="container pt-2 bg-indigo-100 rounded-xl mt-1">
                 <h1 className="header">{title}</h1>
 
-                <div className="item-container flex flex-row flex-wrap justify-around items-center">
+                <div className="item-container flex flex-row flex-wrap justify-around md:justify-around items-center">
 
                     {itemsdata != undefined && itemsdata.length > 0 && itemsdata.map((item) => (
-                        <Link to={`/listing/${item.item_category}/${item.item_id}`} className='w-[45%] sm:w-[48%] md:w-[33%] lg:w-[22%]'>
+                        <Link to={`/listing/${item.item_category}/${item.item_id}`} className='w-[45%] sm:w-[48%] md:w-[33%] lg:w-[22%] -ml-3'>
                             < Card key={item.item_id} item={item} />
                         </Link >
                     ))}

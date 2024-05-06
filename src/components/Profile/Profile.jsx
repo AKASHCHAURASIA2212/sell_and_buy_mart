@@ -84,67 +84,19 @@ const Profile = () => {
         fetchData()
     }, []);
 
-
-    // setUserData(userData.userProducts)
-
-    // const handleInputChange = (e) => {
-    //     const { name, value } = e.target;
-    //     setUser((prevUser) => ({
-    //         ...prevUser,
-    //         [name]: value,
-    //     }));
-    // };
-
-    // const handleSave = async () => {
-    //     try {
-    //         setLoading(true);
-    //         // Simulating API call using axios
-    //         const response = await axios.put('https://api.example.com/user', user);
-    //         if (response.status === 200) {
-    //             alert('User details updated successfully!');
-    //             setEditMode(false);
-    //         } else {
-    //             throw new Error('Failed to update user details');
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //         alert('Failed to update user details. Please try again.');
-    //     } finally {
-    //         setLoading(false);
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     // Fetch user details from API on component mount (simulating with dummy data)
-    //     const fetchUserDetails = async () => {
-    //         try {
-    //             setLoading(true);
-    //             // Simulating API call using axios
-    //             const response = await axios.get('https://api.example.com/user');
-    //             if (response.status === 200) {
-    //                 setUser(response.data);
-    //             } else {
-    //                 throw new Error('Failed to fetch user details');
-    //             }
-    //         } catch (error) {
-    //             console.error(error);
-    //             alert('Failed to fetch user details. Please try again.');
-    //         } finally {
-    //             setLoading(false);
-    //         }
-    //     };
-    //     fetchUserDetails();
-    // }, []);
-
     return (
-        <div className="bg-white sm:p-0 sm:m-0 rounded-md shadow-md relative">
-            <div className="flex flex-col justify-between mb-4 bg-indigo-200 ">
+        <div className="bg-white sm:p-0 sm:m-0 rounded-md shadow-md relative -my-4">
+            <div className="flex flex-col justify-between bg-white-200 ">
 
-                <div className="flex flex-row md:justify-start flex-wrap py-4 bg-indigo-400 rounded-md">
-                    <div className={`h-10 w-[5rem] mx-2 my-1 sm:mb-0 text-white text-sm sm:text-lg  rounded-md ${activetabs !== 0 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(0) }}>View All</div>
-                    <div className={`h-10 w-[5rem] mx-2 my-1 sm:mb-0 text-white text-sm sm:text-lg  rounded-md ${activetabs !== 1 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(1) }}>Active</div>
-                    <div className={`h-10 w-[5rem] mx-2 my-1 sm:mb-0 text-white text-sm sm:text-lg  rounded-md ${activetabs !== 2 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(2) }}>InActive</div>
-                    <div className={`h-10 w-[5rem] mx-2 my-1 sm:mb-0 text-white text-sm sm:text-lg  rounded-md ${activetabs !== 3 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(3) }}>Pending</div>
+                <div className="flex flex-row md:justify-start flex-wrap p-4 rounded-md md:mx-10 bg-black">
+
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm  rounded-md ${activetabs !== 0 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(0) }}>View All</div>
+
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 1 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(1) }}>Active</div>
+
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 2 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(2) }}>InActive</div>
+
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 3 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(3) }}>Pending</div>
 
                     <div className=" absolute bottom-2 right-1 mx-2 cursor-pointer">
                         <Link to={`/add/${userId}`} className="flex">
@@ -154,7 +106,7 @@ const Profile = () => {
                 </div>
 
                 {
-                    activetabs == 0 && <div className="container flex flex-row flex-wrap justify-between items-center mb-4 min-h-[72vh]">
+                    activetabs == 0 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-sm sm:text-lg text-gray-600'>Not Data Found</p>

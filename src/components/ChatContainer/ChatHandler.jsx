@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import userLogo from '../../asset/images/user.png';
 import { BsSend } from "react-icons/bs";
+import { useNavigate } from 'react-router-dom';
 
 
 function ChatHandler({ data }) {
 
     let [message, setMessage] = useState("Hi");
+    let navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         "sender": data.sender,
@@ -41,9 +43,9 @@ function ChatHandler({ data }) {
             }
         }).then(res => res.json())
             .then((data) => {
-                // console.log(data);
+                console.log(data);
 
-                navigate('/')
+                navigate(`/chat`)
 
             }).catch((e) => {
                 console.log(e);

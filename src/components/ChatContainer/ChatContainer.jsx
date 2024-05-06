@@ -15,9 +15,10 @@ function ChatContainer() {
     const [buyer_data, setBuyerData] = useState(null);
     const [seller_data, setSellerData] = useState(null);
     const [details, setDetails] = useState(null);
+    const isMobile = window.innerWidth <= 640;
+
     const [screenWidth, setScrennWidth] = useState(window.innerWidth);
 
-    const isMobile = window.innerWidth <= 640; // Assuming tablet size is <= 768px
 
     let { id, item_id } = useParams();
     let sellerId = id;
@@ -85,23 +86,26 @@ function ChatContainer() {
         }
     }
 
-
-
     useEffect(() => {
-        fetchData("http://localhost:3000/api/chat/item")
-    }, []);
+
+        if (item_id == undefined && id == undefined) {
+            fetchChatDataByUserId()
+        } else {
+            fetchData("http://localhost:3000/api/chat/item")
+        }
+    }, [isMobile]);
 
 
     return (
-        <div className="h-[88vh] flex justify-start w-full px-8 py-4">
+        <div className="h-[88vh] flex justify-start w-full px-2 py-2 md:py-4">
             {buyer_data == null &&
                 <ChatHandler data={chat_data} />
                 // <h1>CHAT HANDLER</h1>
             }
-            {!isMobile && buyer_data != null &&
+            {buyer_data != null &&
                 <div className='w-full h-full flex flex-row flex-wrap justify-between items-center'>
                     <ChatSideBar buyer_data_arr={buyer_data} seller_data_arr={seller_data} details={details} />
-                    {
+                    {!isMobile &&
                         <Outlet />
                     }
                 </div>

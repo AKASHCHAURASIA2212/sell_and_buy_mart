@@ -13,9 +13,11 @@ function ChatArea() {
     let user_id = localStorage.getItem("user_id")
     let [isLoading, setIsLoading] = useState(true);
     let { chatId } = useParams();
+    const isMobile = window.innerWidth <= 640; // Assuming tablet size is <= 768px
+
 
     const [formData, setFormData] = useState({
-        chatId: chatId,
+        chatId: "",
         sender: user_id,
         message: ""
     });
@@ -71,6 +73,7 @@ function ChatArea() {
         try {
 
             console.log("chat id : ", chatId);
+            formData.chatId = chatId;
 
             await fetch(`http://localhost:3000/api/chat/chat`, {
                 method: "POST",
@@ -105,50 +108,59 @@ function ChatArea() {
         setIsLoading(false)
     }, 2000)
 
-    return (
-        <div className={`h-full w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center  px-2 rounded-md`}>
-            <div className="chat-area-header w-full flex justify-between items-center p-2 shadow1 bg-white rounded-md">
-                <div className="details flex flex-col justify-center items-start">
-                    <div className='flex flex-row justify-end items-center'>
-                        <img src={userLogo} className='h-10 w-10 bg-gray-400 p-2 rounded-3xl mr-2' />
-                        <span className='text-xl font-mono font-bold '>{userName}</span>
+    return (<>
 
+        {isMobile && isLoading === true && <div className='w-full h-full flex items-center justify-center'>
+            <img src={loaderGif} />
+        </div>}
+        {isLoading == false &&
+            <div className={`h-[88vh] w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center  px-2 rounded-md p-2`}>
+                <div className="chat-area-header w-full flex justify-between items-center p-2 shadow1 bg-white rounded-md">
+                    <div className="details flex flex-col justify-center items-start">
+                        <div className='flex flex-row justify-end items-center'>
+                            <img src={userLogo} className='h-10 w-10 bg-gray-400 p-2 rounded-3xl mr-2' />
+                            <span className='text-xl font-mono font-bold '>{userName}</span>
+
+                        </div>
+                        <span className='font-bold'>online</span>
                     </div>
-                    <span className='font-bold'>online</span>
+                    {/* <div className="options text-3xl">
+                :
+            </div> */}
                 </div>
-                {/* <div className="options text-3xl">
-                    :
-                </div> */}
-            </div>
 
 
-            <div className="chat-area-cont w-full shadow1 p-2 flex-1 bg-white my-2 rounded-md h-auto overflow-y-auto">
-                {
-                    isLoading === true && <div className='w-full h-full flex items-center justify-center'>
-                        <img src={loaderGif} />
-                    </div>
-                }
-                <div className="chat-area w-full h-full flex flex-col">
+                <div className="chat-area-cont w-full shadow1 p-2 flex-1 bg-white my-2 rounded-md h-auto overflow-y-auto">
                     {
-                        message != null && message.map((elem, index) => {
-                            let msgData = { content: elem.content, date: elem.date_entered, msgId: elem.message_id }
-
-                            // console.log(msgData);
-                            if (elem.sendBy === user_id) {
-                                return <ChatMessageSelf key={index} data={msgData} />
-                            } else {
-                                return <ChatMessageOther key={index} data={msgData} />
-                            }
-                        })
+                        !isMobile && isLoading === true && <div className='w-full h-full flex items-center justify-center'>
+                            <img src={loaderGif} />
+                        </div>
                     }
+                    <div className="chat-area w-full h-full flex flex-col">
+                        {
+                            message != null && message.map((elem, index) => {
+                                let msgData = { content: elem.content, date: elem.date_entered, msgId: elem.message_id }
 
+                                // console.log(msgData);
+                                if (elem.sendBy === user_id) {
+                                    return <ChatMessageSelf key={index} data={msgData} />
+                                } else {
+                                    return <ChatMessageOther key={index} data={msgData} />
+                                }
+                            })
+                        }
+
+                    </div>
+                </div>
+
+                <div className="chat-area-input w-full shadow1 p-2 bg-white rounded-md">
+                    <input type="text" className='outline-none p-3 text-2xl border-2 border-red h-full w-full border-none' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} onKeyUp={handleSubmit} />
                 </div>
             </div>
+        }
 
-            <div className="chat-area-input w-full shadow1 p-2 bg-white rounded-md">
-                <input type="text" className='outline-none p-3 text-2xl border-2 border-red h-full w-full border-none' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} onKeyUp={handleSubmit} />
-            </div>
-        </div>
+    </>
+
     )
 }
 

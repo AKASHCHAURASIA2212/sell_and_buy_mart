@@ -8,8 +8,7 @@ function Panel() {
 
     let fetchData = async () => {
 
-
-        await fetch("http://localhost:3000/api/admin/dash", {
+        let result = await fetch("http://localhost:3000/api/admin/dash", {
             method: "GET",
             // body: JSON.stringify({ "data": "" }),
             headers: {
@@ -53,7 +52,7 @@ function Panel() {
 
 
     return (
-        <div className='h-full bg-white-300 overflow-scroll'>
+        <div className='h-full bg-white overflow-scroll'>
             <Stats data={stats} />
             <Activity data={activity} />
         </div>

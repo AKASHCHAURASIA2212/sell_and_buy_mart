@@ -1,26 +1,19 @@
 import React from 'react';
-import box_img from '../../asset/images/box.png'
+import box_img from '../../asset/images/box.webp'
 
 import { IoLocationOutline } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 
-
-
 function Card({ item }) {
 
-    let img_url = '';
 
     return (
         <div>
+
             <div className="relative flex min-w-[10rem] max-h-[25rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg justify-self-start">
                 <div className=" mx-4 mt-4 overflow-hidden object-center object-cover bg-blue-gray-500 text-orange-400 h-[40%]">
-                    {/* <img
-                        src="https://images.unsplash.com/photo-1499696010180-025ef6e1a8f9?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1470&amp;q=80"
-                        alt="ui/ux review check"
-                    /> */}
                     <img src={box_img} className='object-contain h-[50%]' />
-
                 </div>
                 <div className="px-6 my-3 h-2/5">
                     <div className="mb-3 flex items-center justify-between">
