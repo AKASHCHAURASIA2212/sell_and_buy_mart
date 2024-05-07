@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import userLogo from '../../asset/images/user.png';
 import { BsSend } from "react-icons/bs";
 import { useNavigate } from 'react-router-dom';
+import api_url from '../../utils/utils';
 
 
 function ChatHandler({ data }) {
@@ -17,8 +18,6 @@ function ChatHandler({ data }) {
         "chat_started_by": data.user_id
     });
 
-    // console.log(formData);
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         console.log(name, value);
@@ -26,16 +25,13 @@ function ChatHandler({ data }) {
             ...prevData,
             [name]: value
         }));
-
-        // console.log(formData);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // console.log(formData);
-
-        let result = await fetch("http://localhost:3000/api/chat/new", {
+        let url = `${api_url}/api/chat/new`;
+        let result = await fetch(url, {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
@@ -55,24 +51,19 @@ function ChatHandler({ data }) {
         <div className='w-full flex flex-col justify-center -mt-20 items-center'>
             <p className='text-3xl'>Start Chat with Seller</p>
             <div className="chat-banner flex flex-row justify-around items-center">
-
                 <div className='buyer-logo h-10 w-10 border-2 border-indigo-700 flex justify-center items-center rounded-3xl bg-indigo-400'>
                     <img src={userLogo} />
                 </div>
-
                 <p className='text-xl mx-3 my-8'>Want to Message</p>
-
                 <div className='buyer-logo h-10 w-10 border-2 border-indigo-700 flex justify-center items-center rounded-3xl bg-indigo-400'>
                     <img src={userLogo} />
                 </div>
             </div>
-
             <div className="chat-area-input shadow-md p-2 rounded-lg flex flex-row justify-center items-center">
                 <input type="text" className='outline-none p-2 text-sm sm:text-lg border-2 border-red h-full w-full rounded-xl' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} />
                 <button className="send p-2 rounded-3xl bg-indigo-400 text-white ml-2">
                     <BsSend size={30} onClick={handleSubmit} />
                 </button>
-
             </div>
         </div>
     )

@@ -4,10 +4,9 @@ import { Link } from 'react-router-dom'
 import userLogo from '../../../asset/images/user.png'
 import Pagination from '../../Pagination/Pagination';
 import { MdOutlineCancel } from "react-icons/md";
+import api_url from '../../../utils/utils';
 
 function Notify() {
-
-
     let [mailData, setMailData] = useState(null);
     let [page, setPage] = useState(1);
     let [limit, setLimit] = useState(5);
@@ -15,20 +14,19 @@ function Notify() {
     let [showModal, setShowModal] = useState(false);
     let [replyTo, setReplyTo] = useState(null);
 
-
     async function getUserDetails() {
 
-        let result = await fetch(`http://localhost:3000/api/mail/${page}/${limit}`, {
+        let url = `${api_url}/api/mail/${page}/${limit}`;
+        let result = await fetch(url, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setMailData(data.data.allMail)
                 settotalCount(data.data.totalCount)
-                // setMailData(data.data.mailData.res)
 
             }).catch((e) => {
                 console.log(e);
@@ -82,7 +80,6 @@ function Notify() {
 
             <div className={`absolute flex justify-center items-center w-[95%] md:w:[48%] ${showModal ? 'flex' : 'hidden'} z-10`}>
                 <div className=" bg-red-300 p-4 my-12 rounded-xl w-full lg:w-[45%]">
-                    {/* <h1 className=" text-3xl font-bold">Contact Us</h1> */}
                     <form onSubmit={handleSubmit} className="rounded-2xl relative">
                         <div className="mb-4">
                             <label htmlFor="subject" className="block text-sm font-medium text-gray-700">

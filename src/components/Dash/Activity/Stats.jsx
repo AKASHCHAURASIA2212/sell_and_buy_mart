@@ -1,6 +1,4 @@
 import React from 'react'
-// import { AiOutlineProduct } from "react-icons/ai";
-// import { FaRegCircleUser } from "react-icons/fa6";
 
 function Stats({ data }) {
     console.log(data);
@@ -32,7 +30,6 @@ function Stats({ data }) {
                             {data?.userCount}
                         </p>
                     </div>
-                    {/* <span class="text-xs text-gray-400">+4.9%</span> */}
                 </div>
 
                 <div class="px-2 py-2 md:px-4 md:py-4 shadow_cstm shadow-blue-100 w-[48%] md:w-[50%] lg:w-[30%] bg-green-200 mb-4 flex flex-row rounded-xl">

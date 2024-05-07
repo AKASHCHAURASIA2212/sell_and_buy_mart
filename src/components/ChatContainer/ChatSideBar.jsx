@@ -3,10 +3,10 @@ import userLogo from '../../asset/images/user.png';
 import ChatBox from './ChatBox';
 import './index.css'
 import { useNavigate } from 'react-router-dom';
+
 function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
 
     let navigate = useNavigate();
-
     // console.log("buyer_data_arr :", buyer_data_arr);
     // console.log("seller_data_arr :", seller_data_arr);
     console.log("details :", details, "seller_data_arr : ", seller_data_arr, "buyer_data_arr : ", buyer_data_arr);
@@ -27,11 +27,6 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
                 data.Mail = user.email
             }
         })
-        // console.log("elem.messages : ", elem.messages);
-        // console.log("elem.length : ", elem.messages.length);
-        // console.log("elem messages : ", elem.messages[elem.messages.length - 1]);
-        // console.log("elem messages : ", elem.messages[elem.messages.length - 1].content);
-        // console.log("elem messages : ", elem.messages[elem.messages.length - 1].date_entered);
 
         data.last_message = elem.messages[elem.messages.length - 1].content
         data.date_entered = elem.messages[elem.messages.length - 1].date_entered
@@ -60,48 +55,8 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
         sdarr.push(data)
     })
 
-
     const [buyer_data, setBuyerData] = useState(bdarr);
     const [seller_data, setSellerData] = useState(sdarr);
-
-
-
-
-    // const getUserData = async () => {
-    //     let result = await fetch("http://localhost:3000/user_data", {
-    //         method: "GET",
-    //         headers: {
-    //             "Content-type": "application/json; charset=UTF-8"
-    //         }
-    //     }).then(res => res.json())
-    //         .then((data) => {
-    //             console.log(data);
-
-    //             let seller_data = data.filter((user) => {
-    //                 if (user.user_id == seller_data_arr[0]) {
-    //                     return user;
-    //                 }
-    //             })
-
-    //             setSellerData(seller_data);
-
-    //             let buyer_data = data.filter(user => buyer_data_arr.includes(user.user_id))
-
-    //             setBuyerData(buyer_data)
-
-    //             console.log("buyer_data :", buyer_data);
-    //             console.log("seller_data :", seller_data);
-
-    //         }).catch((e) => {
-    //             console.log(e);
-    //         })
-    // }
-
-    useEffect(() => {
-        // getUserData()
-    }, [])
-
-
 
     const [activetabs, setActiveTabs] = useState(0)
     return (

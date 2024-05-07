@@ -1,3 +1,4 @@
+import api_url from '../../utils/utils';
 import './index.css'
 
 import React, { useState } from 'react';
@@ -7,14 +8,13 @@ const Newsletter = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
 
-    // let cars_logo = 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.dreamstime.com%2Fnewsletter-banner-template-ribbon-label-sign-image177650292&psig=AOvVaw0_INWXy8EmZ2n2JfGH2kID&ust=1713097219205000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCPjt5M6Wv4UDFQAAAAAdAAAAABAJ'
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
 
         try {
-            const response = await fetch('https://api.example.com/newsletter/subscribe', {
+            let url = `${api_url}/api/admin/newsletter/subscribe`;
+            const response = await fetch(url, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -57,8 +57,6 @@ const Newsletter = () => {
                         {loading ? 'Subscribing...' : 'Subscribe'}
                     </button>
                 </form>
-
-                {/* Logo on the right side */}
                 <div className="newsletter_logo w-full md:w-[60%] lg:w-[48%] text-center px-3">
                     <span className='block font-extrabold text-xl md:text-2xl lg:text-7xl'>Get notified</span>
                     <span className='block text-lg md:text-xl lg:text-5xl font-bold text-indigo-600 mt-3 mb-2'>Want latest news and updates?</span>

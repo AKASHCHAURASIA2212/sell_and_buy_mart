@@ -13,43 +13,31 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 import UserDetailsCard from '../../components/Card/UserDetailsCard';
-
+import api_url from '../../utils/utils';
 
 const Details = () => {
-
 
     let { cat, id } = useParams();
     let navigate = useNavigate();
     console.log(cat, id);
     const user_id = localStorage.getItem('user_id')
 
-    // const { bannerData, catList, postData } = useContext(MyContext);
-
     const [items, setItems] = useState([]);
 
-    const fetchData2 = async (url) => {
+    const fetchData = async (url) => {
         try {
             const response = await axios.get(url);
             console.log("details --> ", response.data.data);
-            // let itemdata = response.data[cat].filter((data) => {
-            //     console.log(data);
-            //     if (data._id == id) {
-            //         return data
-            //     }
-            // })
-            // console.log(itemdata);
             setItems(response.data.data[0])
-            // return response.data
         } catch (error) {
             console.error("Error fetching data:", error);
         }
     }
 
-
     useEffect(() => {
-        fetchData2(`http://localhost:3000/api/items/${id}`)
+        let url = `${api_url}/api/items/${id}`
+        fetchData(url)
     }, []);
-
 
     const startChat = (seller_id, item_id) => {
         navigate(`/chat/${seller_id}/${item_id}`);
@@ -72,14 +60,15 @@ const Details = () => {
                     <div className="details-cont-details w-full sm:w-[48%] md:h-[50vh] h-full px-3 mt-2 ">
                         {
                             items != null &&
-                            <div className='flex flex-col  justify-between items-center h-full'>
+                            <div className='flex flex-col  justify-between items-start h-full'>
 
-                                <div className=''>
-                                    <p className="block text-lg sm:text-xl md:text-5xl font-bold">{items.item_name}</p>
+                                <div className='text-md'>
+                                    <p className=" text-lg sm:text-xl md:text-5xl font-bold">{items.item_name}</p>
 
-                                    < p className="block text-lg sm:text-xl md:text-2xl font-semibold md:mt-6 md:mb-4">{items.item_desc}</p>
+                                    < p className=" text-lg sm:text-xl md:text-2xl font-semibold md:mt-6 md:mb-4">{items.item_desc}</p>
 
                                 </div>
+
                                 <div className="flex flex-row flex-wrap justify-start items-center w-full">
 
                                     <div className="text-lg sm:text-xl md:text-2xl md:my-2 flex flex-row justify-start items-center  w-[95%]">
@@ -114,7 +103,7 @@ const Details = () => {
                 </div>
 
                 <div className="w-[24%] min-h-[50vh] hidden md:flex">
-                    <UserDetailsCard />
+                    <UserDetailsCard userId={items.posted_by} />
                 </div>
 
             </div>

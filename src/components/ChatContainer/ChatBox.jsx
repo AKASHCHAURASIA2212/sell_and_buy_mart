@@ -6,8 +6,7 @@ import userLogo from '../../asset/images/user.png';
 function ChatBox({ user_data }) {
 
     let navigate = useNavigate()
-    const isMobile = window.innerWidth <= 640; // Assuming tablet size is <= 768px
-
+    const isMobile = window.innerWidth <= 640;
 
     const openChatArea = (chatId) => {
         console.log("user_data chatbox", user_data);
@@ -21,9 +20,7 @@ function ChatBox({ user_data }) {
             openChatArea(chatId)
         }
     }
-
-
-    console.log(user_data);
+    // console.log(user_data);
     return (
 
         <nav className="flex min-w-full flex-col font-sans text-base font-normal text-blue-gray-700 h-full">
@@ -57,8 +54,6 @@ function ChatBox({ user_data }) {
                         </div>)
                 })
             }
-
-
         </nav>
 
     )

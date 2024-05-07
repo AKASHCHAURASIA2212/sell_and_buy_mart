@@ -18,8 +18,6 @@ const About = () => {
                     </Link>
                 </div>
             </div>
-            {/* <div className="container mx-auto mt-8 bg-indigo-500 rounded-xl md:px-10">
-            </div> */}
         </div>
 
     );

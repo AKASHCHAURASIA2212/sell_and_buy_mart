@@ -3,12 +3,12 @@ import './index.css'
 import React, { useState, useContext } from 'react';
 import { MyContext } from '../../App';
 import { Link, useNavigate } from 'react-router-dom';
+import api_url from '../../utils/utils';
 
 const SignIn = () => {
 
     const navigate = useNavigate();
     let { setIsLogin } = useContext(MyContext)
-
 
     const [formData, setFormData] = useState({
         username: '',
@@ -29,13 +29,14 @@ const SignIn = () => {
         e.preventDefault();
 
         let data = {
-            // "user_id": Math.floor(Math.random() * (1099 - 1010 + 1)) + 1010,
             "username": formData.username,
             "password": formData.password,
             "email": formData.email,
         }
 
-        await fetch("http://localhost:3000/api/users/signin", {
+        let url = `${api_url}/api/users/signin`
+
+        await fetch(url, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -48,13 +49,6 @@ const SignIn = () => {
                 if (data.data === "") {
                     setMessage(data.message)
                 } else {
-                    // let user = data.filter((item) => {
-                    //     if (item.username == formData.username && item.password == formData.password) {
-                    //         return item;
-                    //     }
-                    // })
-
-                    // console.log(data);
                     if (data.data) {
                         localStorage.setItem("user_id", data.data.user_id)
                         localStorage.setItem("username", data.data.username)

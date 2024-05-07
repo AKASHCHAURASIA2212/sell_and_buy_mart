@@ -4,12 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
+import api_url from '../../utils/utils';
 
 function NewAddPost() {
 
-
     let user_id = localStorage.getItem('user_id')
-
     console.log("user_id : ", user_id);
     const [formData, setFormData] = useState({
         item_category: '',
@@ -73,7 +72,8 @@ function NewAddPost() {
         try {
             console.log(data);
 
-            await fetch("http://localhost:3000/api/items/add", {
+            let url = `${api_url}/api/items/add`;
+            await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {

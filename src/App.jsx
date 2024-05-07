@@ -39,9 +39,6 @@ const MyContext = createContext();
 function App() {
   const [count, setCount] = useState(0)
   let login_status = localStorage.getItem("login_status");
-  // console.log(login_status);
-  // console.log(typeof login_status);
-  // console.log(login_status === 'true');
   login_status = login_status === 'true';
   let [isLogin, setIsLogin] = useState(login_status);
   let [adminStatus, setAdminStatus] = useState(true);
@@ -50,38 +47,14 @@ function App() {
   let [itemsdata, setItemsData] = useState([]);
   let [bannerdata, setbannerdata] = useState([]);
 
-  let param_data = useParams();
-  // console.log(param_data);
-  console.log(window.location.pathname); //yields: "/js" (where snippets run)
-
-  const fetchData2 = async (url, type) => {
-    try {
-      const response = await axios.get(url);
-
-      // console.log(response.data.data);
-      if (type == 1) {
-        setItemsData(response.data.data)
-      } else if (type == 2) {
-        setcategorylist(response.data.data)
-      } else {
-        setbannerdata(response.data.data)
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-
-    }
-  }
-
   useEffect(() => {
     setIsLoading(true);
   }, []);
 
 
-
   setTimeout(() => {
     setIsLoading(false);
   }, 2000)
-
 
   const value = {
     categorylist,
@@ -101,9 +74,7 @@ function App() {
           </div>
         }
 
-
         {
-
           <Header />
         }
         <Routes>
@@ -134,16 +105,12 @@ function App() {
           {
             isLogin && <>
               <Route exact={true} path="/" element={<Home className='mx-4' />} />
-
               <Route exact={true} path="/listing" element={<Listing className='mx-4' />} />
               <Route exact={true} path="/listing/:cat" element={<Listing className='mx-4' />} />
               <Route exact={true} path="/listing/:cat/:id" element={<Details className='mx-4' />} />
-
               <Route exact={true} path="/account" element={<UserDetails className='mx-4' />} />
               <Route exact={true} path="/about" element={<About className='mx-4' />} />
               <Route exact={true} path="/Contact" element={<Contact className='mx-4' />} />
-
-
               <Route exact={true} path="/user" element={<User className='mx-4' />} />
               <Route exact={true} path="/add/:user_id" element={<NewAddPost className='mx-4' />} />
               <Route exact={true} path="/chat/:id/:item_id" element={<ChatContainer className='mx-4' />} >
@@ -152,23 +119,12 @@ function App() {
               </Route>
               <Route path='/chat' element={<ChatContainer />} />
               <Route path='chat/:chatId' element={<ChatArea />} />
-
-              {/* <Route exact={true} path='*' element={<NotFound className='mx-4' />} /> */}
-              {/* <Route exact={true} path='/*' element={<NotFound className='mx-4' />}> </Route> */}
-              {/* <Route exact={true} path='' element={<NotFound className='mx-4' />}> </Route> */}
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
 
             </>
           }
 
         </Routes>
-        {
-          // !adminStatus && isLogin && <FeatureWrapper className='mx-4' />
-        }
-        {
-          // !adminStatus && isLogin && <Newsletter className='mx-4' />
-        }
-
         {
           !adminStatus &&
           <Footer />

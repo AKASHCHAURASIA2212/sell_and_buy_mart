@@ -7,6 +7,7 @@ import axios from 'axios';
 import Card from '../../components/Card/Card';
 import BreadCrum from '../../components/BreadCrum/BreadCrum';
 import Pagination from '../../components/Pagination/Pagination';
+import api_url from '../../utils/utils';
 
 const Listing = ({ title = "Latest Items" }) => {
 
@@ -19,7 +20,7 @@ const Listing = ({ title = "Latest Items" }) => {
 
     title = id == undefined ? cat : "Similier Item";
 
-    const fetchData2 = async (url) => {
+    const fetchData = async (url) => {
         try {
             const response = await axios.get(url);
             console.log("data => : ", response.data.data.res);
@@ -33,7 +34,7 @@ const Listing = ({ title = "Latest Items" }) => {
     }
 
     useEffect(() => {
-        fetchData2(`http://localhost:3000/api/items/${page}/${limit}`)
+        fetchData(`${api_url}/api/items/${page}/${limit}`)
     }, [page]);
 
     const list = [

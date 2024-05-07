@@ -1,12 +1,9 @@
 import React, { useContext, useState } from 'react'
 import './index.css'
-
 import { Link, useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
 import UserAcc from '../UserAcc/UserAcc';
 import { AiOutlineMenu } from "react-icons/ai";
-
-
 
 const Header = () => {
 
@@ -25,11 +22,6 @@ const Header = () => {
         navigate('/signup')
     }
 
-    // document.addEventListener('click', () => {
-    //     setShowMenu(false)
-    // })
-
-
     return (
 
         <div className='modalWrapper'>
@@ -37,13 +29,9 @@ const Header = () => {
             <div className=" bg-black">
                 <header className=" text-white p-4">
                     <div className="flex flex-row justify-between items-center">
-                        {/* Logo */}
                         <div className="flex items-center">
-                            {/* <img src={logo} alt="Logo" className="h-8 mr-2" /> */}
                             <span className="text-xl font-semibold">S&BM</span>
                         </div>
-
-                        {/* Sign In/Sign Up buttons */}
 
                         <div class="h-10 flex items-center justify-center pl-2">
                             <div class="relative text-left h-full">

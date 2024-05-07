@@ -6,8 +6,6 @@ const Feature = ({ data }) => {
 
     const { heading, description, logo, theme }
         = data;
-    // console.log(heading, description, logo);
-
 
     return (
         <div className={` bg-indigo-600 text-gray-800 p-4 my-4 mt-8 rounded-md shadow-md mx-2`} >

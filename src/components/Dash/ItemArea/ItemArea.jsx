@@ -5,6 +5,7 @@ import Pagination from '../../Pagination/Pagination';
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
+import api_url from '../../../utils/utils';
 
 function ItemArea() {
 
@@ -13,10 +14,10 @@ function ItemArea() {
     let [limit, setLimit] = useState(5);
     let [totalCount, settotalCount] = useState(null);
 
-
     async function getUserDetails() {
 
-        let result = await fetch(`http://localhost:3000/api/admin/item/${page}/${limit}`, {
+        let url = `${api_url}/api/admin/item/${page}/${limit}`;
+        let result = await fetch(url, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -35,7 +36,6 @@ function ItemArea() {
 
     useEffect(() => {
         getUserDetails()
-
     }, [page])
 
     return (

@@ -19,20 +19,6 @@ const Slide = ({ bg }) => (
 
 const SliderComponent = () => {
 
-    const { bannerData, catList, postData } = useContext(MyContext);
-
-    // console.log(bannerData);
-
-
-    const slides = [
-        { src: car1, alt: 'Image 1' },
-        { src: car2, alt: 'Image 1' },
-        { src: car3, alt: 'Image 1' },
-        { src: car4, alt: 'Image 1' },
-        { src: car5, alt: 'Image 1' },
-        { src: car6, alt: 'Image 1' },
-    ];
-
     const settings = {
         dots: true,
         infinite: true,

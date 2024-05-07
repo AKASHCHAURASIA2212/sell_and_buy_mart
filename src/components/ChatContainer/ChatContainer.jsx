@@ -4,39 +4,31 @@ import ChatSideBar from './ChatSideBar'
 import userLogo from '../../asset/images/user.png';
 import ChatHandler from './ChatHandler';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import { Outlet } from 'react-router-dom';
+import api_url from '../../utils/utils';
 function ChatContainer() {
 
     const user_id = localStorage.getItem("user_id")
-    const username = localStorage.getItem("username")
-
     const [showChat, setShowChat] = useState(false);
     const [buyer_data, setBuyerData] = useState(null);
     const [seller_data, setSellerData] = useState(null);
     const [details, setDetails] = useState(null);
     const isMobile = window.innerWidth <= 640;
 
-    const [screenWidth, setScrennWidth] = useState(window.innerWidth);
-
-
     let { id, item_id } = useParams();
     let sellerId = id;
     let buyerId = user_id;
     console.log(sellerId, buyerId, item_id);
-    let navigate = useNavigate();
-    // console.log(id);
 
     let chat_data = { sender: buyerId, receiver: sellerId, item_id, user_id };
 
-    // const { bannerData, catList, postData } = useContext(MyContext);
 
     const [items, setItems] = useState([]);
 
-    const fetchData = async (url) => {
+    const fetchData = async () => {
         try {
-
-            let result = await fetch("http://localhost:3000/api/chat/item", {
+            let url = `${api_url}/api/chat/item`;
+            let result = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({ sellerId, buyerId, item_id }),
                 headers: {
@@ -48,9 +40,6 @@ function ChatContainer() {
                     if (data.data.length != 0) {
                         fetchChatData();
                     }
-
-                    // navigate('/chat')
-
                 }).catch((e) => {
                     console.log(e);
                 })
@@ -61,8 +50,9 @@ function ChatContainer() {
 
     const fetchChatData = async (url) => {
         try {
+            let url = `${api_url}/api/chat/user`;
 
-            await fetch("http://localhost:3000/api/chat/user", {
+            await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({ sellerId, buyerId, user_id }),
                 headers: {
@@ -70,7 +60,6 @@ function ChatContainer() {
                 }
             }).then(res => res.json())
                 .then((data) => {
-                    // console.log(data.data);
                     let result = data.data;
                     setBuyerData(result.resp.buyer_chat)
                     setSellerData(result.resp.seller_chat)
@@ -91,16 +80,14 @@ function ChatContainer() {
         if (item_id == undefined && id == undefined) {
             fetchChatDataByUserId()
         } else {
-            fetchData("http://localhost:3000/api/chat/item")
+            fetchData()
         }
     }, [isMobile]);
-
 
     return (
         <div className="h-[88vh] flex justify-start w-full px-2 py-2 md:py-4">
             {buyer_data == null &&
                 <ChatHandler data={chat_data} />
-                // <h1>CHAT HANDLER</h1>
             }
             {buyer_data != null &&
                 <div className='w-full h-full flex flex-row flex-wrap justify-between items-center'>

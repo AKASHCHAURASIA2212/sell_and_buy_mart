@@ -3,9 +3,10 @@ import ChatMessageOther from './ChatMessageOther'
 import ChatMessageSelf from './ChatMessageSelf'
 import userLogo from '../../asset/images/user.png';
 import loaderGif from '../../asset/images/loading.gif'
-
 import './index.css'
 import { useParams } from 'react-router-dom';
+import api_url from '../../utils/utils';
+
 function ChatArea() {
 
     let [userName, setUserName] = useState("")
@@ -13,8 +14,7 @@ function ChatArea() {
     let user_id = localStorage.getItem("user_id")
     let [isLoading, setIsLoading] = useState(true);
     let { chatId } = useParams();
-    const isMobile = window.innerWidth <= 640; // Assuming tablet size is <= 768px
-
+    const isMobile = window.innerWidth <= 640;
 
     const [formData, setFormData] = useState({
         chatId: "",
@@ -24,27 +24,21 @@ function ChatArea() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // console.log(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
-
-        // console.log(formData);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         if (e.keyCode === 13) {
             e.target.value = "";
 
             setIsLoading(true)
+            let url = `${api_url}/api/chat/insert`;
 
-
-            // console.log(formData);
-
-            await fetch("http://localhost:3000/api/chat/insert", {
+            await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {
@@ -57,11 +51,8 @@ function ChatArea() {
                         sender: user_id,
                         message: ""
                     })
-                    // console.log("messages : ", data.data[0].messages);
                     setMessage(data.data[0].messages)
                     setIsLoading(false)
-
-
                 }).catch((e) => {
                     console.log(e);
                 })
@@ -74,8 +65,9 @@ function ChatArea() {
 
             console.log("chat id : ", chatId);
             formData.chatId = chatId;
+            let url = `${api_url}/api/chat/chat`;
 
-            await fetch(`http://localhost:3000/api/chat/chat`, {
+            await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({ chatId }),
                 headers: {
@@ -109,7 +101,6 @@ function ChatArea() {
     }, 2000)
 
     return (<>
-
         {isMobile && isLoading === true && <div className='w-full h-full flex items-center justify-center'>
             <img src={loaderGif} />
         </div>}
@@ -124,9 +115,6 @@ function ChatArea() {
                         </div>
                         <span className='font-bold'>online</span>
                     </div>
-                    {/* <div className="options text-3xl">
-                :
-            </div> */}
                 </div>
 
 
@@ -141,7 +129,6 @@ function ChatArea() {
                             message != null && message.map((elem, index) => {
                                 let msgData = { content: elem.content, date: elem.date_entered, msgId: elem.message_id }
 
-                                // console.log(msgData);
                                 if (elem.sendBy === user_id) {
                                     return <ChatMessageSelf key={index} data={msgData} />
                                 } else {

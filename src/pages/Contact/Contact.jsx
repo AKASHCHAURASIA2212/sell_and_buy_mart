@@ -1,6 +1,7 @@
 import './index.css'
 import React, { useState } from 'react';
 import contact_logo from '../../asset/images/contact.webp'
+import api_url from '../../utils/utils';
 const Contact = () => {
 
     let user_id = localStorage.getItem("user_id");
@@ -22,8 +23,8 @@ const Contact = () => {
         e.preventDefault();
 
         console.log(formData);
-
-        await fetch(`http://localhost:3000/api/mail/${user_id}`, {
+        let url = `${api_url}/api/mail/${user_id}`
+        await fetch(url, {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {

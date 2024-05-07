@@ -6,24 +6,23 @@ import { MyContext } from '../../App';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import Card2 from '../Card/Card2';
+import api_url from '../../utils/utils';
 
 
 const Profile = () => {
 
     let userId = localStorage.getItem('user_id');
     console.log(userId);
-
     let { isLogin, setIsLogin } = useContext(MyContext)
-
     const [loading, setLoading] = useState(false);
-
     const [user_data, setUserData] = useState([])
     const [activetabs, setActiveTabs] = useState(0)
 
 
     const fetchData = async () => {
         try {
-            await fetch(`http://localhost:3000/api/items/user`, {
+            let url = `${api_url}/api/items/user`;
+            await fetch(url, {
                 method: "POST",
                 body: JSON.stringify({ userId: userId }),
                 headers: {
@@ -33,21 +32,9 @@ const Profile = () => {
                 .then((data) => {
                     console.log(data.data[0]);
                     setUserData(data.data)
-                    // localStorage.setItem("userId", data.userId)
-                    // localStorage.setItem("username", data.username)
-                    // localStorage.setItem("login_status", true)
-                    // setIsLogin(true);
-                    // navigate('/')
-
                 }).catch((e) => {
                     console.log(e);
                 })
-
-            // console.log(allItems);
-
-            // setUserData(allItems)
-
-            // return response.data
         } catch (error) {
             console.error("Error fetching data:", error);
         }
@@ -55,8 +42,8 @@ const Profile = () => {
 
     const delete_item = (id) => {
         try {
-            const response = fetch(`http://localhost:3000/api/items/${id}`
-                ,
+            let url = `${api_url}/api/items/${id}`;
+            const response = fetch(url,
                 {
                     method: 'DELETE',
                     body: JSON.stringify({ "_id": id }),
@@ -66,15 +53,7 @@ const Profile = () => {
 
                 }
             );
-            console.log(response.data);
-            // let allItems = Object.values(response.data).flat().filter((data) => {
-            //     if (data.seller[0] == userId) {
-            //         return data;
-            //     }
-            // });
-            // console.log(sallItems);
-            // setUserData(allItems)
-            // return response.data
+            // console.log(response.data);
         } catch (error) {
             console.error("Error fetching data:", error);
         }

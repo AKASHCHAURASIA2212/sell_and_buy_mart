@@ -45,10 +45,6 @@ function ItemDetailsCard({ data }) {
                     <div class="mt-2 flex items-center justify-center">
                         <p class="ml-2">{data.item_desc}</p>
                     </div>
-                    {/* <div class=" flex justify-center">
-                        <button class="rounded-full bg-blue-500 px-4 py-2 text-white">Message</button>
-                    </div> */}
-
                 </div>
             </div>
 

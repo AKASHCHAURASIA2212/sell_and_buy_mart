@@ -1,14 +1,13 @@
 import './index.css'
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
+import api_url from '../../utils/utils';
 const SingUp = () => {
 
     const navigate = useNavigate();
     let { setIsLogin } = useContext(MyContext)
-
 
     const [formData, setFormData] = useState({
         username: '',
@@ -22,22 +21,16 @@ const SingUp = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        // console.log(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
         }));
-
-        // console.log(formData);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // Handle form submission, validation, etc.
-        console.log(formData); // Just for demonstration, replace with actual logic
 
         let data = {
-            // "user_id": Math.floor(Math.random() * (1099 - 1010 + 1)) + 1010,
             "username": formData.username,
             "password": formData.password,
             "email": formData.email,
@@ -50,7 +43,9 @@ const SingUp = () => {
             setMessage("Password Not Matched...")
         } else {
 
-            await fetch("http://localhost:3000/api/users/signup", {
+            let url = `${api_url}/api/users/signup`
+
+            await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -58,9 +53,10 @@ const SingUp = () => {
                 }
             }).then(res => res.json())
                 .then((data) => {
-                    console.log(data);
-                    localStorage.setItem("user_id", data.user_id)
-                    localStorage.setItem("username", data.username)
+                    // console.log("SignUp -> ", data.data.user_id);
+                    // console.log("SignUp -> ", data.data.username);
+                    localStorage.setItem("user_id", data.data.user_id)
+                    localStorage.setItem("username", data.data.username)
                     localStorage.setItem("login_status", true)
                     setIsLogin(true);
                     navigate('/')

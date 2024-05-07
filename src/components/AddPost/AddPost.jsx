@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import api_url from '../../utils/utils';
 
 const AddPost = () => {
 
@@ -52,11 +53,11 @@ const AddPost = () => {
             posted_by: formData.posted_by,
         }
         try {
-            // Call your API here to save formData
 
             console.log(data);
+            let url = `${api_url}/api/items/add`
 
-            let result = await fetch("http://localhost:3000/api/items/add", {
+            let result = await fetch(url, {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
@@ -65,13 +66,9 @@ const AddPost = () => {
             }).then(res => res.json())
                 .then((data) => {
                     console.log(data);
-                    // setIsLogin(true)
                 }).catch((e) => {
                     console.log(e);
                 })
-
-            // Redirect to user routes after successful submission
-
             navigate('/user')
 
         } catch (error) {
@@ -163,33 +160,6 @@ const AddPost = () => {
                             accept="image/*"
                             onChange={handleImageUpload}
                         />
-                        {/* <input
-                        type="file"
-                        id="images2"
-                        name="images2"
-                        className="w-full border rounded px-3 py-1"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                    />
-                    <input
-                        type="file"
-                        id="images3"
-                        name="images3"
-                        className="w-full border rounded px-3 py-1"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                    />
-                    <input
-                        type="file"
-                        id="images4"
-                        name="images4"
-                        className="w-full border rounded px-3 py-1"
-                        multiple
-                        accept="image/*"
-                        onChange={handleImageUpload}
-                    /> */}
                     </div>
                     <div className="mb-4 w-full sm:w-2/3 md:w-2/5 lg:w-2/5">
                         <label htmlFor="item_desc" className="block font-semibold mb-2">Item Description</label>

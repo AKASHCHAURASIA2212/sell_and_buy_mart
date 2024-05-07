@@ -4,16 +4,11 @@ import { MdOutlineDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import { useParams } from 'react-router-dom';
 import UserDetailsCard from '../Card/UserDetailsCard';
+import api_url from '../../utils/utils';
 
 function UserDetails() {
 
-    // let userId = localStorage.getItem("user_id")
-
-    let { userId } = useParams()
-
-
-
-    console.log(userId);
+    let userId = localStorage.getItem("user_id");
 
     let [userData, setUserData] = useState(null);
 
@@ -23,18 +18,17 @@ function UserDetails() {
 
 
     const getUserDetails = async (e) => {
+        let url = `${api_url}/api/users/${userId}`;
 
-        await fetch(`http://localhost:3000/api/users/${userId}`, {
+        await fetch(url, {
             method: "POST",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log("userDetails : ", data.data.data);
                 let userdata = data.data.data;
                 setUserData(userdata)
-                // console.log("USERDATA : ", userData);
 
                 let test_data = {
                     userId: userId,
@@ -44,10 +38,9 @@ function UserDetails() {
                     address: userdata.address,
                     role: userdata.role
                 }
-                // console.log(test_data);
 
                 setFormData(test_data)
-                console.log("FORMDATA : ", formData);
+                // console.log("FORMDATA : ", formData);
 
             }).catch((e) => {
                 console.log(e);
@@ -83,7 +76,9 @@ function UserDetails() {
             "role": formData.role,
         }
 
-        await fetch("http://localhost:3000/api/users/update", {
+        let url = `${api_url}/api/users/update`;
+
+        await fetch(url, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
@@ -91,13 +86,11 @@ function UserDetails() {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
-
+                // console.log(data);
             }).catch((e) => {
                 console.log(e);
             })
     };
-
 
     return (
         <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
@@ -112,7 +105,7 @@ function UserDetails() {
             <div className='flex flex-col md:flex-row-reverse justify-between items-start'>
 
                 <div className="w-full md:w-[30%] h-full mt-2 ">
-                    <UserDetailsCard data={userData} />
+                    <UserDetailsCard userId={userId} />
                 </div>
 
                 <div className="w-full md:w-[70%] mx-2">

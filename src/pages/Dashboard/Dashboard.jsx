@@ -3,7 +3,6 @@ import { BrowserRouter, Outlet } from "react-router-dom";
 import SideBar from '../../components/SideBar/SideBar';
 
 function Dashboard() {
-
     return (
         <div className='main-container flex flex-col sm:flex-row justify-start w-full h-[92vh]'>
 

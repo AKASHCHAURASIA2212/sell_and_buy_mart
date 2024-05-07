@@ -1,7 +1,7 @@
 import React from 'react'
 import './index.css'
 import React from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom';
 
 const Item = ({ item }) => {
     const { imgSrc, name, shortDesc, datePosted, postedBy, id } = item;
@@ -18,7 +18,6 @@ const Item = ({ item }) => {
             <p className="mb-2">{shortDesc}</p>
             <p className=" text-gray-500">Posted on {datePosted}</p>
 
-            {/* Button to redirect to Details page */}
             <Link to={`/details/${id}`} className="inline-block mt-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 py-2 rounded-md">
                 Details
             </Link>
