@@ -113,12 +113,12 @@ function App() {
               <Route exact={true} path="/Contact" element={<Contact className='mx-4' />} />
               <Route exact={true} path="/user" element={<User className='mx-4' />} />
               <Route exact={true} path="/add/:user_id" element={<NewAddPost className='mx-4' />} />
-              <Route exact={true} path="/chat/:id/:item_id" element={<ChatContainer className='mx-4' />} >
+              <Route exact={true} path="/chat" element={<ChatContainer className='mx-4' />} >
                 <Route path='' element={<Welcome />} />
                 <Route path=':chatId' element={<ChatArea />} />
               </Route>
-              <Route path='/chat' element={<ChatContainer />} />
-              <Route path='chat/:chatId' element={<ChatArea />} />
+              <Route path='/chat/:id/:item_id' element={<ChatContainer />} />
+              <Route path='chats/:chatId' element={<ChatArea />} />
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
 
             </>

@@ -54,9 +54,7 @@ const Home = () => {
                         }
                     </div>
                 </div>
-                <div>
-                    <Filter />
-                </div>
+
                 <div className="w-full flex flex-col -mx-1">
                     <Listing />
                 </div>

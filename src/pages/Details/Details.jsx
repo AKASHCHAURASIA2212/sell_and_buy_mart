@@ -41,6 +41,7 @@ const Details = () => {
 
     const startChat = (seller_id, item_id) => {
         navigate(`/chat/${seller_id}/${item_id}`);
+        // navigate(`/chat`);
     }
 
     const list = [

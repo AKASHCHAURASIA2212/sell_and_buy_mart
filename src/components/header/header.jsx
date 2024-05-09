@@ -68,6 +68,11 @@ const Header = () => {
                                             </Link>
                                         }
                                         {isLogin &&
+                                            <Link to='/chat' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Chat</li>
+                                            </Link>
+                                        }
+                                        {isLogin &&
                                             <Link to='/admin' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Admin</li>
                                             </Link>

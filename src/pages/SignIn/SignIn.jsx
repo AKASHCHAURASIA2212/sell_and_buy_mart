@@ -68,8 +68,9 @@ const SignIn = () => {
 
         <div className="min-h-screen bg-white flex flex-col justify-center items-center px-4">
             {
-                message !== "" && <h1>{message}</h1>
+                message !== "" && <h1 className='mb-12 text-blue-600  bg-blue-200 px-6 py-2 rounded-xl'>{message}</h1>
             }
+
             <div className="max-w-md w-full p-6 bg-white-500 rounded-lg shadow-lg -mt-10 border-2 border-indigo-500 ">
                 <h1 className=" font-semibold text-center mb-6">Sign In</h1>
                 <form className="space-y-4">

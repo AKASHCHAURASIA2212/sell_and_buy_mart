@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import userLogo from '../../asset/images/user.png';
 import { BsSend } from "react-icons/bs";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import api_url from '../../utils/utils';
 
 
-function ChatHandler({ data }) {
+function ChatHandler({ data, setRefresh }) {
 
     let [message, setMessage] = useState("Hi");
     let navigate = useNavigate();
+
+    let { id, item_id } = useParams();
 
     const [formData, setFormData] = useState({
         "sender": data.sender,
@@ -41,6 +43,9 @@ function ChatHandler({ data }) {
             .then((data) => {
                 console.log(data);
 
+                setRefresh(true);
+
+                // navigate(`/chat/${id}/${item_id}`)
                 navigate(`/chat`)
 
             }).catch((e) => {

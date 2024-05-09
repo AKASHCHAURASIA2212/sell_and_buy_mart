@@ -1,3 +1,3 @@
-let api_url = 'https://sell-and-buy-mart-backend.vercel.app';
+let api_url = "http://localhost:3000"
 
 export default api_url;

@@ -24,6 +24,7 @@ function ChatContainer() {
 
 
     const [items, setItems] = useState([]);
+    const [refresh, setRefresh] = useState(false);
 
     const fetchData = async () => {
         try {
@@ -75,6 +76,33 @@ function ChatContainer() {
         }
     }
 
+    const fetchChatDataByUserId = async (url) => {
+        try {
+            let url = `${api_url}/api/chat/single`;
+
+            await fetch(url, {
+                method: "POST",
+                body: JSON.stringify({ user_id }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }).then(res => res.json())
+                .then((data) => {
+                    let result = data.data;
+                    setBuyerData(result.resp.buyer_chat)
+                    setSellerData(result.resp.seller_chat)
+                    setDetails({
+                        itemData: result.itemData, userData: result.userData
+                    })
+
+                }).catch((e) => {
+                    console.log(e);
+                })
+        } catch (error) {
+            console.error("Error fetching data:", error);
+        }
+    }
+
     useEffect(() => {
 
         if (item_id == undefined && id == undefined) {
@@ -82,12 +110,13 @@ function ChatContainer() {
         } else {
             fetchData()
         }
-    }, [isMobile]);
+        setRefresh(false);
+    }, [isMobile, refresh]);
 
     return (
         <div className="h-[88vh] flex justify-start w-full px-2 py-2 md:py-4">
             {buyer_data == null &&
-                <ChatHandler data={chat_data} />
+                <ChatHandler data={chat_data} setRefresh={setRefresh} />
             }
             {buyer_data != null &&
                 <div className='w-full h-full flex flex-row flex-wrap justify-between items-center'>

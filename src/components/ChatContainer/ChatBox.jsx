@@ -15,7 +15,7 @@ function ChatBox({ user_data }) {
 
     const handleClick = (chatId) => {
         if (isMobile) {
-            navigate(`/chat/${chatId}`)
+            navigate(`/chats/${chatId}`)
         } else {
             openChatArea(chatId)
         }

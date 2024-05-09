@@ -15,10 +15,8 @@ function UserArea() {
     let [totalCount, settotalCount] = useState(null);
 
     async function getUserDetails() {
-
         let url = `${api_url}/api/admin/user/${page}/${limit}`;
-
-        let result = await fetch(url, {
+        await fetch(url, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -38,6 +36,7 @@ function UserArea() {
     useEffect(() => {
         getUserDetails()
     }, [page])
+
     return (
         <div className="relative w-full px-0 -mt-1 overflow-hidden sm:rounded-lg  min-h-full">
             <div className="px-4 py-5 sm:px-6 bg-blue-200 rounded-md">
