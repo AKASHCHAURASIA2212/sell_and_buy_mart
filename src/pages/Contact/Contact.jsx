@@ -34,6 +34,11 @@ const Contact = () => {
             .then((data) => {
                 console.log(data);
                 // navigate('/')
+                setFormData({
+                    subject: '',
+                    email: '',
+                    message: ''
+                })
 
             }).catch((e) => {
                 console.log(e);
@@ -64,7 +69,7 @@ const Contact = () => {
                             type="email"
                             id="email"
                             name='email'
-                            value={formData.name}
+                            value={formData.email}
                             onChange={handleChange}
                             className="text-gray-600 outline-none w-full h-12 rounded-md p-3 mt-3"
                         />

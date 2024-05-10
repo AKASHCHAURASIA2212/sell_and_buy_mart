@@ -1,14 +1,9 @@
 import { BrowserRouter, Routes, Route, useParams } from 'react-router-dom';
 import { createContext, useEffect, useState } from 'react';
-
-import './App.css'
-import './responsive.css'
 import NotFound from './pages/NotFound/NotFound';
 import Home from './pages/Home/Home';
 import Header from './components/header/header';
 import Contact from './pages/Contact/Contact';
-import Newsletter from './components/newsletter/newsletter';
-import Feature from './components/feature/feature';
 import Listing from './pages/Listing/Listing';
 import Details from './pages/Details/Details';
 import SingUp from './pages/SignUp/SingUp';
@@ -16,12 +11,8 @@ import SignIn from './pages/SignIn/SignIn';
 import About from './pages/About/About';
 import Footer from './components/footer/footer';
 import loaderGif from './asset/images/loading.gif'
-import data from '../src/asset/data/db.json';
-import FeatureWrapper from './components/feature/FeatureWrapper';
 import User from './pages/User/User'
-import AddPost from './components/AddPost/AddPost';
 import ChatContainer from './components/ChatContainer/ChatContainer';
-import axios from 'axios';
 import Dashboard from './pages/Dashboard/Dashboard';
 import UserArea from './components/Dash/UserArea/UserArea';
 import ItemArea from './components/Dash/ItemArea/ItemArea';
@@ -32,6 +23,10 @@ import ChatArea from './components/ChatContainer/ChatArea';
 import Welcome from './components/ChatContainer/Welcome';
 import NewAddPost from './components/AddPost/NewAddPost';
 import Notify from './components/Dash/Notification/Notify';
+import ResetPassword from './pages/ResetPassword/ResetPassword'
+import './App.css'
+import './responsive.css'
+import ResetPasswordMail from './pages/ResetPassword/ResetPasswordMail';
 
 
 const MyContext = createContext();
@@ -40,12 +35,11 @@ function App() {
   const [count, setCount] = useState(0)
   let login_status = localStorage.getItem("login_status");
   login_status = login_status === 'true';
+  let admin_status = localStorage.getItem("admin_status");
+  admin_status = admin_status === 'true';
   let [isLogin, setIsLogin] = useState(login_status);
-  let [adminStatus, setAdminStatus] = useState(true);
+  let [isAdmin, setIsAdmin] = useState(admin_status);
   let [isLoading, setIsLoading] = useState(true);
-  let [categorylist, setcategorylist] = useState([]);
-  let [itemsdata, setItemsData] = useState([]);
-  let [bannerdata, setbannerdata] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -57,11 +51,10 @@ function App() {
   }, 2000)
 
   const value = {
-    categorylist,
-    itemsdata,
-    bannerdata,
     isLogin,
-    setIsLogin
+    setIsLogin,
+    isAdmin,
+    setIsAdmin
   }
 
   return (
@@ -79,15 +72,18 @@ function App() {
         }
         <Routes>
 
+
           {!isLogin && <>
             <Route exact={true} path="*" element={<SignIn />} />
             <Route exact={true} path="/signup" element={<SingUp />} />
             <Route exact={true} path="/signin" element={<SignIn />} />
+            <Route exact={true} path='reset-password' element={<ResetPasswordMail />} />
+            <Route exact={true} path='reset-password/:userId' element={<ResetPassword />} />
           </>
           }
 
           {
-            adminStatus &&
+            isAdmin &&
 
             <Route path='admin' element={<Dashboard />} className='mx-4' >
               <Route path='' element={<Panel />} />
@@ -126,7 +122,7 @@ function App() {
 
         </Routes>
         {
-          !adminStatus &&
+          !isAdmin &&
           <Footer />
         }
 

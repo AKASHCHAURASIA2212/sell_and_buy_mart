@@ -61,7 +61,7 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
     const [activetabs, setActiveTabs] = useState(0)
     return (
         <div className=' bg-white-500 w-full sm:w-[50%] md:w-[40%] lg:w-[30%] h-[86vh]'>
-            <div className="bg-white shadow1 p-1 rounded-md w-full h-full">
+            <div className="bg-white shadow_cstm p-1 rounded-md w-full h-full">
                 <div className="flex flex-col justify-start w-full ">
 
                     <div className="flex justify-around items-center w-full">

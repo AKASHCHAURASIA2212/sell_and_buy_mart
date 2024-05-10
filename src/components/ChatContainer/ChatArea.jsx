@@ -106,7 +106,7 @@ function ChatArea() {
         </div>}
         {isLoading == false &&
             <div className={`h-[88vh] w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center  px-2 rounded-md p-2`}>
-                <div className="chat-area-header w-full flex justify-between items-center p-2 shadow1 bg-white rounded-md">
+                <div className="chat-area-header w-full flex justify-between items-center p-2 shadow_cstm bg-white rounded-md">
                     <div className="details flex flex-col justify-center items-start">
                         <div className='flex flex-row justify-end items-center'>
                             <img src={userLogo} className='h-10 w-10 bg-gray-400 p-2 rounded-3xl mr-2' />
@@ -118,7 +118,7 @@ function ChatArea() {
                 </div>
 
 
-                <div className="chat-area-cont w-full shadow1 p-2 flex-1 bg-white my-2 rounded-md h-auto overflow-y-auto">
+                <div className="chat-area-cont w-full shadow_cstm p-2 flex-1 bg-white my-2 rounded-md h-auto overflow-y-auto">
                     {
                         !isMobile && isLoading === true && <div className='w-full h-full flex items-center justify-center'>
                             <img src={loaderGif} />
@@ -140,7 +140,7 @@ function ChatArea() {
                     </div>
                 </div>
 
-                <div className="chat-area-input w-full shadow1 p-2 bg-white rounded-md">
+                <div className="chat-area-input w-full shadow_cstm p-2 bg-white rounded-md">
                     <input type="text" className='outline-none p-3 text-2xl border-2 border-red h-full w-full border-none' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} onKeyUp={handleSubmit} />
                 </div>
             </div>

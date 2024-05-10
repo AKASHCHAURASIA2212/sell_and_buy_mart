@@ -71,11 +71,13 @@ const Profile = () => {
 
                     <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm  rounded-md ${activetabs !== 0 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(0) }}>View All</div>
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 1 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(1) }}>Active</div>
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 1 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(1) }}>Available</div>
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 2 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(2) }}>InActive</div>
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 2 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(2) }}>Deleted</div>
 
                     <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 3 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(3) }}>Pending</div>
+
+                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 4 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(4) }}>Rejected</div>
 
                     <div className=" absolute bottom-2 right-1 mx-2 cursor-pointer">
                         <Link to={`/add/${userId}`} className="flex">
@@ -101,7 +103,7 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 1 && <div className="container flex flex-row flex-wrap justify-between items-center mb-4 min-h-[72vh]">
+                    activetabs == 1 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
@@ -117,13 +119,13 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 2 && <div className="container flex flex-row flex-wrap justify-between items-center mb-4 min-h-[72vh]">
+                    activetabs == 2 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
                             </div>
                         }
-                        {user_data.length > 0 && user_data.filter((item) => item.status == "unavailable").map((item, index) => {
+                        {user_data.length > 0 && user_data.filter((item) => item.status == "deleted").map((item, index) => {
 
                             return (
                                 <Card2 item={item} key={index} />
@@ -133,7 +135,7 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 3 && <div className="container flex flex-row flex-wrap justify-between items-center mb-4 min-h-[72vh]">
+                    activetabs == 3 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
@@ -141,6 +143,21 @@ const Profile = () => {
                         }
                         {user_data.length > 0 && user_data.filter((item) => item.status == "pending").map((item, index) => {
 
+                            return (
+                                <Card2 item={item} key={index} />
+                            )
+                        })
+                        }
+                    </div>
+                }
+                {
+                    activetabs == 4 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
+                        {
+                            user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
+                                <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
+                            </div>
+                        }
+                        {user_data.length > 0 && user_data.filter((item) => item.status == "rejected").map((item, index) => {
                             return (
                                 <Card2 item={item} key={index} />
                             )

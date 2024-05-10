@@ -16,7 +16,7 @@ function NotifyCard({ data, setShowModal, setReplyTo }) {
                     <p className="mb-2 block font-sans text-lg mt-3 font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                         <span className='text-bold'>Subject : </span>{data.subject}
                     </p>
-                    <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
+                    <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased overflow-x-auto">
                         {data.message}
                     </p>
                     <button

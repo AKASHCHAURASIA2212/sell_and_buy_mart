@@ -134,7 +134,7 @@ function Notify() {
                 </p>
             </div>
 
-            <div className='overflow-auto-y min-h-[65vh] w-full flex flex-row flex-wrap justify-between items-center bg-white-300 mb-8'>
+            <div className='overflow-auto-y min-h-[65vh] w-full flex flex-row flex-wrap justify-around items-start bg-white-300 mb-8'>
                 {
                     mailData !== null && mailData.length > 0 && mailData.map((mail) => {
                         return (

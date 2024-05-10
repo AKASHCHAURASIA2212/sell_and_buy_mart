@@ -8,13 +8,19 @@ import { MdDateRange } from "react-icons/md";
 function Card2({ item, delete_item }) {
     let navigate = useNavigate();
     let status_c = "Pending";
-    let bg = "bg-orange-500";
+    let bg = "orange";
     if (item.status == "available") {
         status_c = "Active";
-        bg = "bg-green-500"
-    } else if (item.status == "unavailable") {
-        status_c = "InActive";
-        bg = "bg-red-500"
+        bg = "green"
+    } else if (item.status == "deleted") {
+        status_c = "Deleted";
+        bg = "red"
+    } else if (item.status == "pending") {
+        status_c = "Pending";
+        bg = "orange"
+    } else {
+        status_c = "Rejected";
+        bg = "blue"
     }
 
     let [status, setStatus] = useState(status_c);
@@ -62,18 +68,19 @@ function Card2({ item, delete_item }) {
                     </div>
 
                     <div className=" item_status flex flex-row justify-start items-center mt-0 absolute top-0 left-0 rounded-ee-lg rounded-ss-lg">
-                        <p className='text-white px-2 py-1 bg-green-500 rounded-ee-lg rounded-ss-lg hover:bg-indigo-600 transition duration-300 text-sm'>{(item.status).charAt(0).toUpperCase()
+                        <p className={`text-white px-2 py-1 bg-${statusBg}-500 rounded-ee-lg rounded-ss-lg hover:bg-${statusBg}-600 transition duration-300 text-sm`}>{(item.status).charAt(0).toUpperCase()
                             + (item.status).slice(1)}</p>
                     </div>
 
                     <div className="w-full flex flex-row justify-around sm:justify-start  items-center mt-2">
 
-                        {/* {status_c != "Pending" && status_c != "InActive" && */}
+                        {(item.status == "available" || item.status == "pending") &&
+                            <p className="bg-indigo-500 text-white  px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md hover:bg-indigo-600 transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { editPost() }}>Edit</p>
+                        }
 
-                        <p className="bg-indigo-500 text-white  px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md hover:bg-indigo-600 transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { editPost() }}>Edit</p>
-
-                        <p className="bg-red-500 text-white px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md hover:bg-red-600 transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { delete_item(item.item_id) }}>Delete</p>
-
+                        {(item.status == "available" || item.status == "pending") &&
+                            <p className="bg-red-500 text-white px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md hover:bg-red-600 transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { delete_item(item.item_id) }}>Delete</p>
+                        }
 
                     </div>
                 </div>

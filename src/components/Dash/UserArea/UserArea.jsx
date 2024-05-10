@@ -5,6 +5,8 @@ import Pagination from '../../Pagination/Pagination';
 import { FiEdit } from "react-icons/fi";
 import { MdDeleteOutline } from "react-icons/md";
 import { ImCancelCircle } from "react-icons/im";
+import { MdDelete } from "react-icons/md";
+
 import api_url from '../../../utils/utils';
 
 
@@ -13,6 +15,7 @@ function UserArea() {
     let [page, setPage] = useState(1);
     let [limit, setLimit] = useState(5);
     let [totalCount, settotalCount] = useState(null);
+    let user_id = localStorage.getItem("user_id")
 
     async function getUserDetails() {
         let url = `${api_url}/api/admin/user/${page}/${limit}`;
@@ -32,6 +35,34 @@ function UserArea() {
             })
 
     };
+
+    const handleDelete = async (userId) => {
+        // e.preventDefault();
+        console.log("handle Delete : ", userId);
+
+        let url = `${api_url}/api/admin/user/delete`;
+
+        let data = {
+            userId: userId,
+            deleted_by: user_id
+        }
+
+        let result = await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                // navigate('/')
+                window.location.reload();
+
+            }).catch((e) => {
+                console.log(e);
+            })
+    }
 
     useEffect(() => {
         getUserDetails()
@@ -78,7 +109,7 @@ function UserArea() {
                                                         </div>
                                                     </div>
                                                     <div className="text-start w-[20%]">
-                                                        <span className="font-semibold bg-green-200 px-2 py-1 rounded-lg -ml-2 md:ml-0 text-xs md:text-lg">Active</span>
+                                                        <span className="font-semibold bg-green-200 px-2 py-1 rounded-lg -ml-2 md:ml-0 text-xs md:text-lg">{user.deleted != '1' ? 'Active' : 'Deleted'}</span>
                                                     </div>
                                                     <div className="text-start w-[20%]">
                                                         <span className="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg -ml-2 md:ml-0 text-xs md:text-lg">{user.role}</span>
@@ -91,9 +122,11 @@ function UserArea() {
                                                             <Link to={`edit/${user.user_id}`} className="   bg-blue-300 md:rounded-lg text-center text-sm md:text-lg font-semibold mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
                                                                 <FiEdit />
                                                             </Link>
-                                                            <Link to={`edit/${user.user_id}`} className="   bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
-                                                                <ImCancelCircle />
-                                                            </Link>
+                                                            {user.deleted != '1' &&
+                                                                <div onClick={() => { handleDelete(user.user_id) }} className="bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                    <MdDelete />
+                                                                </div>
+                                                            }
                                                         </div>
                                                     </div>
 

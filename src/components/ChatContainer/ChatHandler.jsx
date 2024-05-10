@@ -64,7 +64,7 @@ function ChatHandler({ data, setRefresh }) {
                     <img src={userLogo} />
                 </div>
             </div>
-            <div className="chat-area-input shadow-md p-2 rounded-lg flex flex-row justify-center items-center">
+            <div className="chat-area-input shadow_cstm p-2 rounded-lg flex flex-row justify-center items-center">
                 <input type="text" className='outline-none p-2 text-sm sm:text-lg border-2 border-red h-full w-full rounded-xl' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} />
                 <button className="send p-2 rounded-3xl bg-indigo-400 text-white ml-2">
                     <BsSend size={30} onClick={handleSubmit} />

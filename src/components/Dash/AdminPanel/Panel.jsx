@@ -38,7 +38,7 @@ function Panel() {
             })
     }
 
-    useEffect(async () => {
+    useEffect(() => {
         fetchData()
     }, [])
 

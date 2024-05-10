@@ -7,7 +7,7 @@ import { AiOutlineMenu } from "react-icons/ai";
 
 const Header = () => {
 
-    let { isLogin, setIsLogin } = useContext(MyContext)
+    let { isLogin, setIsLogin, isAdmin, setIsAdmin } = useContext(MyContext)
     let [showMenu, setShowMenu] = useState(false);
     let navigate = useNavigate();
 
@@ -18,7 +18,9 @@ const Header = () => {
 
     const logoutHandler = () => {
         setIsLogin(false)
+        setIsAdmin(false)
         localStorage.setItem("login_status", false);
+        localStorage.setItem("admin_status", false);
         navigate('/signup')
     }
 
@@ -47,16 +49,30 @@ const Header = () => {
                                             </Link>
                                         }
 
-                                        {isLogin &&
-                                            <Link to='/user' onClick={() => { setShowMenu(!showMenu) }}>
-                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">ADS</li>
+                                        {isLogin && isAdmin &&
+                                            <Link to='/admin' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Admin</li>
                                             </Link>
                                         }
+
                                         {isLogin &&
                                             <Link to='/account' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Account</li>
                                             </Link>
                                         }
+
+                                        {isLogin &&
+                                            <Link to='/chat' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Chat</li>
+                                            </Link>
+                                        }
+
+                                        {isLogin &&
+                                            <Link to='/user' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Posts</li>
+                                            </Link>
+                                        }
+
                                         {isLogin &&
                                             <Link to='/about' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">About</li>
@@ -65,16 +81,6 @@ const Header = () => {
                                         {isLogin &&
                                             <Link to='/contact' onClick={() => { setShowMenu(!showMenu) }}>
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Contact</li>
-                                            </Link>
-                                        }
-                                        {isLogin &&
-                                            <Link to='/chat' onClick={() => { setShowMenu(!showMenu) }}>
-                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Chat</li>
-                                            </Link>
-                                        }
-                                        {isLogin &&
-                                            <Link to='/admin' onClick={() => { setShowMenu(!showMenu) }}>
-                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Admin</li>
                                             </Link>
                                         }
 

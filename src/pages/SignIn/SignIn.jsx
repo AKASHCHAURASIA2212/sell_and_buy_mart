@@ -8,7 +8,7 @@ import api_url from '../../utils/utils';
 const SignIn = () => {
 
     const navigate = useNavigate();
-    let { setIsLogin } = useContext(MyContext)
+    let { setIsLogin, setIsAdmin } = useContext(MyContext)
 
     const [formData, setFormData] = useState({
         username: '',
@@ -53,6 +53,13 @@ const SignIn = () => {
                         localStorage.setItem("user_id", data.data.user_id)
                         localStorage.setItem("username", data.data.username)
                         localStorage.setItem("login_status", true)
+
+                        if (data.data.role == 'admin') {
+                            setIsAdmin(true);
+                            localStorage.setItem("admin_status", true)
+                        } else {
+                            localStorage.setItem("admin_status", false)
+                        }
                         setIsLogin(true)
                         navigate('/')
                     }
@@ -89,6 +96,7 @@ const SignIn = () => {
                     <Link to={'/'}>
                         <button type="submit" className="w-full bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition duration-300 mt-4" onClick={handleSubmit}>Sign In</button>
                     </Link>
+                    <Link to={'/reset-password'}>Forgot Password</Link>
                 </form>
             </div>
         </div>

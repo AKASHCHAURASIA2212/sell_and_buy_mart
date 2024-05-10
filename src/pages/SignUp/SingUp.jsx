@@ -7,7 +7,7 @@ import api_url from '../../utils/utils';
 const SingUp = () => {
 
     const navigate = useNavigate();
-    let { setIsLogin } = useContext(MyContext)
+    let { setIsLogin, setIsAdmin } = useContext(MyContext)
 
     const [formData, setFormData] = useState({
         username: '',
@@ -58,6 +58,12 @@ const SingUp = () => {
                     localStorage.setItem("user_id", data.data.user_id)
                     localStorage.setItem("username", data.data.username)
                     localStorage.setItem("login_status", true)
+                    if (data.data.role == 'admin') {
+                        setIsAdmin(true);
+                        localStorage.setItem("admin_status", true)
+                    } else {
+                        localStorage.setItem("admin_status", false)
+                    }
                     setIsLogin(true);
                     navigate('/')
 
