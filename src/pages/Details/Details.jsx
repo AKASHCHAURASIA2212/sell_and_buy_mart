@@ -13,7 +13,10 @@ import { IoLocationOutline } from "react-icons/io5";
 import { FaRupeeSign } from "react-icons/fa";
 import { MdDateRange } from "react-icons/md";
 import UserDetailsCard from '../../components/Card/UserDetailsCard';
+import box_img from '../../asset/images/box.webp'
+
 import api_url from '../../utils/utils';
+
 
 const Details = () => {
 
@@ -22,7 +25,7 @@ const Details = () => {
     console.log(cat, id);
     const user_id = localStorage.getItem('user_id')
 
-    const [items, setItems] = useState([]);
+    const [items, setItems] = useState(null);
 
     const fetchData = async (url) => {
         try {
@@ -55,8 +58,14 @@ const Details = () => {
             <BreadCrum list={list} />
 
             <div className="my-3 flex flex-col sm:flex-row justify-between items-center">
-                <div className="w-[95%] md:w-[75%] h-full relative flex flex-wrap flex-column sm:flex-row rounded-xl border-2 overflow-hidden">
-                    <div className="details-cont-img w-full h-[30vh] md:h-[50vh] sm:w-[35%] m-2  bg-blue-400 overflow-hidden rounded-xl">
+                <div className="w-[95%] md:w-[75%] h-full relative flex flex-wrap flex-column sm:flex-row rounded-xl bg1 overflow-hidden">
+                    <div className="details-cont-img w-full h-[30vh] md:h-[50vh] sm:w-[35%] m-2  bg9 overflow-hidden rounded-xl">
+                        {
+                            console.log(items?.img[0])
+                        }
+                        {items != null &&
+                            < img src={items?.img[0] == '' ? box_img : items?.img[0]} alt="" className='h-full w-full object-cover' />
+                        }
                     </div>
                     <div className="details-cont-details w-full sm:w-[48%] md:h-[50vh] h-full px-3 mt-2 ">
                         {
@@ -104,7 +113,7 @@ const Details = () => {
                 </div>
 
                 <div className="w-[24%] min-h-[50vh] hidden md:flex">
-                    <UserDetailsCard userId={items.posted_by} />
+                    <UserDetailsCard userId={items?.posted_by} />
                 </div>
 
             </div>

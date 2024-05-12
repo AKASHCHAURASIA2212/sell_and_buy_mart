@@ -44,13 +44,13 @@ const Listing = ({ title = "Latest Items" }) => {
 
     return (
 
-        <div className={`mx-1 mb-8 mt-4 w-full`}>
+        <div className={`ml-1 mx-auto mb-8 mt-4 w-full`}>
             {
                 cat != undefined && id == undefined &&
                 <BreadCrum list={list} />
             }
 
-            <div className="container pt-2 bg-indigo-100 rounded-xl mt-1">
+            <div className="container pt-2 bg1 rounded-xl mt-1">
                 <h1 className="header">{title}</h1>
 
                 <div className="item-container flex flex-row flex-wrap justify-around md:justify-around items-center">

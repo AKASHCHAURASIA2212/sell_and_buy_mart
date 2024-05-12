@@ -23,15 +23,14 @@ function ChatBox({ user_data }) {
     // console.log(user_data);
     return (
 
-        <nav className="flex min-w-full flex-col font-sans text-base font-normal text-blue-gray-700 h-full">
+        <div className="flex min-w-full flex-col font-sans text-base font-normal text-blue-gray-700 h-full">
             {
                 user_data != null && user_data.length > 0 &&
                 user_data.map((user) => {
                     return (
 
                         <div onClick={() => { handleClick(user.chatID) }}
-                            className="flex items-center w-full p-3 leading-tight transition-all rounded-lg outline-none text-start hover:bg-blue-gray-50 hover:bg-opacity-80 hover:text-blue-gray-900 focus:bg-blue-gray-50 focus:bg-opacity-80 focus:text-blue-gray-900 active:bg-blue-gray-50 active:bg-opacity-80 active:text-blue-gray-900 
-                            bg-300-white shadow_cstm1 mb-2">
+                            className="flex items-center w-full p-3 transition-all mb-2 bg1 rounded-lg">
                             <div className="grid mr-4 place-items-center">
                                 <img alt="emma" src={userLogo}
                                     className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center" />
@@ -54,7 +53,7 @@ function ChatBox({ user_data }) {
                         </div>)
                 })
             }
-        </nav>
+        </div>
 
     )
 }

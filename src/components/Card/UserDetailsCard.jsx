@@ -9,8 +9,9 @@ import api_url from '../../utils/utils';
 
 function UserDetailsCard({ userId }) {
 
-    let [userData, setUserData] = useState(null);
+    console.log(userId);
 
+    let [userData, setUserData] = useState(null);
 
     const getUserDetails = async (e) => {
         let url = `${api_url}/api/users/${userId}`;
@@ -37,12 +38,12 @@ function UserDetailsCard({ userId }) {
     }, [userId])
 
     return (
-        <div className="relative w-full h-full flex flex-col rounded-xl text-gray-700 justify-center items-center border-2">
-            <div className="mx-4 mt-6 overflow-hidden object-center object-cover bg-blue-gray-500 text-orange-400">
-                <img src={user_img} className='rounded-3xl h-20 w-20 md:h-32 md:w-32 object-contain' />
+        <div className="relative w-full h-[51vh] flex flex-col rounded-xl text-gray-700 justify-center items-center border-2 bg2">
+            <div className="mx-4 mt-6 overflow-hidden object-center object-cover bg-blue-gray-500">
+                <img src={userData?.user_img == '' ? user_img : userData?.user_img} className='rounded-full h-20 w-20 md:h-32 md:w-32 object-cover object-center' />
 
             </div>
-            <div className="px-6 my-3">
+            <div className="px-6 my-3 text-gray-100">
                 <div className="mb-2 flex items-center justify-center">
                     <p className="">
                         {userData?.username}
@@ -53,7 +54,7 @@ function UserDetailsCard({ userId }) {
 
                     <div class="mt-2 flex items-center justify-center">
                         <MdMailOutline />
-                        <p class=" text-gray-500 ml-2">
+                        <p class="ml-2">
                             {userData?.email}
                         </p>
                     </div>

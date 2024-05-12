@@ -2,7 +2,6 @@ import React, { useContext, useState } from 'react'
 import './index.css'
 import { Link, useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
-import UserAcc from '../UserAcc/UserAcc';
 import { AiOutlineMenu } from "react-icons/ai";
 
 const Header = () => {
@@ -28,7 +27,7 @@ const Header = () => {
 
         <div className='modalWrapper'>
 
-            <div className=" bg-black">
+            <div className="bg-11">
                 <header className=" text-white p-4">
                     <div className="flex flex-row justify-between items-center">
                         <div className="flex items-center">

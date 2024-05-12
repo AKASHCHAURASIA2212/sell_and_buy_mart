@@ -3,18 +3,12 @@ import React, { useContext } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { MyContext } from '../../App';
-import car1 from '../../asset/crousal/car1.webp';
-import car2 from '../../asset/crousal/car2.webp';
-import car3 from '../../asset/crousal/car3.webp';
-import car4 from '../../asset/crousal/car4.webp';
-import car5 from '../../asset/crousal/car5.webp';
-import car6 from '../../asset/crousal/car6.webp';
 
 const Slide = ({ bg }) => (
-    <div className={`slideCont mx-auto h-[70vh] w-full ${bg}`}>
-        {/* <img src={src} alt={alt} className='h-full w-full' /> */}
-    </div>
+    <div className={`${bg} flex flex-col justify-center items-center h-[35vh] md:h-[55vh] lg:h-[70vh] w-full p-2 text-center`}>
+        <span className='text-white text-2xl sm:text-xl md:text-4xl lg:text-6xl font-semibold'> Welcome to Sell & Buy Mart, where treasures await! </span>
+        <span className='text-white text-md sm:text-lg md:text-3xl lg:text-3xl mt-8'>Whether you’re hunting for gadgets, vintage finds, or sports gear, our platform connects you with fellow enthusiasts. Happy exploring!</span>
+    </div >
 );
 
 const SliderComponent = () => {
@@ -32,15 +26,13 @@ const SliderComponent = () => {
     };
 
     return (
-        <div className='rounded-md overflow-hidden  h-full w-full'>
-            <div className=" rounded-xl slider-container h-full w-full">
-                <Slider {...settings} >
-                    <Slide className='h-full w-full' bg={'bg-indigo-400'} />
-                    <Slide className='h-full w-full' bg={'bg-red-400'} />
-                    <Slide className='h-full w-full' bg={'bg-orange-400'} />
-                    <Slide className='h-full w-full' bg={'bg-green-400'} />
-                </Slider>
-            </div>
+        <div className='rounded-md overflow-hidden  h-full w-full bg-red-500'>
+            <Slider {...settings} >
+                <Slide className='h-full w-full' bg={'gr1'} />
+                <Slide className='h-full w-full' bg={'gr2'} />
+                <Slide className='h-full w-full' bg={'gr3'} />
+                <Slide className='h-full w-full' bg={'gr4'} />
+            </Slider>
         </div>
 
     );

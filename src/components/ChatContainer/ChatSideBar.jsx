@@ -61,7 +61,7 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
     const [activetabs, setActiveTabs] = useState(0)
     return (
         <div className=' bg-white-500 w-full sm:w-[50%] md:w-[40%] lg:w-[30%] h-[86vh]'>
-            <div className="bg-white shadow_cstm p-1 rounded-md w-full h-full">
+            <div className="bg-18 shadow_cstm p-1 rounded-md w-full h-full">
                 <div className="flex flex-col justify-start w-full ">
 
                     <div className="flex justify-around items-center w-full">
@@ -75,7 +75,7 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
                         </div>
                     }
                     {
-                        activetabs == 1 && <div className="container flex flex-row flex-wrap justify-start items-center mb-4 w-full h-[70vh] overflow-y-auto">
+                        activetabs == 1 && <div className="container flex flex-row flex-wrap justify-start items-center mb-4 w-full h-[70vh] overflow-y-auto  ">
                             <ChatBox user_data={seller_data} />
                         </div>
                     }

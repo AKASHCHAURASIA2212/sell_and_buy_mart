@@ -38,8 +38,8 @@ const Newsletter = () => {
 
     return (
 
-        <div className="mx-1 md:px-10 h-[60vh] overflow-hidden my-12">
-            <div className="mx-1 bg-indigo-300 p-12 rounded-md flex flex-col md:flex-row items-center justify-center h-full">
+        <div className="mx-2 h-[60vh] overflow-hidden my-6">
+            <div className="mx-0 bg4 p-12 rounded-md flex flex-col md:flex-row items-center justify-center h-full">
                 {/* Input field for email */}
                 <form onSubmit={handleSubmit} className="flex flex-row items-center container w-full md:w-[40%] lg:w-[48%]">
                     <input

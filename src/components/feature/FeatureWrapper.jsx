@@ -32,11 +32,11 @@ function FeatureWrapper() {
     ]
 
     return (
-        <div className="p-0 flex flex-col md:flex-row justify-start lg:justify-around items-center flex-wrap h-max bg-indigo-800 min-h-[72vh] md:px-10 py-4">
+        <div className="p-0 flex flex-col md:flex-row justify-start lg:justify-around items-center flex-wrap h-max bg2 min-h-[72vh] md:px-10 py-4">
 
             {feature_data.map((item, index) => {
                 return (
-                    <div className={` bg-indigo-600 text-gray-800 h-[25vh]  md:min-h-[50vh] rounded-md shadow-md w-[95%] sm:w-[90%] md:w-[48%] lg:w-[23%] px-4 py-4 my-2 mx-2`} >
+                    <div className={` bg-12 text-gray-800 h-[25vh]  md:min-h-[50vh] rounded-md shadow-md w-[95%] sm:w-[90%] md:w-[48%] lg:w-[23%] px-4 py-4 my-2 mx-2`} >
                         <div className="flex items-center mb-4">
                             <img src={logo_cstm} alt="Feature Logo" className="h-12 mx-2 text-white text-sm sm:text-lg " />
                             <span className=" text-white text-sm sm:text-lg">{item.heading}</span>

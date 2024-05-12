@@ -47,7 +47,7 @@ const Contact = () => {
     };
 
     return (
-        <div className='px-4 md:px-10 min-h-[88vh] bg-indigo-200 flex flex-col md:flex-row justify-around'>
+        <div className='px-4 md:px-10 min-h-[88vh] bg6 flex flex-col md:flex-row justify-around'>
 
             <div className='contact_logo rounded-xl w-full lg:w-[45%] flex flex-col justify-center items-center h-[40vh] sm:h-[100%]'>
                 <img src={contact_logo} className='h-[70%]' />
@@ -58,11 +58,11 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className=" bg-indigo-300 p-4 my-12 rounded-xl w-full lg:w-[45%]">
+            <div className=" bg4 p-4 my-12 rounded-xl w-full lg:w-[45%]">
                 {/* <h1 className=" text-3xl font-bold">Contact Us</h1> */}
                 <form onSubmit={handleSubmit} className="  rounded-2xl">
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-50">
                             Email
                         </label>
                         <input
@@ -75,7 +75,7 @@ const Contact = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label htmlFor="subject" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="subject" className="block text-sm font-medium text-gray-50">
                             Subject
                         </label>
                         <input
@@ -89,7 +89,7 @@ const Contact = () => {
                     </div>
 
                     <div className="mb-4">
-                        <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                        <label htmlFor="message" className="block text-sm font-medium text-gray-50">
                             Message
                         </label>
                         <textarea
@@ -103,7 +103,7 @@ const Contact = () => {
                     </div>
                     <button
                         type="submit"
-                        className="inline-block bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md mt-8"
+                        className="inline-block bg1  text-gray-900 font-semibold py-2 px-4 rounded-md mt-8"
                     >
                         Submit
                     </button>

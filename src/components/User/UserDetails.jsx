@@ -8,18 +8,17 @@ import api_url from '../../utils/utils';
 
 function UserDetails() {
 
-    let userId = localStorage.getItem("user_id");
-
+    let { userId } = useParams();
+    if (userId == undefined || userId == null) {
+        userId = localStorage.getItem("user_id");
+    }
+    console.log(userId);
     let [userData, setUserData] = useState(null);
-
     let [inputDisabled, setInputDisabled] = useState(true)
-
     let [formData, setFormData] = useState(null);
-
-
+    const [image, setImage] = useState('');
     const getUserDetails = async (e) => {
         let url = `${api_url}/api/users/${userId}`;
-
         await fetch(url, {
             method: "POST",
             headers: {
@@ -36,12 +35,10 @@ function UserDetails() {
                     email: userdata.email,
                     phone: userdata.phone,
                     address: userdata.address,
-                    role: userdata.role
+                    role: userdata.role,
+                    user_img: userdata.user_img
                 }
-
                 setFormData(test_data)
-                // console.log("FORMDATA : ", formData);
-
             }).catch((e) => {
                 console.log(e);
             })
@@ -61,9 +58,33 @@ function UserDetails() {
 
     };
 
+    const handleImageSave = async (image) => {
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'cpfy_sabm')
+        data.append('cloud_name', 'dqjnwvw0d')
+        let cloud_name = 'dqjnwvw0d';
+        let url = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+        let img_url = await fetch(url, {
+            method: "POST",
+            body: data
+        })
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                console.log(data.secure_url);
+                return data.secure_url;
+            }).catch((e) => {
+                console.log(e);
+                return '';
+            });
+        return img_url;
+    }
+
     const handleSubmit = async (e) => {
         setInputDisabled(true)
         e.preventDefault();
+
         console.log("handleSubmit : ", formData);
 
         let data = {
@@ -75,6 +96,13 @@ function UserDetails() {
             "address": formData.address,
             "role": formData.role,
         }
+
+        if (image != '') {
+            let img_url = await handleImageSave(image)
+            data.user_img = img_url;
+        }
+
+        console.log(data);
 
         let url = `${api_url}/api/users/update`;
 
@@ -94,95 +122,94 @@ function UserDetails() {
 
     return (
         <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
-            <div class="px-4 py-5 mb-3 sm:px-6 bg-blue-200 rounded-md">
+            <div class="px-4 py-5 mb-3 sm:px-6 bg1 rounded-md">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
                     User Details
                 </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                <p class="mt-1 max-w-2xl text-sm text-gray-700">
                     Details and informations about user.
                 </p>
             </div>
             <div className='flex flex-col md:flex-row-reverse justify-between items-start'>
 
-                <div className="w-full md:w-[30%] h-full mt-2 ">
+                <div className="w-full md:w-[30%] h-full  md:ml-2">
                     <UserDetailsCard userId={userId} />
                 </div>
 
-                <div className="w-full md:w-[70%] mx-2">
-                    <div class="mt-2 mb-4">
-                        <dl>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">
+                <div className="w-full md:w-[70%] mt-2 md:mt-0">
+                    <div class="rounded-lg bg1">
+                        <div>
+                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <div class="text-sm font-medium text-gray-700">
                                     Full name
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                </div>
+                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
                                     <input type='text' name='username' id='username' value={formData?.username} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </dd>
+                                </div>
                             </div>
-                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">
+                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <div class="text-sm font-medium text-gray-700">
                                     Phone No
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                </div>
+                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
                                     <input type='text' name='phone' id='phone' value={formData?.phone} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </dd>
+                                </div>
                             </div>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">
+                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <div class="text-sm font-medium text-gray-700">
                                     Email address
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                </div>
+                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
                                     <input type='email' name='email' id='email' value={formData?.email} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </dd>
+                                </div>
                             </div>
-                            <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">
+                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <div class="text-sm font-medium text-gray-700">
                                     Role
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                </div>
+                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
                                     <select id="role" disabled={inputDisabled} className='outline-none w-full h-full px-2 py-3' name='role' onChange={handleChange}>
 
                                         <option value="admin" selected={formData?.role == 'admin'} >Admin</option>
                                         <option value="user" selected={formData?.role == 'user'}>User</option>
                                     </select>
-                                </dd>
+                                </div>
                             </div>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">
+                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <div class="text-sm font-medium text-gray-700">
                                     Address
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                </div>
+                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
                                     <input type='text' name='address' id='address' value={formData?.address} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </dd>
+                                </div>
                             </div>
-                            <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <dt class="text-sm font-medium text-gray-500">
+                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                <div class="text-sm font-medium text-gray-700">
                                     Profile Img
-                                </dt>
-                                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='file' name='img' id='img' value={formData?.img_path} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </dd>
+                                </div>
+                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                    <input type='file' name='images' id='images' value={formData?.img_path} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={(e) => { setImage(e.target.files[0]) }} />
+                                </div>
                             </div>
-                            <div class="flex flex-row justify-start items-center pt-5">
+                            <div class="flex flex-row justify-start items-center pt-2 pb-4 pl-5">
                                 {inputDisabled &&
-                                    <div className="px-2 py-2 mr-2 w-[8rem] bg-indigo-300 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                    <div className="px-2 py-2 mr-2 w-[8rem] bg9 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
                                         <button>EDIT</button>
                                         <FaRegEdit />
                                     </div>}
                                 {!inputDisabled &&
                                     <>
-                                        <div className="px-2 py-2 w-[8rem] mr-2 bg-red-300 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                        <div className="px-2 py-2 w-[8rem] mr-2 bg9 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
                                             <button>CANCEL</button>
                                             <GiCancel />
                                         </div>
-                                        <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
+                                        <div className="px-2 py-2 w-[8rem] bg9 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
                                             <button>SAVE</button>
                                             <MdOutlineDoneOutline />
                                         </div>
                                     </>}
                             </div>
-                        </dl>
-                        <div className='user_profile_img'></div>
+                        </div>
                     </div>
                 </div>
             </div>

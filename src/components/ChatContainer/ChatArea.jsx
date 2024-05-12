@@ -105,8 +105,8 @@ function ChatArea() {
             <img src={loaderGif} />
         </div>}
         {isLoading == false &&
-            <div className={`h-[88vh] w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center  px-2 rounded-md p-2`}>
-                <div className="chat-area-header w-full flex justify-between items-center p-2 shadow_cstm bg-white rounded-md">
+            <div className={`h-[88vh] w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center px-2 rounded-md p-2`}>
+                <div className="chat-area-header w-full flex justify-between items-center p-2 shadow_cstm bg-18 rounded-md">
                     <div className="details flex flex-col justify-center items-start">
                         <div className='flex flex-row justify-end items-center'>
                             <img src={userLogo} className='h-10 w-10 bg-gray-400 p-2 rounded-3xl mr-2' />

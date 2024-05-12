@@ -64,20 +64,20 @@ const Profile = () => {
     }, []);
 
     return (
-        <div className="bg-white sm:p-0 sm:m-0 rounded-md shadow-md relative -my-4">
+        <div className="bg1 rounded-md shadow_cstm relative -my-2 mx-1 sm:mx-2">
             <div className="flex flex-col justify-between bg-white-200 ">
 
-                <div className="flex flex-row md:justify-start flex-wrap p-4 rounded-md md:mx-10 bg-black">
+                <div className="flex flex-row justify-between md:justify-start flex-wrap p-2 rounded-md bg-black mt-2 mx-2">
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm  rounded-md ${activetabs !== 0 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(0) }}>View All</div>
+                    <div className={`h-10 w-[3.8rem] sm:w-[4rem] mx-1 sm:mx-2 my-1 sm:mb-0 text-white text-sm  rounded-md ${activetabs !== 0 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(0) }}>All</div>
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 1 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(1) }}>Available</div>
+                    <div className={`h-10 w-[3.8rem] sm:w-[4rem] mx-1 sm:mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 1 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(1) }}>Available</div>
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 2 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(2) }}>Deleted</div>
+                    <div className={`h-10 w-[3.8rem] sm:w-[4rem] mx-1 sm:mx-2 my-1 sm:mb-0 text-white text-sm   rounded-md ${activetabs !== 2 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(2) }}>Deleted</div>
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 3 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(3) }}>Pending</div>
+                    <div className={`h-10 w-[3.8rem] sm:w-[4rem] mx-1 sm:mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 3 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(3) }}>Pending</div>
 
-                    <div className={`h-10 w-[4rem] mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 4 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(4) }}>Rejected</div>
+                    <div className={`h-10 w-[3.8rem] sm:w-[4rem] mx-1 sm:mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 4 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(4) }}>Rejected</div>
 
                     <div className=" absolute bottom-2 right-1 mx-2 cursor-pointer">
                         <Link to={`/add/${userId}`} className="flex">

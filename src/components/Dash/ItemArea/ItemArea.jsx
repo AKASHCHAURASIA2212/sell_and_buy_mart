@@ -241,7 +241,7 @@ function ItemArea() {
                                                     <div className="text-start w-[25%] md:w-[20%]">
                                                         <div className="w-full flex flex-row">
                                                             {
-                                                                item.status != 'unavailable' && <Link to={`edit/${item.user_id}`} className="   bg-blue-300 md:rounded-lg text-center text-sm md:text-lg font-semibold mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                item.status != 'unavailable' && <Link to={`edit/${item.item_id}`} className="   bg-blue-300 md:rounded-lg text-center text-sm md:text-lg font-semibold mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
                                                                     <FiEdit />
                                                                 </Link>
                                                             }

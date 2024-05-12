@@ -4,44 +4,52 @@ import { MdOutlineDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import UserDetailsCard from '../Card/UserDetailsCard';
 import ItemDetailsCard from '../Card/ItemDetailsCard';
+import api_url from '../../utils/utils';
+import { useParams } from 'react-router-dom';
 
 
 function ItemDetails() {
 
-    let [itemData, setItemData] = useState({
-        "_id": "2",
-        "buyer": [
-            1002,
-            1003
-        ],
-        "seller": [
-            1001
-        ],
-        "item_category": "electronics",
-        "item_name": "Smartwatch",
-        "item_price": "300",
-        "item_desc": "Advanced smartwatch with fitness tracking features.",
-        "location": "Mumbai",
-        "date_entered": "2024-01-15",
-        "status": "unavailable",
-        "img": "smartwatch_img1.jpg",
-        "posted_by": "User2",
-        "id": "8991"
-    });
+    let userId = localStorage.getItem("user_id");
+
+    let [itemData, setItemData] = useState(null);
 
     let [inputDisabled, setInputDisabled] = useState(true)
 
-    const getUserDetails = async (e) => {
+    let [formData, setFormData] = useState(null);
+    const [image, setImage] = useState('');
+    let { itemId } = useParams()
 
-        let result = await fetch("http://localhost:3000/user_data", {
+
+    const getUserDetails = async (e) => {
+        let url = `${api_url}/api/items/${itemId}`;
+
+        await fetch(url, {
             method: "GET",
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
             }
         }).then(res => res.json())
             .then((data) => {
+
                 console.log(data);
-                setItemData(data[0])
+                let itemData = data.data[0];
+                console.log(itemData);
+                setItemData(itemData)
+
+                let test_data = {
+                    item_id: itemData?.item_id,
+                    item_name: itemData?.item_name,
+                    item_category: itemData?.item_category,
+                    item_desc: itemData?.item_desc,
+                    item_price: itemData?.item_price,
+                    location: itemData?.location,
+                    status: itemData?.status,
+                    img: itemData?.img,
+                }
+
+                setFormData(test_data)
+                // console.log("FORMDATA : ", formData);
 
             }).catch((e) => {
                 console.log(e);
@@ -50,8 +58,84 @@ function ItemDetails() {
     };
 
     useEffect(() => {
-        // getUserDetails()
+        getUserDetails()
     }, [])
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }));
+
+    };
+
+    const handleImageSave = async (image) => {
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'cpfy_sabm')
+        data.append('cloud_name', 'dqjnwvw0d')
+        let cloud_name = 'dqjnwvw0d';
+        let url = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+        let img_url = await fetch(url, {
+            method: "POST",
+            body: data
+        })
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                console.log(data.secure_url);
+                return data.secure_url;
+            }).catch((e) => {
+                console.log(e);
+
+                return '';
+            });
+
+        return img_url;
+
+    }
+
+    const handleSubmit = async (e) => {
+        setInputDisabled(true)
+        e.preventDefault();
+
+        console.log("handleSubmit : ", formData);
+
+        let data = {
+            item_id: formData?.item_id,
+            item_name: formData?.item_name,
+            item_category: formData?.item_category,
+            item_desc: formData?.item_desc,
+            item_price: formData?.item_price,
+            location: formData?.location,
+            status: formData?.status,
+            img: formData.img
+        }
+
+        if (image != '') {
+            let img_url = await handleImageSave(image)
+            data.img = [img_url];
+        }
+
+        console.log(data);
+
+        let url = `${api_url}/api/items/update`;
+
+        await fetch(url, {
+            method: "POST",
+            body: JSON.stringify(data),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }).then(res => res.json())
+            .then((data) => {
+                // console.log(data);
+            }).catch((e) => {
+                console.log(e);
+            })
+    };
 
     return (
         <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
@@ -77,7 +161,7 @@ function ItemDetails() {
                                     Item name
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' placeholder={itemData.item_name} value={itemData.item_name} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='text' name='item_name' id='item_name' value={formData?.item_name} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
                                 </dd>
                             </div>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -85,7 +169,7 @@ function ItemDetails() {
                                     Item Category
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' placeholder={itemData.item_category} value={itemData.item_category} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='text' name='item_category' id='item_category' value={formData?.item_category} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} readOnly='true' />
                                 </dd>
                             </div>
                             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -93,7 +177,7 @@ function ItemDetails() {
                                     Item Price
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' placeholder={itemData.item_price} value={itemData.item_price} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='text' name='item_price' id='item_price' value={formData?.item_price} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
                                 </dd>
                             </div>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -101,7 +185,7 @@ function ItemDetails() {
                                     location
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' placeholder={itemData.location} value={itemData.location} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='text' name='location' id='location' value={formData?.location} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
                                 </dd>
                             </div>
                             <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -109,7 +193,7 @@ function ItemDetails() {
                                     Status
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' placeholder={itemData.status} value={itemData.status} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='text' name='status' id='status' value={formData?.status} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} readOnly='true' />
                                     {/* <select id="roleSelect" disabled={inputDisabled} className='outline-none w-full h-full px-2 py-3'>
                                 <option value="admin">Admin</option>
                                 <option value="user" selected>User</option>
@@ -121,7 +205,7 @@ function ItemDetails() {
                                     Item Desc
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' placeholder={itemData.item_desc} value={itemData.item_desc} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='text' name='item_desc' id='item_desc' value={formData?.item_desc} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
                                 </dd>
                             </div>
                             <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -129,7 +213,7 @@ function ItemDetails() {
                                     Item Img
                                 </dt>
                                 <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='file' name='username' id='username' placeholder={itemData.img} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} />
+                                    <input type='file' name='img' id='img' className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={(e) => { setImage(e.target.files[0]) }} />
                                 </dd>
                             </div>
 
@@ -145,7 +229,7 @@ function ItemDetails() {
                                             <button>CANCEL</button>
                                             <GiCancel />
                                         </div>
-                                        <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md">
+                                        <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
                                             <button>SAVE</button>
                                             <MdOutlineDoneOutline />
                                         </div>

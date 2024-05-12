@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
-        <footer className="bg-black text-white py-4">
+        <footer className="bg-12 text-white py-4">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
                 <div className="text-center md:text-left mb-4 md:mb-0">
                     <p>&copy; Sell&Buy Mart</p>

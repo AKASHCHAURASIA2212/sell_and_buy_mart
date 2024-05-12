@@ -10,6 +10,7 @@ function NewAddPost() {
 
     let user_id = localStorage.getItem('user_id')
     console.log("user_id : ", user_id);
+    const [image, setImage] = useState('');
     const [formData, setFormData] = useState({
         item_category: '',
         item_name: '',
@@ -32,7 +33,7 @@ function NewAddPost() {
             item_price: '',
             item_desc: '',
             date_entered: '',
-            img: [],
+            images: [],
             location: '',
             status: 'available',
             seller: [user_id],
@@ -55,20 +56,55 @@ function NewAddPost() {
         setFormData({ ...formData });
     };
 
+    const handleImageSave = async (image) => {
+        const data = new FormData();
+        data.append('file', image);
+        data.append('upload_preset', 'cpfy_sabm')
+        data.append('cloud_name', 'dqjnwvw0d')
+
+        let cloud_name = 'dqjnwvw0d';
+
+        // let CLOUDINARY_URL = `cloudinary://739116859478343:gBpoecHz5MTIgLoXaG62WGlhxuQ@dqjnwvw0d`
+        let url = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
+
+        let img_url = await fetch(url, {
+            method: "POST",
+            body: data
+        })
+            .then(res => res.json())
+            .then((data) => {
+                console.log(data);
+                console.log(data.secure_url);
+                return data.secure_url;
+            }).catch((e) => {
+                console.log(e);
+
+                return '';
+            });
+
+        return img_url;
+
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        let img_url = await handleImageSave(image)
+
+        console.log(img_url, "00000000000000000000");
 
         let data = {
             item_category: formData.item_category,
             item_name: formData.item_name,
             item_price: formData.item_price,
             item_desc: formData.item_desc,
-            img: [],
+            img: [img_url],
             location: formData.location,
             seller: formData.seller,
             buyer: [],
             posted_by: formData.posted_by,
         }
+
         try {
             console.log(data);
 
@@ -171,11 +207,9 @@ function NewAddPost() {
                         </dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
                             <input className='outline-none w-full h-full px-2 py-3' type="file"
-                                id="images1"
-                                name="images1"
-                                multiple
-                                accept="image/*"
-                                onChange={handleImageUpload} />
+                                id="images"
+                                name="images"
+                                onChange={(e) => { setImage(e.target.files[0]) }} />
 
                         </dd>
                     </div>

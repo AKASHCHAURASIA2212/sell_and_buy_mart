@@ -9,7 +9,7 @@ function Card({ item }) {
         <div>
             <div className="relative flex min-w-[10rem] max-h-[25rem] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg justify-self-start">
                 <div className=" mx-4 mt-4 overflow-hidden object-center object-cover bg-blue-gray-500 text-orange-400 h-[40%]">
-                    <img src={box_img} className='object-contain h-[50%]' />
+                    <img src={item.img[0] == '' ? box_img : item.img[0]} className='object-contain h-[50%]' />
                 </div>
                 <div className="px-6 my-3 h-2/5">
                     <div className="mb-3 flex items-center justify-between">

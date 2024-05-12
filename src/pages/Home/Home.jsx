@@ -28,7 +28,6 @@ const Home = () => {
         Music,
         Bikes,
         Books,
-        Jobs,
     }
 
     const categories = Object.keys(cat_icon_array);
@@ -43,7 +42,7 @@ const Home = () => {
                         {
                             categories.length > 0 && categories.map((item, index) => {
                                 return (
-                                    <Link to={`/listing/${item}`} className='bg-green-300 rounded-xl mx-1'>
+                                    <Link to={`/listing/${item}`} className='bg1 rounded-xl mx-1'>
                                         <div className="catItem flex flex-col justify-center items-center max-h-10 max-w-10 min-h-8 min-w-8 mx-6 my-4  rounded-md" key={index}>
                                             <img src={cat_icon_array[item]} alt="" className="logo h-full w-full" />
                                             <span className="catname text-sm">{item}</span>
@@ -55,7 +54,7 @@ const Home = () => {
                     </div>
                 </div>
 
-                <div className="w-full flex flex-col -mx-1">
+                <div className="w-[99%]">
                     <Listing />
                 </div>
             </div>

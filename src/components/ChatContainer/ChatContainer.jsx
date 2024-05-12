@@ -115,7 +115,7 @@ function ChatContainer() {
 
     return (
 
-        <div className="h-[88vh] flex justify-start w-full px-2 py-2 md:py-4">
+        <div className="h-[88vh] flex justify-start w-full px-2 py-2 md:py-0">
             {buyer_data == null &&
                 <ChatHandler data={chat_data} setRefresh={setRefresh} />
             }

@@ -32,7 +32,7 @@ import ResetPasswordMail from './pages/ResetPassword/ResetPasswordMail';
 const MyContext = createContext();
 
 function App() {
-  const [count, setCount] = useState(0)
+
   let login_status = localStorage.getItem("login_status");
   login_status = login_status === 'true';
   let admin_status = localStorage.getItem("admin_status");
@@ -44,7 +44,6 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
   }, []);
-
 
   setTimeout(() => {
     setIsLoading(false);
@@ -60,19 +59,13 @@ function App() {
   return (
     <BrowserRouter>
       <MyContext.Provider value={value}>
-
         {
           isLoading === true && <div className='loader'>
             <img src={loaderGif} />
           </div>
         }
-
-        {
-          <Header />
-        }
+        <Header />
         <Routes>
-
-
           {!isLogin && <>
             <Route exact={true} path="*" element={<SignIn />} />
             <Route exact={true} path="/signup" element={<SingUp />} />
@@ -81,10 +74,8 @@ function App() {
             <Route exact={true} path='reset-password/:userId' element={<ResetPassword />} />
           </>
           }
-
           {
             isAdmin &&
-
             <Route path='admin' element={<Dashboard />} className='mx-4' >
               <Route path='' element={<Panel />} />
               <Route path='user' element={<UserArea />} />
@@ -95,9 +86,7 @@ function App() {
               <Route path='notify' element={<Notify />} />
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
             </Route>
-
           }
-
           {
             isLogin && <>
               <Route exact={true} path="/" element={<Home className='mx-4' />} />
@@ -116,18 +105,10 @@ function App() {
               <Route path='/chat/:id/:item_id' element={<ChatContainer />} />
               <Route path='chats/:chatId' element={<ChatArea />} />
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
-
             </>
           }
-
         </Routes>
-        {
-          !isAdmin &&
-          <Footer />
-        }
-
-
-
+        <Footer />
 
       </MyContext.Provider>
     </BrowserRouter >
