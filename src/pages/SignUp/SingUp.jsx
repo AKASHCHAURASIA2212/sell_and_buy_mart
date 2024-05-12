@@ -113,6 +113,7 @@ const SingUp = () => {
 
                 </form>
             </div>
+
         </div >
     );
 };
