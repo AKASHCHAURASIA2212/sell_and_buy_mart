@@ -22,7 +22,7 @@ const Details = () => {
 
     let { cat, id } = useParams();
     let navigate = useNavigate();
-    console.log(cat, id);
+    // console.log(cat, id);
     const user_id = localStorage.getItem('user_id')
 
     const [items, setItems] = useState(null);
@@ -30,7 +30,7 @@ const Details = () => {
     const fetchData = async (url) => {
         try {
             const response = await axios.get(url);
-            console.log("details --> ", response.data.data);
+            // console.log("details --> ", response.data.data);
             setItems(response.data.data[0])
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -60,9 +60,7 @@ const Details = () => {
             <div className="my-3 flex flex-col sm:flex-row justify-between items-center">
                 <div className="w-[95%] md:w-[75%] h-full relative flex flex-wrap flex-column sm:flex-row rounded-xl bg1 overflow-hidden">
                     <div className="details-cont-img w-full h-[30vh] md:h-[50vh] sm:w-[35%] m-2  bg9 overflow-hidden rounded-xl">
-                        {
-                            console.log(items?.img[0])
-                        }
+
                         {items != null &&
                             < img src={items?.img[0] == '' ? box_img : items?.img[0]} alt="" className='h-full w-full object-cover' />
                         }

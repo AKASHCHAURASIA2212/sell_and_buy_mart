@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Outlet } from "react-router-dom";
 import SideBar from '../../components/SideBar/SideBar';
-
+import loaderGif from '../../asset/images/loading.gif'
 function Dashboard() {
-    return (
+    let [isLoading, setIsLoading] = useState(true);
+
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 1000)
+
+    return (<>
+        {
+            isLoading === true && <div className='loader'>
+                <img src={loaderGif} />
+            </div>
+        }
+
         <div className='main-container flex flex-col sm:flex-row justify-start w-full h-[92vh]'>
 
             <SideBar className='' />
@@ -11,6 +23,7 @@ function Dashboard() {
                 <Outlet className="outlet-cont" />
             </div>
         </div>
+    </>
     )
 }
 

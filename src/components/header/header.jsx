@@ -11,7 +11,7 @@ const Header = () => {
     let navigate = useNavigate();
 
     const closeModal = () => {
-        console.log("close ", showMenu);
+        // console.log("close ", showMenu);
         setShowMenu(!showMenu);
     }
 

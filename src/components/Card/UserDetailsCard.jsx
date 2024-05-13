@@ -9,7 +9,7 @@ import api_url from '../../utils/utils';
 
 function UserDetailsCard({ userId }) {
 
-    console.log(userId);
+    // console.log(userId);
 
     let [userData, setUserData] = useState(null);
 
@@ -23,9 +23,9 @@ function UserDetailsCard({ userId }) {
             }
         }).then(res => res.json())
             .then((userData) => {
-                console.log(userData);
+                // console.log(userData);
                 let userdata = userData.data.data;
-                console.log(userdata);
+                // console.log(userdata);
                 setUserData(userdata)
             }).catch((e) => {
                 console.log(e);

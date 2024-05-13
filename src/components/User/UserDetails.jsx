@@ -12,7 +12,7 @@ function UserDetails() {
     if (userId == undefined || userId == null) {
         userId = localStorage.getItem("user_id");
     }
-    console.log(userId);
+    // console.log(userId);
     let [userData, setUserData] = useState(null);
     let [inputDisabled, setInputDisabled] = useState(true)
     let [formData, setFormData] = useState(null);
@@ -71,8 +71,8 @@ function UserDetails() {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
-                console.log(data.secure_url);
+                // console.log(data);
+                // console.log(data.secure_url);
                 return data.secure_url;
             }).catch((e) => {
                 console.log(e);
@@ -85,7 +85,7 @@ function UserDetails() {
         setInputDisabled(true)
         e.preventDefault();
 
-        console.log("handleSubmit : ", formData);
+        // console.log("handleSubmit : ", formData);
 
         let data = {
             "userId": userId,
@@ -102,7 +102,7 @@ function UserDetails() {
             data.user_img = img_url;
         }
 
-        console.log(data);
+        // console.log(data);
 
         let url = `${api_url}/api/users/update`;
 

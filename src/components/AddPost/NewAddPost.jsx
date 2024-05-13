@@ -9,7 +9,7 @@ import api_url from '../../utils/utils';
 function NewAddPost() {
 
     let user_id = localStorage.getItem('user_id')
-    console.log("user_id : ", user_id);
+    // console.log("user_id : ", user_id);
     const [image, setImage] = useState('');
     const [formData, setFormData] = useState({
         item_category: '',
@@ -73,12 +73,11 @@ function NewAddPost() {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
-                console.log(data.secure_url);
+                // console.log(data);
+                // console.log(data.secure_url);
                 return data.secure_url;
             }).catch((e) => {
                 console.log(e);
-
                 return '';
             });
 
@@ -91,7 +90,7 @@ function NewAddPost() {
 
         let img_url = await handleImageSave(image)
 
-        console.log(img_url, "00000000000000000000");
+        // console.log(img_url, "00000000000000000000");
 
         let data = {
             item_category: formData.item_category,
@@ -106,7 +105,7 @@ function NewAddPost() {
         }
 
         try {
-            console.log(data);
+            // console.log(data);
 
             let url = `${api_url}/api/items/add`;
             await fetch(url, {
@@ -118,7 +117,7 @@ function NewAddPost() {
             })
                 .then(res => res.json())
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
                 }).catch((e) => {
                     console.log(e);
                 })

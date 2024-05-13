@@ -8,6 +8,7 @@ import Card from '../../components/Card/Card';
 import BreadCrum from '../../components/BreadCrum/BreadCrum';
 import Pagination from '../../components/Pagination/Pagination';
 import api_url from '../../utils/utils';
+import Filter from '../../components/Filter/Filter';
 
 const Listing = ({ title = "Latest Items" }) => {
 
@@ -17,14 +18,15 @@ const Listing = ({ title = "Latest Items" }) => {
     let [page, setPage] = useState(1);
     let [limit, setLimit] = useState(8);
     let [totalCount, settotalCount] = useState(null);
+    let [search, setSearch] = useState('#');
 
     title = id == undefined ? cat : "Similier Item";
 
     const fetchData = async (url) => {
         try {
             const response = await axios.get(url);
-            console.log("data => : ", response.data.data.res);
-            console.log("total_count => : ", response.data.data.totalCount);
+            // console.log("data => : ", response.data.data.res);
+            // console.log("total_count => : ", response.data.data.totalCount);
             let result = response.data.data;
             settotalCount(response.data.data.totalCount)
             setItemsData(response.data.data.res)
@@ -49,6 +51,13 @@ const Listing = ({ title = "Latest Items" }) => {
                 cat != undefined && id == undefined &&
                 <BreadCrum list={list} />
             }
+
+            {
+                cat == undefined && id == undefined &&
+                <Filter search={search} setSearch={setSearch} />
+            }
+
+
 
             <div className="container pt-2 bg1 rounded-xl mt-1">
                 <h1 className="header">{title}</h1>

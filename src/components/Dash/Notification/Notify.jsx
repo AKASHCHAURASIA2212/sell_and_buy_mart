@@ -24,7 +24,7 @@ function Notify() {
             }
         }).then(res => res.json())
             .then((data) => {
-                // console.log(data);
+                // // console.log(data);
                 setMailData(data.data.allMail)
                 settotalCount(data.data.totalCount)
 
@@ -56,7 +56,7 @@ function Notify() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
+        // console.log(formData);
 
         // await fetch(`http://localhost:3000/api/mail/${user_id}`, {
         //     method: "POST",
@@ -66,11 +66,11 @@ function Notify() {
         //     }
         // }).then(res => res.json())
         //     .then((data) => {
-        //         console.log(data);
+        //         // console.log(data);
         //         // navigate('/')
 
         //     }).catch((e) => {
-        //         console.log(e);
+        //         // console.log(e);
         //     })
 
     };
@@ -125,16 +125,16 @@ function Notify() {
                 </div>
             </div>
 
-            <div class="px-4 py-5 mb-3 sm:px-6 bg-blue-200 rounded-md">
+            <div class="px-4 py-5 mb-3 sm:px-6 bg9 rounded-md">
                 <h3 class="text-lg leading-6 font-medium text-gray-900">
                     Notification
                 </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                {/* <p class="mt-1 max-w-2xl text-sm text-gray-500">
                     Details and informations about Notification.
-                </p>
+                </p> */}
             </div>
 
-            <div className='overflow-auto-y min-h-[65vh] w-full flex flex-row flex-wrap justify-around items-start bg-white-300 mb-8'>
+            <div className='overflow-auto-y min-h-[65vh] w-full flex flex-row flex-wrap justify-around items-start bg1 rounded-lg mb-8'>
                 {
                     mailData !== null && mailData.length > 0 && mailData.map((mail) => {
                         return (

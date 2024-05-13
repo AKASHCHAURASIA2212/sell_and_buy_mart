@@ -45,7 +45,7 @@ const SignIn = () => {
                 }
             }).then(res => res.json())
                 .then((data) => {
-                    console.log(data);
+                    // console.log(data);
 
                     if (data.data === "") {
                         setMessage(data.message)

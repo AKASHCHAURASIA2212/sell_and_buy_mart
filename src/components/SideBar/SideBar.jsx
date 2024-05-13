@@ -12,7 +12,7 @@ function SideBar() {
     let [index, setIndex] = useState(0);
     return (
         <div>
-            <div className=" hidden md:flex h-[96%] md:w-[20rem] flex-col overflow-hidden mx-2 my-2 px-2 rounded-lg bg-black text-white">
+            <div className=" hidden md:flex h-[96%] md:w-[20rem] flex-col overflow-hidden mx-2 my-2 px-2 rounded-lg bg-12 text-white">
                 <p className="mt-10 ml-10 text-left text-4xl font-bold">ADMIN</p>
                 <ul className="mt-10 space-y-3 py-2">
 

@@ -9,7 +9,7 @@ function ChatBox({ user_data }) {
     const isMobile = window.innerWidth <= 640;
 
     const openChatArea = (chatId) => {
-        console.log("user_data chatbox", user_data);
+        // console.log("user_data chatbox", user_data);
         navigate(`${chatId}`)
     }
 

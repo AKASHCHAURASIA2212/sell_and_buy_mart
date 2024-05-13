@@ -35,7 +35,7 @@ function ItemArea() {
 
     const handleApprove = async (item_id) => {
         // e.preventDefault();
-        console.log("handle Approve : ", item_id);
+        // // console.log("handle Approve : ", item_id);
 
         let url = `${api_url}/api/admin/item/approve`;
 
@@ -52,7 +52,7 @@ function ItemArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // // console.log(data);
                 // navigate('/')
                 // window.location.reload();
 
@@ -62,7 +62,7 @@ function ItemArea() {
     }
     const handleDelete = async (item_id) => {
         // e.preventDefault();
-        console.log("handle Approve : ", item_id);
+        // console.log("handle Approve : ", item_id);
 
         let url = `${api_url}/api/admin/item/delete`;
 
@@ -79,7 +79,7 @@ function ItemArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 // navigate('/')
                 window.location.reload();
 
@@ -96,7 +96,7 @@ function ItemArea() {
     const handleReject = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
+        // console.log(formData);
 
         let url = `${api_url}/api/admin/item/reject`;
 
@@ -106,7 +106,7 @@ function ItemArea() {
             rejected_by: user_id
         }
 
-        console.log(data);
+        // console.log(data);
 
         let result = await fetch(url, {
             method: "POST",
@@ -116,7 +116,7 @@ function ItemArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 setShowModal(false)
                 // navigate('/')
                 window.location.reload();
@@ -137,7 +137,7 @@ function ItemArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data.data.itemData.res);
+                // console.log(data.data.itemData.res);
                 settotalCount(data.data.itemData.totalCount)
                 setUserData(data.data.itemData.res)
 
@@ -191,13 +191,13 @@ function ItemArea() {
 
                 </div>
             </div>
-            <div className="px-4 py-5 sm:px-6 bg-blue-200 rounded-md">
+            <div className="px-4 py-5 sm:px-6 bg5 rounded-md">
                 <h3 className="text-lg leading-6 font-medium text-gray-900">
                     Item Information
                 </h3>
-                <p className="mt-1 max-w-2xl text-sm text-gray-500">
+                {/* <p className="mt-1 max-w-2xl text-sm text-gray-500">
                     Details and informations about Item.
-                </p>
+                </p> */}
             </div>
             <div className="flex flex-wrap mt-2">
                 <div className="w-full mx-auto">
@@ -222,7 +222,7 @@ function ItemArea() {
                                                     <div className="py-3 text-start w-[30%] md:w-[20%]">
                                                         <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:items-end mr-6 md:mr-0">
                                                             <div className="relative inline-block shrink-0 rounded-2xl">
-                                                                <img src={userLogo} alt="" className='h-8 w-8 md:h-12 md:w-12' />
+                                                                <img src={item?.img == '' ? userLogo : item?.img} alt="" className='h-8 w-8 md:h-12 md:w-12 rounded-full object-cover object-center' />
                                                             </div>
                                                             <div className="flex flex-col justify-start">
                                                                 <p className="mb-1"> {item.item_name} </p>

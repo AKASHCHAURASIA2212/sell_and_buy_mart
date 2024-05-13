@@ -54,7 +54,7 @@ const SingUp = () => {
                     }
                 }).then(res => res.json())
                     .then((data) => {
-                        console.log("SignUp -> ", data);
+                        // console.log("SignUp -> ", data);
                         if (data.data == '') {
                             setMessage(data.message)
                         } else {

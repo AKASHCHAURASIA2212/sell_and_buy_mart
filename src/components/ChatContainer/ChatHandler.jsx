@@ -22,7 +22,7 @@ function ChatHandler({ data, setRefresh }) {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        console.log(name, value);
+        // console.log(name, value);
         setFormData((prevData) => ({
             ...prevData,
             [name]: value
@@ -41,7 +41,7 @@ function ChatHandler({ data, setRefresh }) {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
 
                 setRefresh(true);
 

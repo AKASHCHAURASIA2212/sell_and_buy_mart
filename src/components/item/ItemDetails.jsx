@@ -32,9 +32,9 @@ function ItemDetails() {
         }).then(res => res.json())
             .then((data) => {
 
-                console.log(data);
+                // console.log(data);
                 let itemData = data.data[0];
-                console.log(itemData);
+                // console.log(itemData);
                 setItemData(itemData)
 
                 let test_data = {
@@ -49,7 +49,7 @@ function ItemDetails() {
                 }
 
                 setFormData(test_data)
-                // console.log("FORMDATA : ", formData);
+                // // console.log("FORMDATA : ", formData);
 
             }).catch((e) => {
                 console.log(e);
@@ -84,8 +84,8 @@ function ItemDetails() {
         })
             .then(res => res.json())
             .then((data) => {
-                console.log(data);
-                console.log(data.secure_url);
+                // console.log(data);
+                // console.log(data.secure_url);
                 return data.secure_url;
             }).catch((e) => {
                 console.log(e);
@@ -101,7 +101,7 @@ function ItemDetails() {
         setInputDisabled(true)
         e.preventDefault();
 
-        console.log("handleSubmit : ", formData);
+        // console.log("handleSubmit : ", formData);
 
         let data = {
             item_id: formData?.item_id,
@@ -119,7 +119,7 @@ function ItemDetails() {
             data.img = [img_url];
         }
 
-        console.log(data);
+        // console.log(data);
 
         let url = `${api_url}/api/items/update`;
 
@@ -131,7 +131,7 @@ function ItemDetails() {
             }
         }).then(res => res.json())
             .then((data) => {
-                // console.log(data);
+                // // console.log(data);
             }).catch((e) => {
                 console.log(e);
             })

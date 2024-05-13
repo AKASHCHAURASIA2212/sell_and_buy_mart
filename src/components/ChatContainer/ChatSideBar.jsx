@@ -9,7 +9,7 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
     let navigate = useNavigate();
     // console.log("buyer_data_arr :", buyer_data_arr);
     // console.log("seller_data_arr :", seller_data_arr);
-    console.log("details :", details, "seller_data_arr : ", seller_data_arr, "buyer_data_arr : ", buyer_data_arr);
+    // console.log("details :", details, "seller_data_arr : ", seller_data_arr, "buyer_data_arr : ", buyer_data_arr);
     const user_id = localStorage.getItem("user_id")
     const username = localStorage.getItem("username")
 
@@ -48,7 +48,7 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
                 data.Mail = user.email
             }
         })
-        console.log("elem.messages : ", elem.messages);
+        // console.log("elem.messages : ", elem.messages);
         data.last_message = elem.messages[elem.messages.length - 1].content
         data.date_entered = elem.messages[elem.messages.length - 1].date_entered
 

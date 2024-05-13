@@ -22,7 +22,7 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        console.log(formData);
+        // console.log(formData);
         let url = `${api_url}/api/mail/${user_id}`
         await fetch(url, {
             method: "POST",
@@ -32,7 +32,7 @@ const Contact = () => {
             }
         }).then(res => res.json())
             .then((data) => {
-                console.log(data);
+                // console.log(data);
                 // navigate('/')
                 setFormData({
                     subject: '',

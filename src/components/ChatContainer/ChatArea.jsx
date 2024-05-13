@@ -63,7 +63,7 @@ function ChatArea() {
     const fetchChatData = async () => {
         try {
 
-            console.log("chat id : ", chatId);
+            // console.log("chat id : ", chatId);
             formData.chatId = chatId;
             let url = `${api_url}/api/chat/chat`;
 
@@ -75,9 +75,9 @@ function ChatArea() {
                 }
             }).then(res => res.json())
                 .then((data) => {
-                    console.log("send message : ", data.data);
+                    // console.log("send message : ", data.data);
                     let user_c = data?.data?.userData.filter((item) => {
-                        console.log(item.user_id, user_id);
+                        // console.log(item.user_id, user_id);
                         if (item.user_id !== user_id) {
                             return item;
                         }
@@ -101,7 +101,7 @@ function ChatArea() {
     }, 2000)
 
     return (<>
-        {isMobile && isLoading === true && <div className='w-full h-full flex items-center justify-center'>
+        {isLoading === true && <div className='w-full h-full flex items-center justify-center min-h-[95vh]'>
             <img src={loaderGif} />
         </div>}
         {isLoading == false &&
