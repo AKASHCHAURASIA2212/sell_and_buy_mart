@@ -26,8 +26,8 @@ function Card2({ item, delete_item }) {
     let [status, setStatus] = useState(status_c);
     let [statusBg, setStatusBg] = useState(bg);
 
-    let editPost = () => {
-        navigate(`/add/${item.item_id}`)
+    let editPost = (item_id) => {
+        navigate(`/admin/item/edit/${item_id}`)
     }
 
 
@@ -35,9 +35,9 @@ function Card2({ item, delete_item }) {
 
         <div className="relative flex w-[45%] sm:w-[48%] md:w-[33%] lg:w-[22%] flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-lg justify-self-start mb-8">
             <div className=" mx-4 mt-4 overflow-hidden object-center object-cover bg-blue-gray-500 text-orange-400 h-[40%]">
-                <img src={item.img[0] == '' ? box_img : item.img[0]} className='object-contain h-[50%]' />
+                <img src={item.img[0] == null ? box_img : item.img[0]} className='object-contain h-[50%]' />
             </div>
-            <div className="px-6 my-3 h-2/5">
+            <div className="relative px-6 my-3 h-2/5">
                 <div className="mb-3 flex items-center justify-between">
                     <p className="block text-orange-400 text-sm sm:text-lg font-medium leading-snug tracking-normal text-blue-gray-900 antialiased">
                         {item.item_name}
@@ -72,15 +72,15 @@ function Card2({ item, delete_item }) {
                             + (item.status).slice(1)}</p>
                     </div>
 
-                    <div className="w-full flex flex-row justify-around sm:justify-start  items-center mt-2">
+                    <div className="mt-2 absolute -bottom-1 right-2">
 
                         {(item.status == "available" || item.status == "pending") &&
-                            <p className="bg-indigo-500 text-white  px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md hover:bg-indigo-600 transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { editPost() }}>Edit</p>
+                            <p className="bg5 text-white  px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { editPost(item.item_id) }}>Edit</p>
                         }
 
-                        {(item.status == "available" || item.status == "pending") &&
+                        {/* {(item.status == "available" || item.status == "pending") &&
                             <p className="bg-red-500 text-white px-1 py-1 md:px-2 md:py-2 mx-auto rounded-md hover:bg-red-600 transition duration-300 text-orange text-sm sm:text-lg w-[3rem] md:w-[4rem] flex justify-center items-center" onClick={() => { delete_item(item.item_id) }}>Delete</p>
-                        }
+                        } */}
 
                     </div>
                 </div>

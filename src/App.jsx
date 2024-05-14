@@ -70,8 +70,8 @@ function App() {
             <Route exact={true} path="*" element={<SignIn />} />
             <Route exact={true} path="/signup" element={<SingUp />} />
             <Route exact={true} path="/signin" element={<SignIn />} />
-            <Route exact={true} path='reset-password' element={<ResetPasswordMail />} />
-            <Route exact={true} path='reset-password/:userId' element={<ResetPassword />} />
+            <Route exact={true} path='/reset-password' element={<ResetPasswordMail />} />
+            <Route exact={true} path='/reset-password/:userId' element={<ResetPassword />} />
           </>
           }
           {

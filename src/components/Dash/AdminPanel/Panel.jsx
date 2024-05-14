@@ -2,7 +2,15 @@ import React, { useEffect, useState } from 'react'
 import Activity from '../Activity/Activity'
 import Stats from '../Activity/Stats'
 import api_url from '../../../utils/utils';
+import loaderGif from '../../../asset/images/loading.gif'
+
 function Panel() {
+
+    let [isLoading, setIsLoading] = useState(true);
+
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 2000)
 
     let [stats, setStates] = useState(null);
     let [activity, setActivity] = useState(null);
@@ -43,10 +51,18 @@ function Panel() {
     }, [])
 
     return (
-        <div className='h-full bg-white overflow-scroll'>
-            <Stats data={stats} />
-            <Activity data={activity} />
-        </div>
+
+        <>
+            {
+                isLoading === true && <div className='loader'>
+                    <img src={loaderGif} />
+                </div>
+            }
+            <div className='h-full bg-white overflow-scroll'>
+                <Stats data={stats} />
+                <Activity data={activity} />
+            </div>
+        </>
     )
 }
 

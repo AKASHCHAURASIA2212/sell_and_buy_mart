@@ -24,8 +24,8 @@ function Activity({ data }) {
                                 </div>
                             )
                         })}
-                        <Link to="/admin/user" className='absolute my-1 botton-0 right-2'>
-                            <p className='text-black'>See More</p>
+                        <Link to="/admin/user" className='absolute  bottom-1 right-2 my-1'>
+                            <span className='text-black'>See More</span>
                         </Link>
                     </div>}
 
@@ -46,7 +46,7 @@ function Activity({ data }) {
                                 </div>
                             )
                         })}
-                        <Link to="/admin/item" className='absolute my-1 botton-0 right-2 '>
+                        <Link to="/admin/item" className='absolute  bottom-1 right-2 my-1'>
                             <p className='text-black'>See More</p>
                         </Link>
                     </div>}
@@ -59,16 +59,16 @@ function Activity({ data }) {
                                 <div className="flex items-center py-2 my-1 bg-white hover:bg-gray-200 rounded-lg px-2">
                                     <img className="h-10 w-10 rounded-full object-cover" src={userLogo} alt="Simon Lewis" />
                                     <p className="ml-4 w-56">
-                                        <strong className="block font-medium">{mail.email}</strong>
+                                        <strong className="block font-medium overflow-hidden">{mail.email}</strong>
 
-                                        <p className="text-xs truncate font-medium text-indigo-600">{mail.email} </p>
+                                        <p className="text-xs truncate font-medium text-indigo-600 ">{mail.email} </p>
 
                                         <p className="text-xs truncate font-medium text-indigo-600">{mail.subject} </p>
                                     </p>
                                 </div>
                             )
                         })}
-                        <Link to="/admin/user" className='absolute my-1 botton-0 right-2 '>
+                        <Link to="/admin/notify" className='absolute  bottom-1 right-2 my-1'>
                             <p className='text-black'>See More</p>
                         </Link>
 

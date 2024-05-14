@@ -2,6 +2,8 @@ import './index.css'
 import React, { useState } from 'react';
 import contact_logo from '../../asset/images/contact.webp'
 import api_url from '../../utils/utils';
+import loaderGif from '../../asset/images/loading.gif'
+
 const Contact = () => {
 
     let user_id = localStorage.getItem("user_id");
@@ -58,7 +60,7 @@ const Contact = () => {
                 </div>
             </div>
 
-            <div className=" bg4 p-4 my-12 rounded-xl w-full lg:w-[45%]">
+            <div className=" bg5 p-4 my-12 rounded-xl w-full lg:w-[45%]">
                 {/* <h1 className=" text-3xl font-bold">Contact Us</h1> */}
                 <form onSubmit={handleSubmit} className="  rounded-2xl">
                     <div className="mb-4">

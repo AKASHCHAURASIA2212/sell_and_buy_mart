@@ -38,7 +38,7 @@ function UserDetailsCard({ userId }) {
     }, [userId])
 
     return (
-        <div className="relative w-full h-[51vh] flex flex-col rounded-xl text-gray-700 justify-center items-center border-2 bg2">
+        <div className="relative w-full h-[51vh] flex flex-col rounded-xl text-gray-700 justify-center items-center border-2 bg8">
             <div className="mx-4 mt-6 overflow-hidden object-center object-cover bg-blue-gray-500">
                 <img src={userData?.user_img == '' ? user_img : userData?.user_img} className='rounded-full h-20 w-20 md:h-32 md:w-32 object-cover object-center' />
 
@@ -52,7 +52,7 @@ function UserDetailsCard({ userId }) {
 
                 <div className='w-full flex flex-col flex-wrap justify-center items-center'>
 
-                    <div class="mt-2 flex items-center justify-center">
+                    <div class="mt-2 flex flex-row items-center justify-center">
                         <MdMailOutline />
                         <p class="ml-2">
                             {userData?.email}
@@ -63,13 +63,17 @@ function UserDetailsCard({ userId }) {
                         <MdPhoneAndroid />
                         <p class="ml-2">{userData?.phone}</p>
                     </div>
-                    <div class="mt-2 flex items-center justify-center">
-                        <FaAddressCard />
-                        <p class="ml-2">{userData?.address}</p>
-                    </div>
+                    {
+                        (userData?.country || userData?.city || userData?.street) &&
+
+                        <div class="mt-2 flex items-center justify-center">
+                            <FaAddressCard />
+                            <p class="ml-2">{userData?.country} {userData?.city} {userData?.street}.</p>
+                        </div>
+                    }
                     <div class="mt-2 flex items-center justify-center">
                         <MdDateRange />
-                        <p class="ml-2">22-22-2222</p>
+                        <p class="ml-2">{userData?.dob}</p>
                     </div>
                 </div>
             </div>

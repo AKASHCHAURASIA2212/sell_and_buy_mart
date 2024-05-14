@@ -53,6 +53,10 @@ function ChatArea() {
                     })
                     setMessage(data.data[0].messages)
                     setIsLoading(false)
+
+                    setTimeout(() => {
+                        fetchChatData()
+                    }, 5000)
                 }).catch((e) => {
                     console.log(e);
                 })
@@ -95,6 +99,7 @@ function ChatArea() {
     useEffect(() => {
         fetchChatData()
     }, [chatId])
+
 
     setTimeout(() => {
         setIsLoading(false)
@@ -141,7 +146,7 @@ function ChatArea() {
                 </div>
 
                 <div className="chat-area-input w-full shadow_cstm p-2 bg-white rounded-md">
-                    <input type="text" className='outline-none p-3 text-2xl border-2 border-red h-full w-full border-none' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} onKeyUp={handleSubmit} />
+                    <input type="text" className='outline-none p-3 text-lg sm:text-xl md:text-2xl font-semibold border-2 border-red h-full w-full border-none' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} onKeyUp={handleSubmit} />
                 </div>
             </div>
         }

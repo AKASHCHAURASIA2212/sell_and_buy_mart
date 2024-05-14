@@ -25,6 +25,11 @@ function ChatBox({ user_data }) {
 
         <div className="flex min-w-full flex-col font-sans text-base font-normal text-blue-gray-700 h-full">
             {
+                user_data?.length == 0 && <div className='h-full w-full flex justify-center items-center'>
+                    <span className='text-md md:text-lg lg:text-xl font-semibold text-blue-500'>No Chat Available</span>
+                </div>
+            }
+            {
                 user_data != null && user_data.length > 0 &&
                 user_data.map((user) => {
                     return (

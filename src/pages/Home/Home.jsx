@@ -5,34 +5,48 @@ import Listing from '../Listing/Listing';
 import { MyContext } from '../../App';
 import { Link } from 'react-router-dom';
 import Furniture from '../../asset/cat_logo/furniture.png'
-import Cars from '../../asset/cat_logo/cars.png'
-import Electronics from '../../asset/cat_logo/electronics.png'
-import Sports from '../../asset/cat_logo/sports.png'
+import Car from '../../asset/cat_logo/cars.png'
+import Electronic from '../../asset/cat_logo/electronics.png'
+import Sport from '../../asset/cat_logo/sports.png'
 import Music from '../../asset/cat_logo/music.png'
-import Bikes from '../../asset/cat_logo/bikes.png'
-import Books from '../../asset/cat_logo/books.png'
+import Bike from '../../asset/cat_logo/bikes.png'
+import Book from '../../asset/cat_logo/books.png'
 import Jobs from '../../asset/cat_logo/jobs.png';
 import axios from 'axios';
 import Filter from '../../components/Filter/Filter';
 import Newsletter from '../../components/newsletter/newsletter';
 import FeatureWrapper from '../../components/feature/FeatureWrapper';
+import loaderGif from '../../asset/images/loading.gif'
+
 
 
 const Home = () => {
 
+
+    let [isLoading, setIsLoading] = useState(true);
+
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 2000)
+
     const cat_icon_array = {
         Furniture,
-        Cars,
-        Electronics,
-        Sports,
+        Car,
+        Electronic,
+        Sport,
         Music,
-        Bikes,
-        Books,
+        Bike,
+        Book,
     }
 
     const categories = Object.keys(cat_icon_array);
     return (
         <>
+            {
+                isLoading === true && <div className='loader'>
+                    <img src={loaderGif} />
+                </div>
+            }
             <div className='mx-1'>
                 <div className='h-[35vh] md:h-[55vh] lg:h-[70vh] bg-white p-2 -mx-1'>
                     <SliderComponent />

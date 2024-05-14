@@ -4,26 +4,26 @@ import UserDetailsCard from './UserDetailsCard'
 function NotifyCard({ data, setShowModal, setReplyTo }) {
     return (
 
-        <div className="flex items-center justify-center w-[95%] sm:w-[48%] md:w-[33%] lg:w-[30%] h-[15rem] md:h-[20rem] mx-2 my-2">
+        <div className="flex items-center justify-center w-[95%] sm:w-[48%] md:w-[33%] lg:w-[30%] h-[18rem] mx-2 my-2">
 
-            <div className="relative flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md h-full">
+            <div className="relative flex w-full flex-col rounded-xl bg1 shadow-md h-full">
 
-                <div className="relative m-0 w-full shrink-0 overflow-hidden rounded-ss-xl rounded-se-xl bg-white bg-clip-border text-gray-700">
+                <div className="relative m-0 w-full shrink-0 overflow-hidden rounded-ss-xl rounded-se-xl bg5  text-white">
                     <UserDetailsCard data={data.sender} />
                 </div>
-                <div className="px-6 bg-gray-100 relative h-full">
+                <div className="px-6 h-full">
 
-                    <p className="mb-2 block font-sans text-lg mt-3 font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                        <span className='text-bold'>Subject : </span>{data.subject}
+                    <p className="mb-2 block font-sans text-sm mt-3 font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                        <span className='text-sm'>Subject : </span>{data.subject}
                     </p>
-                    <p className="mb-8 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased overflow-x-auto">
+                    <p className="text-sm font-normal text-gray-700 antialiased overflow-scroll">
                         {data.message}
                     </p>
                     <button
-                        className="absolute bottom-1 right-1 flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                        className="absolute bottom-1 right-1 flex items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all bg5 "
                         type="button" onClick={() => {
                             setShowModal(true)
-                            setReplyTo(data.sender.email);
+                            setReplyTo(data.email);
                         }}
                     >Reply
                     </button>

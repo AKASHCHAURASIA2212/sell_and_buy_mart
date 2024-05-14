@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Outlet } from "react-router-dom";
 import SideBar from '../../components/SideBar/SideBar';
-import loaderGif from '../../asset/images/loading.gif'
+import loaderGif from '../../asset/images/loading.gif';
+
 function Dashboard() {
     let [isLoading, setIsLoading] = useState(true);
 
     setTimeout(() => {
         setIsLoading(false);
-    }, 1000)
+    }, 2000)
 
     return (<>
         {

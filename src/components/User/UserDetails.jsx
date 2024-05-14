@@ -1,13 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import { useParams } from 'react-router-dom';
 import UserDetailsCard from '../Card/UserDetailsCard';
 import api_url from '../../utils/utils';
+import { MyContext } from '../../App';
+import loaderGif from '../../asset/images/loading.gif'
 
 function UserDetails() {
 
+    let [isLoading, setIsLoading] = useState(true);
+
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 2000)
+
+    let isAdmin = localStorage.getItem("admin_status");
+    isAdmin = isAdmin === 'true';
+    console.log(isAdmin);
     let { userId } = useParams();
     if (userId == undefined || userId == null) {
         userId = localStorage.getItem("user_id");
@@ -17,6 +28,7 @@ function UserDetails() {
     let [inputDisabled, setInputDisabled] = useState(true)
     let [formData, setFormData] = useState(null);
     const [image, setImage] = useState('');
+
     const getUserDetails = async (e) => {
         let url = `${api_url}/api/users/${userId}`;
         await fetch(url, {
@@ -32,9 +44,13 @@ function UserDetails() {
                 let test_data = {
                     userId: userId,
                     username: userdata.username,
+                    dob: userdata.dob,
                     email: userdata.email,
                     phone: userdata.phone,
-                    address: userdata.address,
+                    country: userdata.country,
+                    city: userdata.city,
+                    street: userdata.street,
+                    landmark: userdata.landmark,
                     role: userdata.role,
                     user_img: userdata.user_img
                 }
@@ -90,10 +106,14 @@ function UserDetails() {
         let data = {
             "userId": userId,
             "username": formData.username,
+            "dob": formData.dob,
             "password": formData.password,
             "email": formData.email,
             "phone": formData.phone,
-            "address": formData.address,
+            "country": formData.country,
+            "city": formData.city,
+            "street": formData.street,
+            "landmark": formData.landmark,
             "role": formData.role,
         }
 
@@ -121,99 +141,145 @@ function UserDetails() {
     };
 
     return (
-        <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
-            <div class="px-4 py-5 mb-3 sm:px-6 bg1 rounded-md">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    User Details
-                </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-700">
-                    Details and informations about user.
-                </p>
-            </div>
-            <div className='flex flex-col md:flex-row-reverse justify-between items-start'>
-
-                <div className="w-full md:w-[30%] h-full  md:ml-2">
-                    <UserDetailsCard userId={userId} />
+        <>
+            {
+                isLoading === true && <div className='loader'>
+                    <img src={loaderGif} />
                 </div>
+            }
+            <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
+                <div class="px-4 py-5 mb-3 sm:px-6 bg1 rounded-md">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        User Details
+                    </h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-700">
+                        Details and informations about user.
+                    </p>
+                </div>
+                <div className='flex flex-col md:flex-row-reverse justify-between items-start'>
 
-                <div className="w-full md:w-[70%] mt-2 md:mt-0">
-                    <div class="rounded-lg bg1">
-                        <div>
-                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <div class="text-sm font-medium text-gray-700">
-                                    Full name
-                                </div>
-                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='username' id='username' value={formData?.username} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </div>
-                            </div>
-                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <div class="text-sm font-medium text-gray-700">
-                                    Phone No
-                                </div>
-                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='phone' id='phone' value={formData?.phone} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </div>
-                            </div>
-                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <div class="text-sm font-medium text-gray-700">
-                                    Email address
-                                </div>
-                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='email' name='email' id='email' value={formData?.email} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                </div>
-                            </div>
-                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <div class="text-sm font-medium text-gray-700">
-                                    Role
-                                </div>
-                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <select id="role" disabled={inputDisabled} className='outline-none w-full h-full px-2 py-3' name='role' onChange={handleChange}>
+                    <div className="w-full md:w-[30%] h-full  md:ml-2">
+                        <UserDetailsCard userId={userId} />
+                    </div>
 
-                                        <option value="admin" selected={formData?.role == 'admin'} >Admin</option>
-                                        <option value="user" selected={formData?.role == 'user'}>User</option>
-                                    </select>
+                    <div className="w-full md:w-[70%] mt-2 md:mt-0">
+                        <div class="rounded-lg bg1">
+                            <div>
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Full name
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='text' name='username' id='username' value={formData?.username} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <div class="text-sm font-medium text-gray-700">
-                                    Address
+
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        D.O.B ( DD-MM-YYYY )
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='date' name='dob' id='dob' value={formData?.dob} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
                                 </div>
-                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='text' name='address' id='address' value={formData?.address} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Phone No
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='text' name='phone' id='phone' value={formData?.phone} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
-                                <div class="text-sm font-medium text-gray-700">
-                                    Profile Img
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Email address
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='email' name='email' id='email' value={formData?.email} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
                                 </div>
-                                <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                                    <input type='file' name='images' id='images' value={formData?.img_path} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={(e) => { setImage(e.target.files[0]) }} />
+
+
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Country
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='text' name='country' id='country' value={formData?.country} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="flex flex-row justify-start items-center pt-2 pb-4 pl-5">
-                                {inputDisabled &&
-                                    <div className="px-2 py-2 mr-2 w-[8rem] bg9 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
-                                        <button>EDIT</button>
-                                        <FaRegEdit />
-                                    </div>}
-                                {!inputDisabled &&
-                                    <>
-                                        <div className="px-2 py-2 w-[8rem] mr-2 bg9 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
-                                            <button>CANCEL</button>
-                                            <GiCancel />
-                                        </div>
-                                        <div className="px-2 py-2 w-[8rem] bg9 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
-                                            <button>SAVE</button>
-                                            <MdOutlineDoneOutline />
-                                        </div>
-                                    </>}
+
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        City
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='text' name='city' id='city' value={formData?.city} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
+                                </div>
+
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Street
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='text' name='street' id='street' value={formData?.street} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
+                                </div>
+
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Landmark
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='text' name='landmark' id='landmark' value={formData?.landmark} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
+                                    </div>
+                                </div>
+
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Role
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <select id="role" disabled={!isAdmin} className='outline-none w-full h-full px-2 py-3' name='role' onChange={handleChange} >
+
+                                            <option value="admin" selected={formData?.role == 'admin'} >Admin</option>
+                                            <option value="user" selected={formData?.role == 'user'}>User</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class=" px-4 py-5 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-6">
+                                    <div class="text-sm font-medium text-gray-700">
+                                        Profile Img
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                        <input type='file' name='images' id='images' value={formData?.img_path} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={(e) => { setImage(e.target.files[0]) }} />
+                                    </div>
+                                </div>
+                                <div class="flex flex-row justify-start items-center pt-2 pb-4 pl-5">
+                                    {inputDisabled &&
+                                        <div className="px-2 py-2 mr-2 w-[8rem] bg9 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                            <button>EDIT</button>
+                                            <FaRegEdit />
+                                        </div>}
+                                    {!inputDisabled &&
+                                        <>
+                                            <div className="px-2 py-2 w-[8rem] mr-2 bg9 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                                <button>CANCEL</button>
+                                                <GiCancel />
+                                            </div>
+                                            <div className="px-2 py-2 w-[8rem] bg9 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
+                                                <button>SAVE</button>
+                                                <MdOutlineDoneOutline />
+                                            </div>
+                                        </>}
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 

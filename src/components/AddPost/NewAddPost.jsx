@@ -5,8 +5,13 @@ import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineDoneOutline } from "react-icons/md";
 import { GiCancel } from "react-icons/gi";
 import api_url from '../../utils/utils';
+import loaderGif from '../../asset/images/loading.gif'
 
 function NewAddPost() {
+    let [isLoading, setIsLoading] = useState(true);
+    setTimeout(() => {
+        setIsLoading(false);
+    }, 2000)
 
     let user_id = localStorage.getItem('user_id')
     // console.log("user_id : ", user_id);
@@ -130,120 +135,127 @@ function NewAddPost() {
         }
     };
     return (
-        <div class="w-[98%] px-6 pt-6 shadow_cstm overflow-hidden sm:rounded-lg  my-4 mx-auto min-h-[70vh]">
-            <div class="px-4 py-5 sm:px-6 bg-indigo-400 rounded-md">
-                <h3 class="text-lg leading-6 font-medium text-gray-900">
-                    Add New Item
-                </h3>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">
-                    Details and informations about Item.
-                </p>
-            </div>
-            <div class="mt-2 mb-4">
-                <dl>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Item Category
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
 
-                            <select
-                                id="item_category"
-                                name="item_category"
-                                className='outline-none w-full h-full px-2 py-3' onChange={handleInputChange}
-                            >
-                                <option value="" >Select Category</option>
-                                <option value="furniture">Furniture</option>
-                                <option value="electronics" selected>Electronics</option>
-                                <option value="car">Car</option>
-                                <option value="bike">Bike</option>
-                                <option value="sports" >Sports</option>
-                                <option value="books" >Books</option>
-                                <option value="music" >Music</option>
-                            </select>
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Item Name
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type="text"
-                                id="item_name"
-                                name="item_name" onChange={handleInputChange}
-                                className='outline-none w-full h-full px-2 py-3'
-                                required />
-                        </dd>
-                    </div>
-                    <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Item Price
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input type="number"
-                                id="item_price"
-                                name="item_price" onChange={handleInputChange}
-                                className='outline-none w-full h-full px-2 py-3'
-                                required />
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Location
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input className='outline-none w-full h-full px-2 py-3' type="text"
-                                id="location"
-                                name="location"
-                                onChange={handleInputChange}
-                                required />
-
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Upload Image
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <input className='outline-none w-full h-full px-2 py-3' type="file"
-                                id="images"
-                                name="images"
-                                onChange={(e) => { setImage(e.target.files[0]) }} />
-
-                        </dd>
-                    </div>
-                    <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                        <dt class="text-sm font-medium text-gray-500">
-                            Item Description
-                        </dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
-                            <textarea className='outline-none w-full h-full px-2 py-3 resize-none'
-                                id="item_desc"
-                                name="item_desc"
-                                onChange={handleInputChange}
-                                placeholder='Enter Item Description (Min 75 Charactor)'
-                                required />
-
-                        </dd>
-                    </div>
-
-                    <div class="flex flex-row justify-center sm:justify-start items-center ">
-
-                        <>
-                            <div className="px-2 py-2 w-[8rem] mr-2 bg-red-300 flex flex-row justify-around items-center rounded-md" onClick={resetFormData}>
-                                <button>RESET</button>
-                                <GiCancel />
+        <>
+            {
+                isLoading === true && <div className='loader'>
+                    <img src={loaderGif} />
+                </div>
+            }
+            <div class="w-[98%] px-6 pt-6 shadow_cstm overflow-hidden sm:rounded-lg  my-4 mx-auto min-h-[70vh]">
+                <div class="px-4 py-5 sm:px-6 bg-indigo-400 rounded-md">
+                    <h3 class="text-lg leading-6 font-medium text-gray-900">
+                        Add New Item
+                    </h3>
+                    <p class="mt-1 max-w-2xl text-sm text-gray-500">
+                        Details And Informations About Item.
+                    </p>
+                </div>
+                <div class="mt-2 mb-4">
+                    <div>
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="text-sm font-medium text-gray-500">
+                                Item Category
                             </div>
-                            <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
-                                <button>SAVE</button>
-                                <MdOutlineDoneOutline />
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+
+                                <select
+                                    id="item_category"
+                                    name="item_category"
+                                    className='outline-none w-full h-full px-2 py-3' onChange={handleInputChange}
+                                >
+                                    <option value="" >Select Category</option>
+                                    <option value="furniture">Furniture</option>
+                                    <option value="electronic">Electronics</option>
+                                    <option value="car">Car</option>
+                                    <option value="bike">Bike</option>
+                                    <option value="sport" >Sports</option>
+                                    <option value="book" >Books</option>
+                                    <option value="music" >Music</option>
+                                </select>
                             </div>
-                        </>
+                        </div>
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="text-sm font-medium text-gray-500">
+                                Item Name
+                            </div>
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                <input type="text"
+                                    id="item_name"
+                                    name="item_name" onChange={handleInputChange}
+                                    className='outline-none w-full h-full px-2 py-3'
+                                    required />
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="text-sm font-medium text-gray-500">
+                                Item Price
+                            </div>
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                <input type="number"
+                                    id="item_price"
+                                    name="item_price" onChange={handleInputChange}
+                                    className='outline-none w-full h-full px-2 py-3'
+                                    required />
+                            </div>
+                        </div>
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="text-sm font-medium text-gray-500">
+                                Location
+                            </div>
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                <input className='outline-none w-full h-full px-2 py-3' type="text"
+                                    id="location"
+                                    name="location"
+                                    onChange={handleInputChange}
+                                    required />
+
+                            </div>
+                        </div>
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="text-sm font-medium text-gray-500">
+                                Upload Image
+                            </div>
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                <input className='outline-none w-full h-full px-2 py-3' type="file"
+                                    id="images"
+                                    name="images"
+                                    onChange={(e) => { setImage(e.target.files[0]) }} />
+
+                            </div>
+                        </div>
+                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                            <div class="text-sm font-medium text-gray-500">
+                                Item Description
+                            </div>
+                            <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 border-gray-300">
+                                <textarea className='outline-none w-full h-full px-2 py-3 resize-none'
+                                    id="item_desc"
+                                    name="item_desc"
+                                    onChange={handleInputChange}
+                                    placeholder='Enter Item Description (Min 75 Charactor)'
+                                    required />
+
+                            </div>
+                        </div>
+
+                        <div class="flex flex-row justify-center sm:justify-start items-center ">
+
+                            <>
+                                <div className="px-2 py-2 w-[8rem] mr-2 bg-red-300 flex flex-row justify-around items-center rounded-md" onClick={resetFormData}>
+                                    <button>RESET</button>
+                                    <GiCancel />
+                                </div>
+                                <div className="px-2 py-2 w-[8rem] bg-green-300 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
+                                    <button>SAVE</button>
+                                    <MdOutlineDoneOutline />
+                                </div>
+                            </>
+                        </div>
                     </div>
-                </dl>
-                <div className='user_profile_img'></div>
+                </div>
             </div>
-        </div>
+        </>
     )
 }
 

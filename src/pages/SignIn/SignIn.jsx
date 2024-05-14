@@ -30,6 +30,9 @@ const SignIn = () => {
 
         if (formData.username == '' || formData.password == '' || formData.email == '') {
             setMessage("All Fields Required")
+            setTimeout(() => {
+                setMessage("")
+            }, 2000)
         } else {
             let data = {
                 "username": formData.username,
@@ -49,6 +52,9 @@ const SignIn = () => {
 
                     if (data.data === "") {
                         setMessage(data.message)
+                        setTimeout(() => {
+                            setMessage("")
+                        }, 2000)
                     } else {
                         if (data.data) {
                             localStorage.setItem("user_id", data.data.user_id)
@@ -82,26 +88,28 @@ const SignIn = () => {
                 message !== "" && <h1 className='absolute top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-blue-600  bg-blue-200 px-6 py-2 rounded-xl'>{message}</h1>
             }
 
-            <div className="max-w-md w-full p-6 bg-white-500 rounded-lg shadow_cstm -mt-10 border-2 border-indigo-500 ">
+            <div className="max-w-md w-full p-6 bg-white-500 rounded-lg shadow_cstm -mt-10 border-2 border-blue-500 ">
                 <h1 className=" font-semibold text-center mb-6">Sign In</h1>
                 <form className="space-y-4">
                     <div>
                         <label htmlFor="username" className="block font-medium">Username</label>
-                        <input type="text" id="username" name='username' className="w-full border-white-300 rounded-md shadow_cstm  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 outline-none p-2 mt-2" onChange={handleChange} required />
+                        <input type="text" id="username" name='username' className="w-full border-white-300 rounded-md shadow_cstm  outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <div>
                         <label htmlFor="email" className="block font-medium">Email</label>
-                        <input type="text" id="email" name='email' className="w-full border-white-300 rounded-md shadow_cstm  focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 outline-none p-2 mt-2" onChange={handleChange} required />
+                        <input type="text" id="email" name='email' className="w-full border-white-300 rounded-md shadow_cstm outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <div>
                         <label htmlFor="password" className="block font-medium">Password</label>
-                        <input type="password" id="password" name='password' className="w-full border-white-300 rounded-md shadow_cstm focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 outline-none p-2 mt-2" onChange={handleChange} required />
+                        <input type="password" id="password" name='password' className="w-full border-white-300 rounded-md shadow_cstm  outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <Link to={'/'}>
-                        <button type="submit" className="w-full bg-indigo-500 text-white py-2 rounded-md hover:bg-indigo-600 transition duration-300 mt-4" onClick={handleSubmit}>Sign In</button>
+                        <button type="submit" className="w-full bg5 text-white py-2 rounded-md hover:bg5 transition duration-300 mt-4" onClick={handleSubmit}>Sign In</button>
                     </Link>
-                    <Link to={'/signup'}>signup</Link>
-                    <Link to={'/reset-password'}>Forgot Password</Link>
+                    <div className='my-2'>
+                        <span className='block mb-2 text-sm'>Don't Have An Account ?<Link to={'/signup'} className='font-semibold text-blue-500'> SignUp</Link></span>
+                        <span className='block text-sm'>Forgot Your Password ?<Link to={'/reset-password'} className='font-semibold text-blue-500'> Click Here To Reset</Link></span>
+                    </div>
                 </form>
             </div>
         </div>

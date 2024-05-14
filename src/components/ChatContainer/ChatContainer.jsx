@@ -14,7 +14,7 @@ function ChatContainer() {
 
     setTimeout(() => {
         setIsLoading(false);
-    }, 1000)
+    }, 2000)
 
     const user_id = localStorage.getItem("user_id")
     const [showChat, setShowChat] = useState(false);

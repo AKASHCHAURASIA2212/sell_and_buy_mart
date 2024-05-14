@@ -31,7 +31,10 @@ function Filter({ search, setSearch }) {
                 </div>
             </div> */}
 
-            <div className='h-9 w-9 bg2 mt-2 flex justify-center items-center rounded-xl text-white' onClick={() => { setSearch('') }}>
+            <div className='h-9 w-9 bg2 mt-2 flex justify-center items-center rounded-xl text-white' onClick={() => {
+                setSearch('empty')
+                setFilter('')
+            }}>
                 <GrPowerReset className='h-6 w-6' />
             </div>
 
@@ -39,7 +42,9 @@ function Filter({ search, setSearch }) {
                 <div className="search_filter sm:mr-3 w-full">
                     <div class="pt-2 mx-auto text-gray-600 flex flex-row justify-start items-center w-full">
                         <input class="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none w-full  sm:max-w-[25rem]"
-                            type="search" name="search" placeholder="Search" onChange={(e) => { setFilter(e.target.value) }} />
+                            type="text" name="search"
+                            value={filter == 'empty' ? '' : filter} placeholder="Search" onChange={(e) => { setFilter(e.target.value) }}
+                        />
                         <button type="submit" class="h-10 bg2 rounded-md px-6 ml-1 text-white" onClick={() => { setSearch(filter) }}>
                             <IoIosSearch size={25} />
                         </button>

@@ -46,7 +46,7 @@ const Profile = () => {
             const response = fetch(url,
                 {
                     method: 'DELETE',
-                    body: JSON.stringify({ "_id": id }),
+                    body: JSON.stringify({ "item_id": id }),
                     headers: {
                         "Content-type": "application/json; charset=UTF-8"
                     }
