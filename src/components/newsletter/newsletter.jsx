@@ -40,13 +40,13 @@ const Newsletter = () => {
         <div className="mx-2 h-[50vh] overflow-hidden my-6">
             <div className="mx-0 bg4 p-12 rounded-md flex flex-col md:flex-row items-center justify-around h-full">
                 {/* Input field for email */}
-                <form onSubmit={handleSubmit} className="flex flex-row items-center justify-center w-full md:w-[40%] lg:w-[48%]">
+                <form onSubmit={handleSubmit} className="flex flex-row items-center justify-center w-full md:w-2/5 lg:w-3/5">
                     <input
                         type="email"
                         placeholder="Enter your email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className=" md:w-auto px-4 py-2 mx-2 border-gray-300 rounded-md shadow-sm"
+                        className="w-4/5 md:w-3/5 px-4 py-2 mx-2 border-gray-300 rounded-md shadow_cstm"
                     />
                     <button
                         type="submit"
@@ -56,10 +56,10 @@ const Newsletter = () => {
                         {loading ? 'Subscribing...' : 'Subscribe'}
                     </button>
                 </form>
-                <div className="newsletter_logo w-full md:w-[50%] lg:w-[48%] text-center px-3">
-                    <span className='block text-black font-extrabold text-2xl md:text-2xl lg:text-7xl'>Get notified</span>
+                <div className="newsletter_logo w-full md:w-2/5 lg:w-2/4 text-center px-3">
+                    <span className='block text-black font-extrabold text-3xl md:text-2xl lg:text-6xl'>Get notified</span>
                     <span className='block text-lg md:text-xl lg:text-5xl font-bold text-black mt-3 my-3'>Want latest news and updates?</span>
-                    <span className='block text-blue-500 text-sm md:text-lg lg:text-4xl font-bold'>Sign up for our newsletter.</span>
+                    <span className='block text-blue-500 text-2xl md:text-lg lg:text-4xl font-bold'>Sign up for our newsletter.</span>
                 </div>
             </div>
         </div>

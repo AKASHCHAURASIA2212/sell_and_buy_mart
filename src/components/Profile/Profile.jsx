@@ -79,15 +79,15 @@ const Profile = () => {
 
                     <div className={`h-10 w-[3.8rem] sm:w-[4rem] mx-1 sm:mx-2 my-1 sm:mb-0 text-white text-sm rounded-md ${activetabs !== 4 ? 'bg-gray-600' : 'bg-indigo-600'} flex justify-center items-center cursor-pointer hover:bg-indigo-600 transition duration-300`} onClick={() => { setActiveTabs(4) }}>Rejected</div>
 
-                    <div className=" absolute bottom-2 right-1 mx-2 cursor-pointer">
+                    <div className=" absolute bottom-2 right-1 mx-2 cursor-pointer z-10">
                         <Link to={`/add/${userId}`} className="flex">
-                            <button className={`bg-indigo-600  text-sm sm:text-lg text-white rounded-3xl hover:bg-gray-600 transition duration-300 h-12 w-12`} onClick={() => { setActiveTabs(0) }}>ADD</button>
+                            <button className={`bg5  text-sm sm:text-lg text-white rounded-full hover:bg-gray-600 transition duration-300 h-14 w-14`} onClick={() => { setActiveTabs(0) }}>ADD</button>
                         </Link>
                     </div>
                 </div>
 
                 {
-                    activetabs == 0 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
+                    activetabs == 0 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-8 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-sm sm:text-lg text-gray-600'>Not Data Found</p>
@@ -103,7 +103,7 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 1 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
+                    activetabs == 1 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-8 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
@@ -119,13 +119,13 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 2 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
+                    activetabs == 2 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-8 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
                             </div>
                         }
-                        {user_data.length > 0 && user_data.filter((item) => item.status == "deleted").map((item, index) => {
+                        {user_data.length > 0 && user_data.filter((item) => item.status == "unavailable").map((item, index) => {
 
                             return (
                                 <Card2 item={item} key={index} />
@@ -135,7 +135,7 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 3 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
+                    activetabs == 3 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-8 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>
@@ -151,7 +151,7 @@ const Profile = () => {
                     </div>
                 }
                 {
-                    activetabs == 4 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-4 min-h-[72vh]">
+                    activetabs == 4 && <div className="container flex flex-row flex-wrap justify-between md:justify-around items-center mb-8 min-h-[72vh]">
                         {
                             user_data.length == 0 && <div className='flex flex-row justify-center items-center w-full'>
                                 <p className='text-gray-600 text-sm sm:text-lg'>Not Data Found</p>

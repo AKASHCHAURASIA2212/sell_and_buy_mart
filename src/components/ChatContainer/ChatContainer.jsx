@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import api_url from '../../utils/utils';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../Loading/Loading';
 
 function ChatContainer() {
 
@@ -126,7 +127,7 @@ function ChatContainer() {
 
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
 

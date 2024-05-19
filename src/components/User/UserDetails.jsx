@@ -7,6 +7,7 @@ import UserDetailsCard from '../Card/UserDetailsCard';
 import api_url from '../../utils/utils';
 import { MyContext } from '../../App';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../Loading/Loading';
 
 function UserDetails() {
 
@@ -144,7 +145,7 @@ function UserDetails() {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">

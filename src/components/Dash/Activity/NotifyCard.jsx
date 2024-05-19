@@ -13,12 +13,12 @@ function NotifyCard({ data, setShowModal, setReplyTo }) {
                 </div>
                 <div className="px-6 h-full">
 
-                    <p className="mb-2 block font-sans text-sm mt-3 font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                    <span className="mb-2 block font-sans text-sm mt-3 font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
                         <span className='text-sm'>Subject : </span>{data.subject}
-                    </p>
-                    <p className="text-sm font-normal text-gray-700 antialiased overflow-scroll">
+                    </span>
+                    <span className="text-sm font-normal text-gray-700 antialiased overflow-scroll">
                         {data.message}
-                    </p>
+                    </span>
                     <button
                         className="absolute bottom-1 right-1 flex items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all bg5 "
                         type="button" onClick={() => {

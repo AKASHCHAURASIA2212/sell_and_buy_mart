@@ -29,7 +29,6 @@ const Details = () => {
     const fetchData = async (url) => {
         try {
             const response = await axios.get(url);
-            // console.log("details --> ", response.data.data);
             setItems(response.data.data[0])
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -39,11 +38,10 @@ const Details = () => {
     useEffect(() => {
         let url = `${api_url}/api/items/${id}`
         fetchData(url)
-    }, [items]);
+    }, [id]);
 
     const startChat = (seller_id, item_id) => {
         navigate(`/chat/${seller_id}/${item_id}`);
-        // navigate(`/chat`);
     }
 
     const list = [
@@ -57,6 +55,7 @@ const Details = () => {
             <BreadCrum list={list} />
 
             <div className="my-3 flex flex-col sm:flex-row justify-between items-center">
+
                 <div className="w-[95%] md:w-[75%] h-full relative flex flex-wrap flex-column sm:flex-row rounded-xl bg1 overflow-hidden">
                     <div className="details-cont-img w-full h-[30vh] md:h-[50vh] sm:w-[35%] m-2 bg-white overflow-hidden rounded-xl">
 

@@ -41,7 +41,7 @@ const ResetPasswordMail = () => {
             .then((data) => {
 
                 if (data.data) {
-                    setMessage(data.message);
+                    setMessage("Password Rest Link has Beed Send on Email");
                     setTimeout(() => {
                         navigate('/signin')
                     }, 2000)

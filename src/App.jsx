@@ -27,6 +27,7 @@ import ResetPassword from './pages/ResetPassword/ResetPassword'
 import './App.css'
 import './responsive.css'
 import ResetPasswordMail from './pages/ResetPassword/ResetPasswordMail';
+import Loading from './components/Loading/Loading';
 
 
 const MyContext = createContext();
@@ -61,7 +62,7 @@ function App() {
       <MyContext.Provider value={value}>
         {
           isLoading === true && <div className='loader'>
-            <img src={loaderGif} />
+            <Loading />
           </div>
         }
         <Header />
@@ -82,7 +83,6 @@ function App() {
               <Route path='user/edit/:userId' element={<UserDetails />} />
               <Route path='item' element={<ItemArea />} />
               <Route path='item/edit/:itemId' element={<ItemDetails />} />
-              {/* <Route path='item/edit' element={<ItemEditArea />} /> */}
               <Route path='notify' element={<Notify />} />
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
             </Route>
@@ -104,6 +104,7 @@ function App() {
               </Route>
               <Route path='/chat/:id/:item_id' element={<ChatContainer />} />
               <Route path='chats/:chatId' element={<ChatArea />} />
+              <Route path='item/edit/:itemId' element={<ItemDetails />} />
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
             </>
           }

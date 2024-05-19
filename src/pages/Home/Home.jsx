@@ -17,6 +17,7 @@ import Filter from '../../components/Filter/Filter';
 import Newsletter from '../../components/newsletter/newsletter';
 import FeatureWrapper from '../../components/feature/FeatureWrapper';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../../components/Loading/Loading';
 
 
 
@@ -44,15 +45,15 @@ const Home = () => {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div className='mx-1'>
-                <div className='h-[35vh] md:h-[55vh] lg:h-[70vh] bg-white p-2 -mx-1'>
+                <div className='h-[35vh] md:h-[55vh] lg:h-[70vh] bg-white p-2 -mx-1 mb-2'>
                     <SliderComponent />
                 </div>
-                <div className="category flex flex-col flex-wrap justify-center items-start mb-2  py-3 sm:py-6 w-full text-black mx-0">
-                    <div className='flex flex-row justify-around justify-self-start items-center w-full overflow-x-auto'>
+                <div className="category flex flex-col flex-wrap justify-center items-start mb-2  py-0 sm:py-0 w-full text-black mx-0">
+                    <div className='flex flex-row justify-around justify-self-start items-center w-full overflow-x-auto lg:-mt-4'>
                         {
                             categories.length > 0 && categories.map((item, index) => {
                                 return (

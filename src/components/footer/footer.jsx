@@ -7,9 +7,9 @@ const Footer = () => {
     return (
         <footer className="bg-12 text-white py-4">
             <div className="container mx-auto flex flex-col md:flex-row items-center justify-between">
-                <div className="text-center md:text-left mb-4 md:mb-0">
-                    <p>&copy; Sell&Buy Mart</p>
-                    <p>All rights reserved</p>
+                <div className="text-center md:text-left mb-4 md:mb-0 flex flex-col items-center justify-center">
+                    <span>Sell & Buy Mart</span>
+                    <span>Copyright ©2024 All rights reserved </span>
                 </div>
 
                 <div className="flex items-center justify-center md:justify-end">

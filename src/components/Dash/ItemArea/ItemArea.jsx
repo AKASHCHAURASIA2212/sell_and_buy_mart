@@ -10,6 +10,7 @@ import { MdOutlineCancel } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
 import api_url from '../../../utils/utils';
 import loaderGif from '../../../asset/images/loading.gif'
+import Loading from '../../Loading/Loading';
 
 function ItemArea() {
 
@@ -65,7 +66,6 @@ function ItemArea() {
             })
     }
     const handleDelete = async (item_id) => {
-        e.preventDefault();
         let url = `${api_url}/api/admin/item/delete`;
 
         let data = {
@@ -150,18 +150,18 @@ function ItemArea() {
 
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div className="relative w-full px-0 -mt-1 overflow-hidden sm:rounded-lg  min-h-full">
 
 
-                <div className={`absolute flex justify-center items-center w-[95%] md:w:[48%] ${showModal ? 'flex' : 'hidden'} z-10`}>
-                    <div className=" bg-red-300 p-4 my-12 rounded-xl w-full lg:w-[45%]">
+                <div className={`absolute transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 flex justify-center items-center w-[95%] md:w:[48%] ${showModal ? 'flex' : 'hidden'} z-10`}>
+                    <div className=" bg5 p-4 my-12 rounded-xl w-full lg:w-[45%]">
                         <form onSubmit={handleReject} className="rounded-2xl relative">
 
                             <div className="mb-4">
-                                <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+                                <label htmlFor="message" className="block text-lg font-medium text-gray-700">
                                     Reason For Rejection
                                 </label>
                                 <textarea
@@ -170,13 +170,13 @@ function ItemArea() {
                                     rows={4}
                                     value={formData.message}
                                     onChange={handleChange}
-                                    className="text-gray-600 outline-none w-full h-48 rounded-md p-3 mt-3 resize-none"
+                                    className="text-gray-600 text-md outline-none w-full h-48 rounded-md p-3 mt-3 resize-none"
                                 />
                             </div>
 
                             <button
                                 type="submit"
-                                className="inline-block bg-indigo-500 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md mt-0 float-right"
+                                className="inline-block bg1 text-sm text-black font-semibold py-2 px-4 rounded-md mt-0 float-right"
                             >
                                 Send
                             </button>
@@ -194,9 +194,6 @@ function ItemArea() {
                     <h3 className="text-lg leading-6 font-medium text-gray-900">
                         Item Information
                     </h3>
-                    {/* <p className="mt-1 max-w-2xl text-sm text-gray-500">
-        Details and informations about Item.
-    </p> */}
                 </div>
                 <div className="flex flex-wrap mt-2">
                     <div className="w-full mx-auto">
@@ -219,14 +216,19 @@ function ItemArea() {
                                                     <div className="flex flex-row justify-center items-center">
 
                                                         <div className="py-3 text-start w-[30%] md:w-[20%]">
-                                                            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:items-end mr-6 md:mr-0">
-                                                                <div className="relative inline-block shrink-0 rounded-2xl">
-                                                                    <img src={item?.img == '' ? userLogo : item?.img} alt="" className='h-8 w-8 md:h-12 md:w-12 rounded-full object-fill object-center' />
+
+                                                            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:items-center mr-6 md:mr-0 ">
+
+                                                                <div className="inline-block shrink-0 rounded-full p-1 border-black border-2">
+                                                                    <img src={item?.img == '' ? userLogo : item?.img} alt="" className='h-8 w-8 md:h-12 md:w-12 rounded-full object-cover object-center' />
                                                                 </div>
-                                                                <div className="flex flex-col justify-start">
-                                                                    <p className="mb-1"> {item.item_name} </p>
+
+                                                                <div className="flex flex-col justify-center text-center md:ml-2">
+                                                                    <span className="mb-1 text-sm"> {item.item_name} </span>
                                                                 </div>
+
                                                             </div>
+
                                                         </div>
                                                         <div className="text-start w-[20%] md:w-[20%] ">
                                                             <span className="font-semibold text-light-inverse text-md/normal bg-purple-200 px-2 py-1 rounded-lg -ml-2 md:ml-0 text-xs md:text-lg">{item.item_price}</span>
@@ -240,26 +242,26 @@ function ItemArea() {
                                                         <div className="text-start w-[25%] md:w-[20%]">
                                                             <div className="w-full flex flex-row">
                                                                 {
-                                                                    item.status != 'unavailable' && <Link to={`edit/${item.item_id}`} className="   bg-blue-300 md:rounded-lg text-center text-sm md:text-lg font-semibold mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                    item.status != 'unavailable' && <Link to={`edit/${item.item_id}`} className="   bg-blue-300 md:rounded-lg text-center text-sm md:text-lg font-semibold mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center cursor-pointer">
                                                                         <FiEdit />
                                                                     </Link>
                                                                 }
 
 
                                                                 {
-                                                                    item.status == 'pending' && <div onClick={() => { handleApprove(item.item_id) }} className="   bg-green-300 md:rounded-lg text-center text-sm md:text-lg font-semibold ml-2 mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                    item.status == 'pending' && <div onClick={() => { handleApprove(item.item_id) }} className="   bg-green-300 md:rounded-lg text-center text-sm md:text-lg font-semibold ml-2 mb-1 md:mb-0 rounded-full h-6 w-6 md:h-8 md:w-8 flex justify-center items-center cursor-pointer">
                                                                         <HiCheck />
                                                                     </div>
                                                                 }
 
                                                                 {
-                                                                    item.status == 'pending' && <div onClick={() => { handleRejectSubmit(item.item_id) }} className="   bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                    item.status == 'pending' && <div onClick={() => { handleRejectSubmit(item.item_id) }} className="   bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center cursor-pointer">
                                                                         <ImCancelCircle />
                                                                     </div>
                                                                 }
 
                                                                 {
-                                                                    item.status == 'available' && <div onClick={() => { handleDelete(item.item_id) }} className="   bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                    item.status == 'available' && <div onClick={() => { handleDelete(item.item_id) }} className="   bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center cursor-pointer">
                                                                         <MdDelete />
                                                                     </div>
                                                                 }

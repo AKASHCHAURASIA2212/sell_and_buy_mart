@@ -87,14 +87,14 @@ const SingUp = () => {
 
     return (
 
-        <div className="min-h-screen flex flex-col justify-center items-center mx-4 pt-0 -mt-10">
+        <div className="min-h-screen flex flex-col justify-center items-center pt-0">
 
-            <div className="max-w-md w-full p-6 pt-2 mt-6 bg-white rounded-lg shadow-lg border-2 border-blue-500 ">
+            <div className="max-w-md w-[90%] p-6 pt-2 -mt-10 mx-2 bg-white rounded-lg shadow-lg border-2 border-blue-500 ">
                 {
                     message !== "" && <h1 className='absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-blue-600  bg-blue-200 px-6 py-2 rounded-xl'>{message}</h1>
                 }
 
-                <h1 className="font-semibold text-center mb-6">Sign Up</h1>
+                <h1 className="font-semibold text-center mb-6">SIGN UP</h1>
                 <form className="space-y-2">
                     <div>
                         <label htmlFor="username" className="block font-medium">Username</label>

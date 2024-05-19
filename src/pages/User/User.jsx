@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Profile from '../../components/Profile/Profile';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../../components/Loading/Loading';
 
 const User = () => {
 
@@ -16,7 +17,7 @@ const User = () => {
 
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div className="container px-1">

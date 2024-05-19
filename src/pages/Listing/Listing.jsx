@@ -10,6 +10,7 @@ import Pagination from '../../components/Pagination/Pagination';
 import api_url from '../../utils/utils';
 import Filter from '../../components/Filter/Filter';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../../components/Loading/Loading';
 
 const Listing = ({ title = "Latest Items" }) => {
 
@@ -75,7 +76,7 @@ const Listing = ({ title = "Latest Items" }) => {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div className={`ml-1 mx-auto mb-8 mt-4 w-full`}>

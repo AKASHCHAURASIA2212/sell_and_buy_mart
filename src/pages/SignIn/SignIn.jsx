@@ -12,7 +12,8 @@ const SignIn = () => {
 
     const [formData, setFormData] = useState({
         username: '',
-        password: ''
+        password: '',
+        email: ''
     });
 
     const [message, setMessage] = useState("");
@@ -28,6 +29,7 @@ const SignIn = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(formData);
         if (formData.username == '' || formData.password == '' || formData.email == '') {
             setMessage("All Fields Required")
             setTimeout(() => {
@@ -89,7 +91,7 @@ const SignIn = () => {
             }
 
             <div className="max-w-md w-full p-6 bg-white-500 rounded-lg shadow_cstm -mt-10 border-2 border-blue-500 ">
-                <h1 className=" font-semibold text-center mb-6">Sign In</h1>
+                <h1 className=" font-semibold text-center mb-6">SIGN IN</h1>
                 <form className="space-y-4">
                     <div>
                         <label htmlFor="username" className="block font-medium">Username</label>
@@ -97,7 +99,7 @@ const SignIn = () => {
                     </div>
                     <div>
                         <label htmlFor="email" className="block font-medium">Email</label>
-                        <input type="text" id="email" name='email' className="w-full border-white-300 rounded-md shadow_cstm outline-none p-2 mt-2" onChange={handleChange} required />
+                        <input type="email" id="email" name='email' className="w-full border-white-300 rounded-md shadow_cstm outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <div>
                         <label htmlFor="password" className="block font-medium">Password</label>

@@ -3,6 +3,7 @@ import Activity from '../Activity/Activity'
 import Stats from '../Activity/Stats'
 import api_url from '../../../utils/utils';
 import loaderGif from '../../../asset/images/loading.gif'
+import Loading from '../../Loading/Loading';
 
 function Panel() {
 
@@ -55,7 +56,7 @@ function Panel() {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div className='h-full bg-white overflow-scroll'>

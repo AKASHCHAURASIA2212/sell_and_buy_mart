@@ -7,8 +7,8 @@ import { useNavigate } from 'react-router-dom';
 function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
 
     let navigate = useNavigate();
-    // console.log("buyer_data_arr :", buyer_data_arr);
-    // console.log("seller_data_arr :", seller_data_arr);
+    console.log("buyer_data_arr :", buyer_data_arr);
+    console.log("seller_data_arr :", seller_data_arr);
     // console.log("details :", details, "seller_data_arr : ", seller_data_arr, "buyer_data_arr : ", buyer_data_arr);
     const user_id = localStorage.getItem("user_id")
     const username = localStorage.getItem("username")
@@ -25,6 +25,7 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
                 data.UserName = user.username
                 data.UserID = user.user_id
                 data.Mail = user.email
+                data.user_img = user.user_img
             }
         })
 
@@ -46,6 +47,8 @@ function ChatSideBar({ buyer_data_arr, seller_data_arr, details }) {
                 data.UserName = user.username
                 data.UserID = user.user_id
                 data.Mail = user.email
+                data.user_img = user.user_img
+
             }
         })
         // console.log("elem.messages : ", elem.messages);

@@ -15,7 +15,7 @@ function ItemDetailsCard({ data }) {
     return (
         <div className="relative w-full h-full flex flex-col rounded-xl text-white justify-center items-center border-2 text-center bg8">
 
-            <div className="mx-4 mt-6 overflow-hidden object-center object-cover bg-blue-gray-500 text-orange-400">
+            <div className="mx-4 mt-6 overflow-hidden object-center object-cover bg-blue-gray-500 ">
                 <img src={data?.img[0] == null ? box_img : data?.img[0]} className='rounded-full h-20 w-20 md:h-32 md:w-32 object-cover object-center' />
             </div>
 
@@ -27,19 +27,19 @@ function ItemDetailsCard({ data }) {
                     </p>
                 </div>
 
-                <div className='w-full flex flex-col flex-wrap justify-center items-center'>
-                    <div class="mt-2 flex items-center justify-center">
+                <div className='w-full flex flex-col flex-wrap justify-start items-center'>
+                    <div class="mt-2 flex items-center justify-start">
                         <ImParagraphCenter />
                         <p class="  ml-2">
                             {data?.item_category}
                         </p>
                     </div>
 
-                    <div class="mt-2 flex items-center justify-center">
+                    <div class="mt-2 flex items-center justify-start">
                         <FaRupeeSign />
                         <p class="ml-2">{data?.item_price}</p>
                     </div>
-                    <div class="mt-2 flex items-center justify-center">
+                    <div class="mt-2 flex items-center justify-start">
                         <FaAddressCard />
                         <p class="ml-2">{data?.location}</p>
                     </div>

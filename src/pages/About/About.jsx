@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import contact_logo from '../../asset/images/about.svg'
 import { Link } from 'react-router-dom';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../../components/Loading/Loading';
 
 
 const About = () => {
@@ -19,7 +20,7 @@ const About = () => {
 
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
 

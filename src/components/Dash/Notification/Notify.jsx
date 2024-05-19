@@ -6,6 +6,7 @@ import Pagination from '../../Pagination/Pagination';
 import { MdOutlineCancel } from "react-icons/md";
 import api_url from '../../../utils/utils';
 import loaderGif from '../../../asset/images/loading.gif'
+import Loading from '../../Loading/Loading';
 
 function Notify() {
     let [mailData, setMailData] = useState(null);
@@ -87,7 +88,7 @@ function Notify() {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
             <div className='relative -mt-1'>

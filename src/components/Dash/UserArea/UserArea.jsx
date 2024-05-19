@@ -9,6 +9,7 @@ import { MdDelete } from "react-icons/md";
 
 import api_url from '../../../utils/utils';
 import loaderGif from '../../../asset/images/loading.gif'
+import Loading from '../../Loading/Loading';
 
 
 function UserArea() {
@@ -62,10 +63,7 @@ function UserArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                // console.log(data);
-                // navigate('/')
                 window.location.reload();
-
             }).catch((e) => {
                 console.log(e);
             })
@@ -79,7 +77,7 @@ function UserArea() {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
 
@@ -113,12 +111,12 @@ function UserArea() {
                                                     <div className="flex flex-row justify-center items-center">
 
                                                         <div className="py-3 text-start w-[20%]">
-                                                            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:items-end mr-6 md:mr-0">
+                                                            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start md:items-center mr-6 md:mr-0">
                                                                 <div className="relative inline-block shrink-0 rounded-2xl">
                                                                     <img src={user?.user_img == '' ? userLogo : user?.user_img} alt="" className='h-8 w-8 md:h-12 md:w-12 rounded-full object-cover object-center' />
                                                                 </div>
-                                                                <div className="flex flex-col justify-start">
-                                                                    <p className="mb-1"> {user.username} </p>
+                                                                <div className="flex flex-col justify-start md:ml-2">
+                                                                    <span className="mb-1 text-xs md:text-sm"> {user.username} </span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -137,7 +135,7 @@ function UserArea() {
                                                                     <FiEdit />
                                                                 </Link>
                                                                 {user.deleted != '1' &&
-                                                                    <div onClick={() => { handleDelete(user.user_id) }} className="bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center">
+                                                                    <div onClick={() => { handleDelete(user.user_id) }} className="bg-red-500 rounded-full md:rounded-lg text-sm md:text-lg font-semibold ml-2 h-6 w-6 md:h-8 md:w-8 flex justify-center items-center cursor-pointer">
                                                                         <MdDelete />
                                                                     </div>
                                                                 }

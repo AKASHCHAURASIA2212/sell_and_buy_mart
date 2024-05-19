@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import { useNavigate } from 'react-router-dom'
 import userLogo from '../../asset/images/user.png';
+import { convertDateTimeFormat } from '../../utils/utils';
 
 function ChatBox({ user_data }) {
 
@@ -20,7 +21,7 @@ function ChatBox({ user_data }) {
             openChatArea(chatId)
         }
     }
-    // console.log(user_data);
+    console.log(user_data);
     return (
 
         <div className="flex min-w-full flex-col font-sans text-base font-normal text-blue-gray-700 h-full">
@@ -37,8 +38,8 @@ function ChatBox({ user_data }) {
                         <div onClick={() => { handleClick(user.chatID) }}
                             className="flex items-center w-full p-3 transition-all mb-2 bg1 rounded-lg">
                             <div className="grid mr-4 place-items-center">
-                                <img alt="emma" src={userLogo}
-                                    className="relative inline-block h-12 w-12 !rounded-full  object-cover object-center" />
+                                <img src={user?.user_img == '' ? userLogo : user?.user_img}
+                                    className="relative inline-block h-12 w-12 rounded-full  object-cover object-center border-2 border-blue" />
                             </div>
                             <div>
                                 <h6
@@ -52,7 +53,7 @@ function ChatBox({ user_data }) {
                                     {user.last_message}
                                 </p>
                                 <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700">
-                                    {user.date_entered}
+                                    {convertDateTimeFormat(user.date_entered)}
                                 </p>
                             </div>
                         </div>)

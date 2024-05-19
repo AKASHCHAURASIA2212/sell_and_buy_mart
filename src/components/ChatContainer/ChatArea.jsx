@@ -6,10 +6,12 @@ import loaderGif from '../../asset/images/loading.gif'
 import './index.css'
 import { useParams } from 'react-router-dom';
 import api_url from '../../utils/utils';
+import Loading from '../Loading/Loading';
 
 function ChatArea() {
 
     let [userName, setUserName] = useState("")
+    let [userImg, setUserImg] = useState("")
     let [message, setMessage] = useState(null)
     let user_id = localStorage.getItem("user_id")
     let [isLoading, setIsLoading] = useState(true);
@@ -87,6 +89,7 @@ function ChatArea() {
                         }
                     })
                     setUserName(user_c[0].username);
+                    setUserImg(user_c[0].user_img);
                     setMessage(data.data.chat[0].messages)
                 }).catch((e) => {
                     console.log(e);
@@ -107,14 +110,14 @@ function ChatArea() {
 
     return (<>
         {isLoading === true && <div className='w-full h-full flex items-center justify-center min-h-[95vh]'>
-            <img src={loaderGif} />
+            <Loading />
         </div>}
         {isLoading == false &&
             <div className={`h-[88vh] w-full sm:w-[50%] md:w-[60%] lg:w-[70%] flex flex-col justify-start items-center px-2 rounded-md p-2`}>
                 <div className="chat-area-header w-full flex justify-between items-center p-2 shadow_cstm bg-18 rounded-md">
                     <div className="details flex flex-col justify-center items-start">
                         <div className='flex flex-row justify-end items-center'>
-                            <img src={userLogo} className='h-10 w-10 bg-gray-400 p-2 rounded-3xl mr-2' />
+                            <img src={userImg == '' ? userLogo : userImg} className='h-12 w-12 rounded-3xl mr-2' />
                             <span className='text-xl font-mono font-bold '>{userName}</span>
 
                         </div>
@@ -126,10 +129,10 @@ function ChatArea() {
                 <div className="chat-area-cont w-full shadow_cstm p-2 flex-1 bg-white my-2 rounded-md h-auto overflow-y-auto">
                     {
                         !isMobile && isLoading === true && <div className='w-full h-full flex items-center justify-center'>
-                            <img src={loaderGif} />
+                            <Loading />
                         </div>
                     }
-                    <div className="chat-area w-full h-full flex flex-col">
+                    <div className="chat-area w-full h-full flex flex-col justify-start items-start">
                         {
                             message != null && message.map((elem, index) => {
                                 let msgData = { content: elem.content, date: elem.date_entered, msgId: elem.message_id }

@@ -1,14 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+
 .gr4{
-    background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);
+  background-image: radial-gradient(circle 248px at center, #16d9e3 0%, #30c7ec 47%, #46aef7 100%);;
 }
 
 .gr1{
-    background-image: linear-gradient(to top, #48c6ef 0%, #6f86d6 100%);
+  background-image: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);;
 }
 
 .gr2{
-    background-image: linear-gradient(to top, #00c6fb 0%, #005bea 100%);}
+  background-image: linear-gradient(to right, #43e97b 0%, #38f9d7 100%);}
 
 .gr3{
-    background-image: linear-gradient(-20deg, #b721ff 0%, #21d4fd 100%);
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);;
 }
+
+.poetsen-one-regular {
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+.background-image {
+    background-image: url('https://img.freepik.com/free-vector/flat-abstract-background_23-2149123691.jpg?t=st=1716027732~exp=1716031332~hmac=f71a4312f63fd3566297c59cbe4bfe3396aea0d7b7cb3a2489e0fdc44008d3aa&w=1060');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%;
+    width: 100%;
+  }
+.background-image1 {
+    background-image: url('https://img.freepik.com/free-photo/modern-stationary-collection-arrangement_23-2149309649.jpg?t=st=1716029482~exp=1716033082~hmac=f4bbb60e40fc4045ba3906d9e2a820b0a151f065eab1edd57580bb58639a3636&w=1060');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%;
+    width: 100%;
+  }
+.background-image3 {
+    background-image: url('https://img.freepik.com/free-vector/structural-geometric-app-cover-template_79603-1305.jpg?t=st=1716027816~exp=1716031416~hmac=8ec2408e639ce08912778c296d8d7d999ef696999c4435588ff23b30b0b5e593&w=1380');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%;
+    width: 100%;
+  }
+.background-image4 {
+    background-image: url('https://img.freepik.com/free-vector/structural-geometric-app-cover-template_79603-1305.jpg?t=st=1716027816~exp=1716031416~hmac=8ec2408e639ce08912778c296d8d7d999ef696999c4435588ff23b30b0b5e593&w=1380');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%;
+    width: 100%;
+  }
+.background-image5 {
+    background-image: url('https://img.freepik.com/free-photo/3d-render-code-testing-functional-test-usability_107791-16607.jpg?w=1380&t=st=1716028457~exp=1716029057~hmac=8ea27699f7595eca9a7e2ebb35dcb8dc03f74074f593cdda897140d844d838e9');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%;
+    width: 100%;
+  }
+.background-image6 {
+    background-image: url('https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?w=1060&t=st=1716028335~exp=1716028935~hmac=0a4cb482b1d3b220de0f1bcfa1f9a2097633e8f871094b890f0d3dd516cdf0bc');
+    background-size: contain; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    height: 100%;
+    width: 100%;
+  }

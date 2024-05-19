@@ -40,12 +40,12 @@ function SideBar() {
                             <span className="ml-2">Notifications</span>
                         </Link>
                     </li>
-                    <li className=" flex cursor-pointer space-x-2 rounded-md py-4 px-10 ">
+                    {/* <li className=" flex cursor-pointer space-x-2 rounded-md py-4 px-10 ">
                         <Link to='setting' className={`flex flex-row items-center ease-in-out ${index == 4 ? 'scale-125 ml-4' : ''} hover:scale-125 hover:ml-4`} onClick={() => { setIndex(4) }}>
                             <IoSettings />
                             <span className="ml-2">Settings</span>
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
 
                 {/* <div className="w-[96%] mt-6 mx-auto flex justify-start items-center cursor-pointer bg-white hover:bg-slate-400 px-2 py-2 rounded-lg text-black">

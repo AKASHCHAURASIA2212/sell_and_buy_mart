@@ -49,7 +49,7 @@ const Contact = () => {
     };
 
     return (
-        <div className='px-4 md:px-10 min-h-[88vh] bg6 flex flex-col md:flex-row justify-around'>
+        <div className='px-4 md:px-10 min-h-[88vh] bg-white flex flex-col md:flex-row justify-around'>
 
             <div className='contact_logo rounded-xl w-full lg:w-[45%] flex flex-col justify-center items-center h-[40vh] sm:h-[100%]'>
                 <img src={contact_logo} className='h-[70%]' />

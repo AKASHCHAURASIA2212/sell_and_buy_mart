@@ -96,21 +96,21 @@ function ChatHandler({ data, setRefresh }) {
     return (
         <div className='w-full flex flex-col justify-center items-center h-full'>
             <div className='flex flex-col justify-around items-center w-full md:w-[25%] h-[50%] py-2 px-2 bg5 rounded-md'>
-                <p className='text-3xl text-white'>Start Chat with Seller</p>
+                <span className='text-3xl text-white'>Start Chat with Seller</span>
                 <div className="chat-banner flex flex-row justify-around items-center">
                     <div className='buyer-logo h-12 w-12 md:h-16 md:w-16 flex flex-col justify-center items-center rounded-3xl'>
                         <img src={senderData?.user_img == '' ? userLogo : senderData?.user_img} className='rounded-full h-12 w-12 md:h-16 md:w-16 object-cover object-center' />
-                        <span className='text-white'>{senderData?.username}</span>
+                        <span className='text-white text-lg'>{senderData?.username}</span>
                     </div>
-                    <p className='text-xl mx-3 my-8 text-white font-semibold'>Want to Message</p>
+                    <span className='text-xl mx-3 my-8 text-white font-semibold'>Want to Message</span>
                     <div className='buyer-logo h-12 w-12 md:h-16 md:w-16 flex flex-col justify-center items-center rounded-3xl'>
                         <img src={receiverData?.user_img == '' ? userLogo : receiverData?.user_img} className='rounded-full h-12 w-12 md:h-16 md:w-16 object-cover object-center' />
-                        <span className='text-white'>{receiverData?.username}</span>
+                        <span className='text-white text-lg'>{receiverData?.username}</span>
                     </div>
                 </div>
                 <div className="chat-area-input shadow_cstm p-2 rounded-lg flex flex-row justify-center items-center bg1">
                     <input type="text" className='outline-none p-2 text-sm sm:text-lg border-2 bg-white-700 h-full w-full rounded-xl' placeholder='Message' name='message' onChange={(e) => { handleChange(e) }} />
-                    <button className="send p-1 rounded-md bg5 text-white ml-2" onClick={handleSubmit}>
+                    <button className="p-2 md:p-1 rounded-md bg5 text-white ml-2" onClick={handleSubmit}>
                         Send
                     </button>
                 </div>

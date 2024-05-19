@@ -7,6 +7,7 @@ import ItemDetailsCard from '../Card/ItemDetailsCard';
 import api_url from '../../utils/utils';
 import { useParams } from 'react-router-dom';
 import loaderGif from '../../asset/images/loading.gif'
+import Loading from '../Loading/Loading';
 
 
 function ItemDetails() {
@@ -70,7 +71,7 @@ function ItemDetails() {
         getUserDetails()
     }, [])
 
-    const handleChange = (e) => {
+    const handiveChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -79,7 +80,7 @@ function ItemDetails() {
 
     };
 
-    const handleImageSave = async (image) => {
+    const handiveImageSave = async (image) => {
         const data = new FormData();
         data.append('file', image);
         data.append('upload_preset', 'cpfy_sabm')
@@ -106,11 +107,11 @@ function ItemDetails() {
 
     }
 
-    const handleSubmit = async (e) => {
+    const handiveSubmit = async (e) => {
         setInputDisabled(true)
         e.preventDefault();
 
-        // console.log("handleSubmit : ", formData);
+        // console.log("handiveSubmit : ", formData);
 
         let data = {
             item_id: formData?.item_id,
@@ -124,7 +125,7 @@ function ItemDetails() {
         }
 
         if (image != '') {
-            let img_url = await handleImageSave(image)
+            let img_url = await handiveImageSave(image)
             data.img = [img_url];
         }
 
@@ -150,11 +151,11 @@ function ItemDetails() {
         <>
             {
                 isLoading === true && <div className='loader'>
-                    <img src={loaderGif} />
+                    <Loading />
                 </div>
             }
 
-            <div class="w-full p-3 shadow_cstm overflow-hidden sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
+            <div class="w-full p-3 shadow_cstm overflow-hidiven sm:rounded-lg  my-0 mx-0 min-h-[70vh]">
                 <div class="px-4 py-5 mb-3 sm:px-6 bg1 rounded-md">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Item Details
@@ -171,63 +172,63 @@ function ItemDetails() {
 
                     <div className="w-full md:w-[70%] bg1 rounded-md">
                         <div class="mt-2 mb-4">
-                            <dl>
+                            <div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         Item name
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
-                                        <input type='text' name='item_name' id='item_name' value={formData?.item_name} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                    </dd>
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                        <input type='text' name='item_name' id='item_name' value={formData?.item_name} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handiveChange} />
+                                    </div>
                                 </div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         Item Category
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
-                                        <input type='text' name='item_category' id='item_category' value={formData?.item_category} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} readOnly='true' />
-                                    </dd>
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                        <input type='text' name='item_category' id='item_category' value={formData?.item_category} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handiveChange} readOnly='true' />
+                                    </div>
                                 </div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         Item Price
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
-                                        <input type='text' name='item_price' id='item_price' value={formData?.item_price} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                    </dd>
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                        <input type='text' name='item_price' id='item_price' value={formData?.item_price} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handiveChange} />
+                                    </div>
                                 </div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         location
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
-                                        <input type='text' name='location' id='location' value={formData?.location} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                    </dd>
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                        <input type='text' name='location' id='location' value={formData?.location} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handiveChange} />
+                                    </div>
                                 </div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         Status
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
-                                        <input type='text' name='status' id='status' value={formData?.status} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} readOnly='true' />
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                        <input type='text' name='status' id='status' value={formData?.status} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handiveChange} readOnly='true' />
 
-                                    </dd>
+                                    </div>
                                 </div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         Item Desc
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
-                                        <input type='text' name='item_desc' id='item_desc' value={formData?.item_desc} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handleChange} />
-                                    </dd>
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                        <input type='text' name='item_desc' id='item_desc' value={formData?.item_desc} className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={handiveChange} />
+                                    </div>
                                 </div>
                                 <div class=" px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                                    <dt class="text-sm font-medium ">
+                                    <div class="text-sm font-medium ">
                                         Item Img
-                                    </dt>
-                                    <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
+                                    </div>
+                                    <div class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 border-2 ">
                                         <input type='file' name='img' id='img' className='outline-none w-full h-full px-2 py-3' disabled={inputDisabled} onChange={(e) => { setImage(e.target.files[0]) }} />
-                                    </dd>
+                                    </div>
                                 </div>
 
                                 <div class="flex flex-row justify-start items-center mb-6 ml-6">
@@ -238,18 +239,17 @@ function ItemDetails() {
                                         </div>}
                                     {!inputDisabled &&
                                         <>
-                                            <div className="px-2 py-2 w-[8rem] mr-2 bg5 flex flex-row justify-around items-center rounded-md" onClick={() => { setInputDisabled(!inputDisabled) }}>
+                                            <div className="px-2 py-2 w-[8rem] mr-2 bg5 flex flex-row justify-around items-center rounded-md cursor-pointer" onClick={() => { setInputDisabled(!inputDisabled) }}>
                                                 <button>CANCEL</button>
                                                 <GiCancel />
                                             </div>
-                                            <div className="px-2 py-2 w-[8rem] bg5 flex flex-row justify-around items-center rounded-md" onClick={handleSubmit}>
+                                            <div className="px-2 py-2 w-[8rem] bg5 flex flex-row justify-around items-center rounded-md cursor-pointer" onClick={handiveSubmit}>
                                                 <button>SAVE</button>
                                                 <MdOutlineDoneOutline />
                                             </div>
                                         </>}
                                 </div>
-                            </dl>
-                            <div className='user_profile_img'></div>
+                            </div>
                         </div>
                     </div>
                 </div>
