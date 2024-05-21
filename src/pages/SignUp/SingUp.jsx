@@ -29,8 +29,8 @@ const SingUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (formData.password != '' && formData.password.length <= 10) {
-            setMessage("Password Length Must Be Greater then 10 digits")
+        if (formData.password != '' && formData.password.length <= 6) {
+            setMessage("Password Must Be Greater then 6 digits")
             setTimeout(() => {
                 setMessage("")
             }, 2000)

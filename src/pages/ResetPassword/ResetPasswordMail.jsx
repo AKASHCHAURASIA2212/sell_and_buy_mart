@@ -74,7 +74,7 @@ const ResetPasswordMail = () => {
 
             <div className="relative max-w-md w-full p-6 bg-white rounded-lg shadow-lg border-2 border-blue-500 ">
                 {
-                    message !== "" && <span className='absolute -top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 block text-white  bg5 px-6 py-2 rounded-md'>{message}</span>
+                    message !== "" && <span className='absolute -top-12 left-1/2 transform -translate-x-1/2 -translate-y-1/2 block text-white  bg5 px-2 py-2 rounded-md w-full'>{message}</span>
                 }
                 <h1 className="font-semibold text-center mb-6">Enter Email To Receive Password Reset Link</h1>
                 <form className="space-y-4">
