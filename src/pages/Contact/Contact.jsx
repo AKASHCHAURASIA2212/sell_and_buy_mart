@@ -1,12 +1,13 @@
 import './index.css'
 import React, { useState } from 'react';
 import contact_logo from '../../asset/images/contact.webp'
-import api_url from '../../utils/utils';
+import api_url, { emailValidation } from '../../utils/utils';
 import loaderGif from '../../asset/images/loading.gif'
 
 const Contact = () => {
 
     let user_id = localStorage.getItem("user_id");
+    let token = localStorage.getItem("token");
     const [formData, setFormData] = useState({
         subject: '',
         email: '',
@@ -24,27 +25,45 @@ const Contact = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // console.log(formData);
-        let url = `${api_url}/api/mail/${user_id}`
-        await fetch(url, {
-            method: "POST",
-            body: JSON.stringify(formData),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        }).then(res => res.json())
-            .then((data) => {
-                // console.log(data);
-                // navigate('/')
-                setFormData({
-                    subject: '',
-                    email: '',
-                    message: ''
-                })
+        if (formData.email != '' && formData.subject != '' && formData.message != '') {
 
-            }).catch((e) => {
-                console.log(e);
-            })
+            if (emailValidation(formData.email)) {
+                let url = `${api_url}/api/mail/contact`
+                await fetch(url, {
+                    method: "POST",
+                    body: JSON.stringify(formData),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8",
+                        "authorization": token
+                    }
+                }).then(res => res.json())
+                    .then((data) => {
+                        alert('mail send successfully!');
+                        setFormData({
+                            subject: '',
+                            email: '',
+                            message: ''
+                        })
+
+                    }).catch((e) => {
+                        console.log(e);
+                    })
+
+            } else {
+                alert("Not A Valid Email !!!")
+            }
+
+        } else {
+            if (formData.email == '') {
+                alert("Email Required !!!")
+            } else if (formData.subject == '') {
+                alert("Subject Required !!!")
+            } else {
+                alert("Message Required !!!")
+            }
+        }
+
+
 
     };
 

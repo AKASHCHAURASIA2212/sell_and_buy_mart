@@ -9,7 +9,7 @@ function NotifyCard({ data, setShowModal, setReplyTo }) {
             <div className="relative flex w-full flex-col rounded-xl bg1 shadow-md h-full">
 
                 <div className="relative m-0 w-full shrink-0 overflow-hidden rounded-ss-xl rounded-se-xl bg5  text-white">
-                    <UserDetailsCard data={data.sender} />
+                    <UserDetailsCard data={data.email} />
                 </div>
                 <div className="px-6 h-full">
 

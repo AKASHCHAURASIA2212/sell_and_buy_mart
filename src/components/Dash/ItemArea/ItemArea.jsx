@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import userLogo from '../../../asset/images/box.png'
 import Pagination from '../../Pagination/Pagination';
 import { FiEdit } from "react-icons/fi";
@@ -22,6 +22,9 @@ function ItemArea() {
     let [replyTo, setReplyTo] = useState(null);
     let [item_id, setItemId] = useState(null);
     let user_id = localStorage.getItem("user_id")
+    let token = localStorage.getItem("token");
+    let navigation = useNavigate();
+
 
     let [isLoading, setIsLoading] = useState(true);
 
@@ -42,32 +45,27 @@ function ItemArea() {
     };
 
     const handleApprove = async (item_id) => {
-        // e.preventDefault();
-        // // console.log("handle Approve : ", item_id);
-
         let url = `${api_url}/api/admin/item/approve`;
-
         let data = {
             itemId: item_id,
             approved_by: user_id
         }
-
         let result = await fetch(url, {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
-                window.location.reload();
+                navigation(`/admin/item`)
             }).catch((e) => {
                 console.log(e);
             })
     }
     const handleDelete = async (item_id) => {
         let url = `${api_url}/api/admin/item/delete`;
-
         let data = {
             itemId: item_id,
             deleted_by: user_id
@@ -77,11 +75,12 @@ function ItemArea() {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
-                window.location.reload();
+                navigation(`/admin/item`)
             }).catch((e) => {
                 console.log(e);
             })
@@ -108,12 +107,13 @@ function ItemArea() {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
                 setShowModal(false)
-                window.location.reload();
+                navigation(`/admin/item`)
             }).catch((e) => {
                 console.log(e);
             })
@@ -125,7 +125,8 @@ function ItemArea() {
         let result = await fetch(url, {
             method: "GET",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {

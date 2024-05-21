@@ -17,6 +17,7 @@ function UserDetails() {
         setIsLoading(false);
     }, 2000)
 
+    let token = localStorage.getItem("token");
     let isAdmin = localStorage.getItem("admin_status");
     isAdmin = isAdmin === 'true';
     console.log(isAdmin);
@@ -35,7 +36,8 @@ function UserDetails() {
         await fetch(url, {
             method: "POST",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
@@ -131,7 +133,8 @@ function UserDetails() {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {

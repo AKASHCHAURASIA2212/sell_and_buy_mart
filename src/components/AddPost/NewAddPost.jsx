@@ -15,6 +15,8 @@ function NewAddPost() {
     }, 2000)
 
     let user_id = localStorage.getItem('user_id')
+    let token = localStorage.getItem("token");
+
     // console.log("user_id : ", user_id);
     const [image, setImage] = useState('');
     const [formData, setFormData] = useState({
@@ -118,7 +120,9 @@ function NewAddPost() {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token,
+
                 }
             })
                 .then(res => res.json())

@@ -17,6 +17,8 @@ function Notify() {
     let [replyTo, setReplyTo] = useState(null);
 
     let [isLoading, setIsLoading] = useState(true);
+    let token = localStorage.getItem("token");
+
 
     setTimeout(() => {
         setIsLoading(false);
@@ -28,7 +30,8 @@ function Notify() {
         let result = await fetch(url, {
             method: "GET",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
@@ -71,7 +74,8 @@ function Notify() {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {

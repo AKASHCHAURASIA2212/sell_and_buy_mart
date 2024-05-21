@@ -8,6 +8,8 @@ import api_url from '../../utils/utils';
 const AddPost = () => {
 
     let user_id = localStorage.getItem('user_id')
+    let token = localStorage.getItem("token");
+
 
     console.log("user_id : ", user_id);
     const [formData, setFormData] = useState({
@@ -61,7 +63,9 @@ const AddPost = () => {
                 method: "POST",
                 body: JSON.stringify(data),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
+
                 }
             }).then(res => res.json())
                 .then((data) => {

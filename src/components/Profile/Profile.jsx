@@ -12,6 +12,7 @@ import api_url from '../../utils/utils';
 const Profile = () => {
 
     let userId = localStorage.getItem('user_id');
+    let token = localStorage.getItem("token");
     // console.log(userId);
     let { isLogin, setIsLogin } = useContext(MyContext)
     const [loading, setLoading] = useState(false);
@@ -26,7 +27,8 @@ const Profile = () => {
                 method: "POST",
                 body: JSON.stringify({ userId: userId }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
                 }
             }).then(res => res.json())
                 .then((data) => {
@@ -48,7 +50,8 @@ const Profile = () => {
                     method: 'DELETE',
                     body: JSON.stringify({ "item_id": id }),
                     headers: {
-                        "Content-type": "application/json; charset=UTF-8"
+                        "Content-type": "application/json; charset=UTF-8",
+                        "authorization": token
                     }
 
                 }

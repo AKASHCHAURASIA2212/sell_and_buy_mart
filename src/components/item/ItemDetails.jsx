@@ -21,6 +21,7 @@ function ItemDetails() {
 
 
     let userId = localStorage.getItem("user_id");
+    let token = localStorage.getItem("token");
 
     let [itemData, setItemData] = useState(null);
 
@@ -37,7 +38,8 @@ function ItemDetails() {
         await fetch(url, {
             method: "GET",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
@@ -137,7 +139,8 @@ function ItemDetails() {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {

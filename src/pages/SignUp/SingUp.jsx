@@ -3,7 +3,7 @@ import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { MyContext } from '../../App';
-import api_url from '../../utils/utils';
+import api_url, { emailValidation } from '../../utils/utils';
 const SingUp = () => {
 
     const navigate = useNavigate();
@@ -29,6 +29,13 @@ const SingUp = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (formData.password != '' && formData.password.length <= 10) {
+            setMessage("Password Length Must Be Greater then 10 digits")
+            setTimeout(() => {
+                setMessage("")
+            }, 2000)
+            return;
+        }
 
 
         if (formData.password !== formData.confirmPassword) {
@@ -37,49 +44,51 @@ const SingUp = () => {
                 setMessage("")
             }, 2000)
         } else {
-
             if (formData.username == '' || formData.password == '' || formData.email == '') {
-                setMessage("All Fields Required")
+                if (formData.username == '') {
+                    setMessage("Username Required")
+                } else if (formData.email == '') {
+                    setMessage("Email Required")
+                } else {
+                    setMessage("Password Required")
+                }
                 setTimeout(() => {
                     setMessage("")
                 }, 2000)
             } else {
-                let data = {
-                    "username": formData.username,
-                    "password": formData.password,
-                    "email": formData.email,
+
+
+                if (emailValidation(formData.email)) {
+                    let data = {
+                        "username": formData.username,
+                        "password": formData.password,
+                        "email": formData.email,
+                    }
+
+                    let url = `${api_url}/api/users/signup`
+
+                    await fetch(url, {
+                        method: "POST",
+                        body: JSON.stringify(data),
+                        headers: {
+                            "Content-type": "application/json; charset=UTF-8",
+                        }
+                    }).then(res => res.json())
+                        .then((data) => {
+                            // console.log("SignUp -> ", data);
+                            if (data.data == '') {
+                                setMessage(data.message)
+                            } else {
+                                localStorage.setItem("user_id", data.data.user_id)
+                                navigate('/verify')
+                            }
+                        }).catch((e) => {
+                            console.log(e);
+                        })
+                } else {
+                    setMessage("Email is Not Valid");
                 }
 
-                let url = `${api_url}/api/users/signup`
-
-                await fetch(url, {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    }
-                }).then(res => res.json())
-                    .then((data) => {
-                        // console.log("SignUp -> ", data);
-                        if (data.data == '') {
-                            setMessage(data.message)
-                        } else {
-                            localStorage.setItem("user_id", data.data.user_id)
-                            localStorage.setItem("username", data.data.username)
-                            localStorage.setItem("login_status", true)
-                            if (data.data.role == 'admin') {
-                                setIsAdmin(true);
-                                localStorage.setItem("admin_status", true)
-                            } else {
-                                localStorage.setItem("admin_status", false)
-                            }
-                            setIsLogin(true);
-                            navigate('/')
-
-                        }
-                    }).catch((e) => {
-                        console.log(e);
-                    })
             }
 
         }
@@ -87,11 +96,11 @@ const SingUp = () => {
 
     return (
 
-        <div className="min-h-screen flex flex-col justify-center items-center pt-0">
+        <div className="h-[88vh] flex flex-col justify-center items-center pt-0">
 
-            <div className="max-w-md w-[90%] p-6 pt-2 -mt-10 mx-2 bg-white rounded-lg shadow-lg border-2 border-blue-500 ">
+            <div className="max-w-md w-[90%] p-6 pt-2  mx-2 bg-white rounded-lg shadow-lg border-2 border-blue-500 ">
                 {
-                    message !== "" && <h1 className='absolute top-28 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-blue-600  bg-blue-200 px-6 py-2 rounded-xl'>{message}</h1>
+                    message !== "" && <span className='absolute top-24 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white  bg5 px-6 py-2 mt-2 md:mt-0 rounded-xl text-sm'>{message}</span>
                 }
 
                 <h1 className="font-semibold text-center mb-6">SIGN UP</h1>
@@ -101,8 +110,8 @@ const SingUp = () => {
                         <input type="text" id="username" name='username' className="w-full border-white-300 rounded-md shadow_cstm outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <div>
-                        <label htmlFor="email" className="block font-medium">Email</label>
-                        <input type="email" id="email" name='email' className="w-full border-white-300 rounded-md shadow_cstm outline-none p-2 mt-2" onChange={handleChange} required />
+                        <label className="block font-medium">Email</label>
+                        <input type="email" id="email" name='email' pattern="[^ @]*@[^ @]*" className="w-full border-white-300 rounded-md shadow_cstm outline-none p-2 mt-2" onChange={handleChange} required />
                     </div>
                     <div>
                         <label htmlFor="password" className="block font-medium">Password</label>

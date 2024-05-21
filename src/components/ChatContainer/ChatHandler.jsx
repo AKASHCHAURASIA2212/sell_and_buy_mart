@@ -11,6 +11,8 @@ function ChatHandler({ data, setRefresh }) {
     let [senderData, setSenderData] = useState(null);
     let [receiverData, setReceiverData] = useState(null);
     let navigate = useNavigate();
+    let token = localStorage.getItem("token");
+
 
     console.log(data);
 
@@ -22,7 +24,8 @@ function ChatHandler({ data, setRefresh }) {
         let result = await fetch(url, {
             method: "POST",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((userData) => {
@@ -63,7 +66,8 @@ function ChatHandler({ data, setRefresh }) {
             method: "POST",
             body: JSON.stringify(formData),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {

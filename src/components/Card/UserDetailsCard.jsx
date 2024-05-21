@@ -12,6 +12,8 @@ function UserDetailsCard({ userId }) {
     // console.log(userId);
 
     let [userData, setUserData] = useState(null);
+    let token = localStorage.getItem("token");
+
 
     const getUserDetails = async (e) => {
         let url = `${api_url}/api/users/${userId}`;
@@ -19,7 +21,8 @@ function UserDetailsCard({ userId }) {
         await fetch(url, {
             method: "POST",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((userData) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import userLogo from '../../../asset/images/user.png'
 import Pagination from '../../Pagination/Pagination';
 import { FiEdit } from "react-icons/fi";
@@ -18,8 +18,9 @@ function UserArea() {
     let [limit, setLimit] = useState(5);
     let [totalCount, settotalCount] = useState(null);
     let user_id = localStorage.getItem("user_id")
-
+    let token = localStorage.getItem("token");
     let [isLoading, setIsLoading] = useState(true);
+    let navigation = useNavigate();
 
     setTimeout(() => {
         setIsLoading(false);
@@ -30,7 +31,8 @@ function UserArea() {
         await fetch(url, {
             method: "GET",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
@@ -59,11 +61,12 @@ function UserArea() {
             method: "POST",
             body: JSON.stringify(data),
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {
-                window.location.reload();
+                navigation('/admin/user')
             }).catch((e) => {
                 console.log(e);
             })

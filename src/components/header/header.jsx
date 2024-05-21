@@ -18,8 +18,11 @@ const Header = () => {
     const logoutHandler = () => {
         setIsLogin(false)
         setIsAdmin(false)
-        localStorage.setItem("login_status", false);
-        localStorage.setItem("admin_status", false);
+        localStorage.removeItem("login_status")
+        localStorage.removeItem("admin_status")
+        localStorage.removeItem("token")
+        localStorage.removeItem("user_id")
+        localStorage.removeItem("username")
         navigate('/signup')
     }
 

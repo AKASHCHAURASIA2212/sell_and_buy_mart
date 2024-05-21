@@ -28,6 +28,7 @@ import './App.css'
 import './responsive.css'
 import ResetPasswordMail from './pages/ResetPassword/ResetPasswordMail';
 import Loading from './components/Loading/Loading';
+import OTP_Varify from './pages/ResetPassword/otp_verification';
 
 
 const MyContext = createContext();
@@ -37,6 +38,8 @@ function App() {
   let login_status = localStorage.getItem("login_status");
   login_status = login_status === 'true';
   let admin_status = localStorage.getItem("admin_status");
+  admin_status = admin_status === 'true';
+  let token = localStorage.getItem("token");
   admin_status = admin_status === 'true';
   let [isLogin, setIsLogin] = useState(login_status);
   let [isAdmin, setIsAdmin] = useState(admin_status);
@@ -72,11 +75,12 @@ function App() {
             <Route exact={true} path="/signup" element={<SingUp />} />
             <Route exact={true} path="/signin" element={<SignIn />} />
             <Route exact={true} path='/reset-password' element={<ResetPasswordMail />} />
+            <Route exact={true} path='/verify' element={<OTP_Varify />} />
             <Route exact={true} path='/reset-password/:userId' element={<ResetPassword />} />
           </>
           }
           {
-            isAdmin &&
+            isAdmin && token &&
             <Route path='admin' element={<Dashboard />} className='mx-4' >
               <Route path='' element={<Panel />} />
               <Route path='user' element={<UserArea />} />
@@ -88,14 +92,12 @@ function App() {
             </Route>
           }
           {
-            isLogin && <>
+            isLogin && token && <>
               <Route exact={true} path="/" element={<Home className='mx-4' />} />
               <Route exact={true} path="/listing" element={<Listing className='mx-4' />} />
               <Route exact={true} path="/listing/:cat" element={<Listing className='mx-4' />} />
               <Route exact={true} path="/listing/:cat/:id" element={<Details className='mx-4' />} />
               <Route exact={true} path="/account" element={<UserDetails className='mx-4' />} />
-              <Route exact={true} path="/about" element={<About className='mx-4' />} />
-              <Route exact={true} path="/Contact" element={<Contact className='mx-4' />} />
               <Route exact={true} path="/user" element={<User className='mx-4' />} />
               <Route exact={true} path="/add/:user_id" element={<NewAddPost className='mx-4' />} />
               <Route exact={true} path="/chat" element={<ChatContainer className='mx-4' />} >
@@ -108,8 +110,12 @@ function App() {
               <Route exact={true} path='*' element={<NotFound className='mx-4' />} />
             </>
           }
+          <Route exact={true} path="/about" element={<About className='mx-4' />} />
+          <Route exact={true} path="/Contact" element={<Contact className='mx-4' />} />
         </Routes>
+
         <Footer />
+
 
       </MyContext.Provider>
     </BrowserRouter >

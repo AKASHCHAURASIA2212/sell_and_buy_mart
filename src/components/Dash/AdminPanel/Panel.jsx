@@ -15,6 +15,8 @@ function Panel() {
 
     let [stats, setStates] = useState(null);
     let [activity, setActivity] = useState(null);
+    let token = localStorage.getItem("token");
+
 
     let fetchData = async () => {
         let url = `${api_url}/api/admin/dash`;
@@ -22,7 +24,8 @@ function Panel() {
         let result = await fetch(url, {
             method: "GET",
             headers: {
-                "Content-type": "application/json; charset=UTF-8"
+                "Content-type": "application/json; charset=UTF-8",
+                "authorization": token
             }
         }).then(res => res.json())
             .then((data) => {

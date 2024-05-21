@@ -23,13 +23,31 @@ const Details = () => {
     let navigate = useNavigate();
     // console.log(cat, id);
     const user_id = localStorage.getItem('user_id')
+    let token = localStorage.getItem("token");
+
 
     const [items, setItems] = useState(null);
 
     const fetchData = async (url) => {
         try {
-            const response = await axios.get(url);
-            setItems(response.data.data[0])
+            // const response = await axios.get(url);
+            // setItems(response.data.data[0])
+            await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
+
+                }
+            }).then(res => res.json())
+                .then((data) => {
+                    console.log(data.data[0]);
+                    setItems(data.data[0])
+
+                }).catch((e) => {
+                    console.log(e);
+                })
+
         } catch (error) {
             console.error("Error fetching data:", error);
         }

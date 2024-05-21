@@ -14,9 +14,7 @@ import Loading from '../../components/Loading/Loading';
 
 const Listing = ({ title = "Latest Items" }) => {
 
-
     let [isLoading, setIsLoading] = useState(true);
-
     setTimeout(() => {
         setIsLoading(false);
     }, 2000)
@@ -29,6 +27,7 @@ const Listing = ({ title = "Latest Items" }) => {
     let [limit, setLimit] = useState(8);
     let [totalCount, settotalCount] = useState(null);
     let [search, setSearch] = useState('empty');
+    let token = localStorage.getItem("token");
 
     title = id == undefined ? cat : "Similier Item";
 
@@ -39,7 +38,8 @@ const Listing = ({ title = "Latest Items" }) => {
                 method: "GET",
                 // body: JSON.stringify(formData),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token,
                 }
             }).then(res => res.json())
                 .then((response) => {

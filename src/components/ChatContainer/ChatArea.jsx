@@ -14,6 +14,8 @@ function ChatArea() {
     let [userImg, setUserImg] = useState("")
     let [message, setMessage] = useState(null)
     let user_id = localStorage.getItem("user_id")
+    let token = localStorage.getItem("token");
+
     let [isLoading, setIsLoading] = useState(true);
     let { chatId } = useParams();
     const isMobile = window.innerWidth <= 640;
@@ -44,7 +46,8 @@ function ChatArea() {
                 method: "POST",
                 body: JSON.stringify(formData),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
                 }
             }).then(res => res.json())
                 .then((data) => {
@@ -77,7 +80,8 @@ function ChatArea() {
                 method: "POST",
                 body: JSON.stringify({ chatId }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
                 }
             }).then(res => res.json())
                 .then((data) => {

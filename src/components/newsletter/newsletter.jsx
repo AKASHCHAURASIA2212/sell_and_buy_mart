@@ -6,6 +6,7 @@ import React, { useState } from 'react';
 const Newsletter = () => {
     const [email, setEmail] = useState('');
     const [loading, setLoading] = useState(false);
+    let token = localStorage.getItem("token")
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -17,6 +18,7 @@ const Newsletter = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    "authorization": token
                 },
                 body: JSON.stringify({ email }),
             });

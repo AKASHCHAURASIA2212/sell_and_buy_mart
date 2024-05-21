@@ -18,6 +18,8 @@ function ChatContainer() {
     }, 2000)
 
     const user_id = localStorage.getItem("user_id")
+    let token = localStorage.getItem("token");
+
     const [showChat, setShowChat] = useState(false);
     const [buyer_data, setBuyerData] = useState(null);
     const [seller_data, setSellerData] = useState(null);
@@ -42,7 +44,8 @@ function ChatContainer() {
                 method: "POST",
                 body: JSON.stringify({ sellerId, buyerId, item_id }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
                 }
             }).then(res => res.json())
                 .then((data) => {
@@ -66,7 +69,8 @@ function ChatContainer() {
                 method: "POST",
                 body: JSON.stringify({ sellerId, buyerId, user_id }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
                 }
             }).then(res => res.json())
                 .then((data) => {
@@ -93,7 +97,8 @@ function ChatContainer() {
                 method: "POST",
                 body: JSON.stringify({ user_id }),
                 headers: {
-                    "Content-type": "application/json; charset=UTF-8"
+                    "Content-type": "application/json; charset=UTF-8",
+                    "authorization": token
                 }
             }).then(res => res.json())
                 .then((data) => {
