@@ -10,7 +10,6 @@ import SingUp from './pages/SignUp/SingUp';
 import SignIn from './pages/SignIn/SignIn';
 import About from './pages/About/About';
 import Footer from './components/footer/footer';
-import loaderGif from './asset/images/loading.gif'
 import User from './pages/User/User'
 import ChatContainer from './components/ChatContainer/ChatContainer';
 import Dashboard from './pages/Dashboard/Dashboard';
