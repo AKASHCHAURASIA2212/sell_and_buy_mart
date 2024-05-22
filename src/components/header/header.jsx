@@ -96,6 +96,11 @@ const Header = () => {
                                                 <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">SignUp</li>
                                             </Link>
                                         }
+                                        {!isLogin &&
+                                            <Link to='/verify' onClick={() => { setShowMenu(!showMenu) }}>
+                                                <li className="block rounded-md px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer">Verify OTP</li>
+                                            </Link>
+                                        }
                                         {isLogin &&
                                             <Link to='/signin' onClick={() => {
                                                 logoutHandler()
