@@ -45,6 +45,7 @@ function ItemArea() {
     };
 
     const handleApprove = async (item_id) => {
+        setIsLoading(true)
         let url = `${api_url}/api/admin/item/approve`;
         let data = {
             itemId: item_id,
@@ -59,12 +60,15 @@ function ItemArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                navigation(`/admin/item`)
+                getItemDetails()
+                setIsLoading(false)
             }).catch((e) => {
                 console.log(e);
             })
     }
     const handleDelete = async (item_id) => {
+
+        setIsLoading(true)
         let url = `${api_url}/api/admin/item/delete`;
         let data = {
             itemId: item_id,
@@ -80,7 +84,9 @@ function ItemArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                navigation(`/admin/item`)
+
+                getItemDetails()
+                setIsLoading(false)
             }).catch((e) => {
                 console.log(e);
             })
@@ -93,8 +99,8 @@ function ItemArea() {
 
     const handleReject = async (e) => {
         e.preventDefault();
-        let url = `${api_url}/api/admin/item/reject`;
 
+        let url = `${api_url}/api/admin/item/reject`;
         let data = {
             message: formData.message,
             itemId: item_id,
@@ -113,13 +119,19 @@ function ItemArea() {
         }).then(res => res.json())
             .then((data) => {
                 setShowModal(false)
-                navigation(`/admin/item`)
+                setIsLoading(true)
+
+                setTimeout(() => {
+                    getItemDetails()
+                    setIsLoading(false)
+                }, 1000)
+
             }).catch((e) => {
                 console.log(e);
             })
     }
 
-    async function getUserDetails() {
+    async function getItemDetails() {
 
         let url = `${api_url}/api/admin/item/${page}/${limit}`;
         let result = await fetch(url, {
@@ -140,7 +152,7 @@ function ItemArea() {
     };
 
     useEffect(() => {
-        getUserDetails()
+        getItemDetails()
     }, [page])
 
 

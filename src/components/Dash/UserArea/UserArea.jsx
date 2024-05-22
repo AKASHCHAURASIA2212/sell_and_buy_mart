@@ -49,6 +49,7 @@ function UserArea() {
     const handleDelete = async (userId) => {
         // e.preventDefault();
         // console.log("handle Delete : ", userId);
+        setIsLoading(true)
 
         let url = `${api_url}/api/admin/user/delete`;
 
@@ -66,7 +67,8 @@ function UserArea() {
             }
         }).then(res => res.json())
             .then((data) => {
-                navigation('/admin/user')
+                getUserDetails()
+                setIsLoading(false)
             }).catch((e) => {
                 console.log(e);
             })
